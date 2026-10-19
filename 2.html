@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한의원 소개 - 안준석 한의원</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #F9F7F3; color: #333; scroll-behavior: smooth; }
+        .font-serif-en { font-family: 'Playfair Display', serif; }
+        .text-accent { color: #B69A7B; }
+        .bg-accent { background-color: #B69A7B; }
+        .border-accent { border-color: #B69A7B; }
+
+        /* 서브 내비게이션 바 (Sticky) */
+        .sub-nav { position: sticky; top: 96px; z-index: 40; background: white; border-bottom: 1px solid #eaeaea; }
+        .sub-nav a.active { color: #B69A7B; border-bottom: 2px solid #B69A7B; }
+        
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+    <!-- Header (index.html과 동일, 링크 경로만 주의) -->
+    <header class="fixed w-full z-50 bg-white border-b border-gray-100 h-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+            <div class="flex justify-between items-center h-full">
+                <!-- 로고 -->
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <a href="index.html" class="flex items-center gap-3">
+                        <div class="w-10 h-10 border border-accent flex items-center justify-center text-xs text-accent text-center leading-tight">安漢<br>浚醫<br>哲院</div>
+                        <div>
+                            <h1 class="text-2xl font-bold tracking-tight text-gray-900">안준석 <span class="font-normal">한의원</span></h1>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 데스크탑 메뉴 -->
+                <nav class="hidden md:flex space-x-8 h-full items-center">
+                    <a href="about.html" class="text-accent border-b-2 border-accent pb-1 font-medium">한의원 소개</a>
+                    <a href="#" class="text-gray-700 hover:text-accent font-medium transition-colors">목·허리 디스크</a>
+                    <a href="#" class="text-gray-700 hover:text-accent font-medium transition-colors">이명/난청</a>
+                    <a href="#" class="text-gray-700 hover:text-accent font-medium transition-colors">여성/다이어트</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 서브페이지 타이틀 (Hero) -->
+    <div class="pt-24 bg-gray-100 relative h-64 flex items-center justify-center">
+        <div class="absolute inset-0 bg-black/40 z-10"></div>
+        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1920&q=80" class="absolute inset-0 w-full h-full object-cover" alt="Background">
+        <div class="relative z-20 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-2 tracking-wide">한의원 소개</h2>
+            <p class="text-gray-200 text-sm">Ahn Junseok Oriental Medicine Clinic</p>
+        </div>
+    </div>
+
+    <!-- 서브 내비게이션 바 (스크롤시 고정됨) -->
+    <div class="sub-nav shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 flex justify-center space-x-8">
+            <a href="#section-greeting" class="py-4 text-sm font-medium text-gray-600 hover:text-accent transition-colors">인사말</a>
+            <a href="#section-doctor" class="py-4 text-sm font-medium text-gray-600 hover:text-accent transition-colors">의료진 소개</a>
+            <a href="#section-info" class="py-4 text-sm font-medium text-gray-600 hover:text-accent transition-colors">진료 안내</a>
+            <a href="#section-location" class="py-4 text-sm font-medium text-gray-600 hover:text-accent transition-colors">오시는 길</a>
+        </div>
+    </div>
+
+    <!-- 콘텐츠 영역 -->
+    <main class="bg-white">
+        <!-- 1. 인사말 -->
+        <section id="section-greeting" class="py-24 max-w-5xl mx-auto px-4 reveal">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl font-bold mb-4">인사말</h3>
+                <div class="w-12 h-1 bg-accent mx-auto"></div>
+            </div>
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-1/2">
+                    <h4 class="text-2xl font-bold mb-6">안녕하세요. 안준석입니다.</h4>
+                    <p class="text-accent font-medium mb-6">영등포 시장역 근처에서 2003년부터 한결같이 정직하게 진료해온지 벌써 20년이 넘었습니다.</p>
+                    <p class="text-gray-600 leading-relaxed mb-4">지난 20년간 디스크, 협착증, 오십견 등의 통증질환, 이명 및 구안와사, 교통사고 후유증 등 여러 질환들을 열심히 치료해오다 좋은 기회로 확장 이전을 하게 되었습니다.</p>
+                    <p class="text-gray-600 leading-relaxed">모두 믿고 맡겨주신 환자분들 덕분입니다. 방문해주시는 모든 환자분들이 건강과 함께 따뜻한 마음까지 가져가시도록 늘 최선을 다하겠습니다.</p>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="aspect-[4/5] bg-gray-200 rounded-sm overflow-hidden">
+                        <!-- 실제 원장님 사진으로 교체 -->
+                        <div class="w-full h-full bg-gray-300 flex items-center justify-center text-gray-500">원장님 프로필 사진 영역</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 의료진 소개 -->
+        <section id="section-doctor" class="py-24 bg-gray-50 reveal">
+            <div class="max-w-5xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h3 class="text-3xl font-bold mb-4">의료진 소개</h3>
+                    <div class="w-12 h-1 bg-accent mx-auto"></div>
+                </div>
+                <div class="bg-white p-10 shadow-sm border border-gray-100 flex flex-col md:flex-row gap-10">
+                    <div class="w-48 h-48 bg-gray-200 rounded-full flex-shrink-0 mx-auto md:mx-0"></div>
+                    <div>
+                        <h4 class="text-2xl font-bold mb-2">대표원장 안준석</h4>
+                        <p class="text-gray-500 mb-6">한의학 박사 / 전문의</p>
+                        <ul class="space-y-3 text-gray-600 list-disc list-inside">
+                            <li>경희대학교 한의과대학 졸업</li>
+                            <li>대한침구의학회 정회원</li>
+                            <li>대한추나학회 정회원</li>
+                            <li>전) 영등포구 한의사회 이사</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 진료 안내 -->
+        <section id="section-info" class="py-24 max-w-5xl mx-auto px-4 reveal">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl font-bold mb-4">진료 안내</h3>
+                <div class="w-12 h-1 bg-accent mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="border border-gray-200 p-8 rounded-sm">
+                    <h4 class="text-xl font-bold mb-6 text-accent">진료 시간</h4>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex justify-between border-b border-gray-100 pb-3"><span>평일 (야간진료)</span> <strong>09:30 - 20:00</strong></li>
+                        <li class="flex justify-between border-b border-gray-100 pb-3"><span>토/일/공휴일</span> <strong>09:30 - 16:00</strong></li>
+                        <li class="flex justify-between text-gray-500 text-sm pt-2"><span>점심시간</span> <span>13:00 - 14:00</span></li>
+                    </ul>
+                    <p class="mt-4 text-sm text-gray-500">* 주말 및 공휴일은 점심시간 없이 진료합니다.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 4. 오시는 길 -->
+        <section id="section-location" class="py-24 bg-gray-50 reveal">
+            <div class="max-w-5xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h3 class="text-3xl font-bold mb-4">오시는 길</h3>
+                    <div class="w-12 h-1 bg-accent mx-auto"></div>
+                </div>
+                <!-- 지도 영역 -->
+                <div class="w-full h-96 bg-gray-300 mb-8 flex items-center justify-center text-gray-500 rounded-sm">
+                    카카오/네이버 지도 API 삽입 영역
+                </div>
+                <div class="bg-white p-8 border border-gray-100">
+                    <h4 class="text-lg font-bold mb-2">서울특별시 영등포구 당산로 83</h4>
+                    <p class="text-gray-600 mb-4">한화포레나당산 108호 안준석한의원</p>
+                    <p class="text-accent font-bold text-xl">02-2069-2500</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (index.html과 동일) -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+            <p>© 2024 Ahn Junseok Oriental Medical Clinic. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 스크롤 애니메이션
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for(var i = 0; i < reveals.length; i++) {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                if(revealtop < windowheight - 100) reveals[i].classList.add('active');
+            }
+        }
+        setTimeout(reveal, 100);
+    </script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여성질환/다이어트 - 안준석 한의원</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#B69A7B',      /* 우아한 샴페인 골드 */
+                            dark: '#333333',      /* 텍스트용 다크 그레이 */
+                            graytext: '#666666',  /* 본문 서브 텍스트 */
+                            ivory: '#F9F7F3',     /* 따뜻한 아이보리 배경 */
+                            lightBorder: '#EFEFEF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                        serif: ['"Nanum Myeongjo"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth Scroll with offset for sticky headers */
+        html { scroll-behavior: smooth; scroll-padding-top: 150px; }
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #ffffff; overflow-x: hidden; color: #333; }
+        .font-serif { font-family: 'Nanum Myeongjo', serif; }
+        .word-keep { word-break: keep-all; }
+        
+        /* Mega Menu Transition */
+        .mega-menu-panel {
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+            transform: translateY(-10px);
+        }
+        .header-group:hover .mega-menu-panel {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .sub-link { transition: all 0.2s ease; }
+        .sub-link:hover { color: #B69A7B; font-weight: 500; transform: translateX(5px); }
+        
+        /* Sticky Sub-navigation */
+        .sticky-subnav {
+            position: sticky;
+            top: 96px; /* Height of main header (h-24) */
+            z-index: 40;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #EFEFEF;
+        }
+        .sticky-subnav a {
+            position: relative;
+        }
+        .sticky-subnav a::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: transparent;
+            transition: background-color 0.3s;
+        }
+        .sticky-subnav a:hover::after,
+        .sticky-subnav a.active::after {
+            background-color: #B69A7B;
+        }
+        .sticky-subnav a:hover,
+        .sticky-subnav a.active {
+            color: #B69A7B;
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-gold selection:text-white">
+
+    <!-- ========================================== -->
+    <!-- HEADER & MEGA MENU                         -->
+    <!-- ========================================== -->
+    <div class="fixed top-0 left-0 w-full z-50 header-group bg-white/95 backdrop-blur-md border-b border-brand-lightBorder shadow-sm transition-all duration-300">
+        <header class="relative z-20 h-24 flex items-center justify-between px-6 xl:px-12 max-w-screen-2xl mx-auto">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-3 shrink-0 cursor-pointer">
+                <div class="w-10 h-10 border border-brand-gold flex flex-col items-center justify-center p-1 text-brand-gold font-serif leading-none text-[10px] text-center shrink-0">
+                    <div>安漢</div><div>浚醫</div><div>哲院</div>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <span class="text-brand-dark text-2xl font-serif font-bold tracking-widest">안준석 한의원</span>
+                    <span class="text-[10px] text-brand-gold tracking-wide mt-0.5 uppercase">Ahn Junseok Oriental Clinic</span>
+                </div>
+            </a>
+            
+            <!-- Main Navigation -->
+            <nav class="hidden lg:block w-[700px] xl:w-[900px] mx-auto absolute left-1/2 -translate-x-1/2 h-full">
+                <ul class="grid grid-cols-6 h-full text-center">
+                    <li class="h-full flex items-center justify-center"><a href="#" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">한의원 소개</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="#" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">목·허리 디스크</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="#" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">이명/난청</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="#" class="text-brand-gold text-[15px] font-bold transition-colors w-full h-full flex items-center justify-center border-b-2 border-brand-gold">여성/다이어트</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="#" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center word-keep">교통사고후유증</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="#" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">맞춤한약</a></li>
+                </ul>
+            </nav>
+
+            <!-- Hamburger -->
+            <div class="flex items-center gap-4 shrink-0">
+                <button class="w-10 h-10 rounded-full bg-brand-ivory text-brand-dark hover:bg-brand-gold hover:text-white flex items-center justify-center transition-colors shadow-sm">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Mega Menu Dropdown -->
+        <div class="mega-menu-panel absolute top-24 left-0 w-full bg-white z-10 border-t border-brand-lightBorder shadow-xl pb-12 pt-8 opacity-0 invisible">
+            <div class="w-[700px] xl:w-[900px] mx-auto grid grid-cols-6 text-center">
+                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">인사말</a></li>
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">의료진 소개</a></li>
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">진료안내/오시는길</a></li>
+                </ul>
+                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">침도요법</a></li>
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">추나·골타요법</a></li>
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">디스크·협착증</a></li>
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">오십견</a></li>
+                </ul>
+                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">이명</a></li>
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">돌발성 난청/구안와사</a></li>
+                </ul>
+                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                    <li><a href="#section-menstrual" class="sub-link text-sm text-brand-gold font-medium block w-full">생리통·생리불순</a></li>
+                    <li><a href="#section-infertility" class="sub-link text-sm text-brand-gold font-medium block w-full">난임(불임)</a></li>
+                    <li><a href="#section-postpartum" class="sub-link text-sm text-brand-gold font-medium block w-full">산후관리</a></li>
+                    <li><a href="#section-menopause" class="sub-link text-sm text-brand-gold font-medium block w-full">갱년기</a></li>
+                    <li><a href="#section-diet" class="sub-link text-sm text-brand-gold font-medium block w-full">한방 다이어트</a></li>
+                </ul>
+                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">자동차보험 안내</a></li>
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">후유증 집중치료</a></li>
+                </ul>
+                <ul class="space-y-4 text-left px-4">
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">1:1 맞춤보약</a></li>
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">공진단/경옥고</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- FLOATING RIGHT MENU                        -->
+    <!-- ========================================== -->
+    <div class="fixed right-4 md:right-6 top-1/2 -translate-y-1/2 z-40 bg-white/90 backdrop-blur-md rounded-full shadow-lg border border-gray-100 p-2 flex flex-col gap-2">
+        <a href="#" class="w-12 h-12 md:w-14 md:h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
+            <div class="w-5 h-5 md:w-6 md:h-6 bg-[#03C75A] text-white rounded font-bold text-[10px] md:text-[11px] flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">N</div>
+            <span class="text-[9px] md:text-[10px] text-gray-600 font-medium">예약</span>
+        </a>
+        <div class="w-8 h-px bg-gray-200 mx-auto my-1"></div>
+        <a href="#" class="w-12 h-12 md:w-14 md:h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
+            <i class="fas fa-comment-dots text-yellow-400 text-lg md:text-xl mb-1 group-hover:scale-110 transition-transform"></i>
+            <span class="text-[9px] md:text-[10px] text-gray-600 font-medium">카톡</span>
+        </a>
+        <div class="w-8 h-px bg-gray-200 mx-auto my-1"></div>
+        <a href="#" class="w-12 h-12 md:w-14 md:h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
+            <i class="fas fa-map-marker-alt text-brand-gold text-lg md:text-xl mb-1 group-hover:scale-110 transition-transform"></i>
+            <span class="text-[9px] md:text-[10px] text-gray-600 font-medium">오시는길</span>
+        </a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="pt-24">
+        
+        <!-- ========================================== -->
+        <!-- SUBPAGE HERO SECTION                       -->
+        <!-- ========================================== -->
+        <section class="relative h-[400px] w-full flex items-center justify-center bg-brand-ivory overflow-hidden">
+            <div class="absolute inset-0 bg-[url('https://placehold.co/1920x600/EFEFEF/999999?text=Women+Health+and+Diet')] bg-cover bg-center opacity-50 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent"></div>
+            
+            <div class="relative z-10 text-center text-white px-6">
+                <span class="text-brand-gold font-bold tracking-widest text-sm mb-4 block uppercase drop-shadow-md">Women's Health & Diet</span>
+                <h1 class="text-4xl md:text-5xl font-serif font-bold mb-4 drop-shadow-lg">여성질환 / 다이어트</h1>
+                <p class="text-gray-200 font-light text-lg tracking-wide">여성의 생애 주기별 맞춤 치료로 건강한 아름다움을 되찾아 드립니다.</p>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- STICKY SUB-NAVIGATION                      -->
+        <!-- ========================================== -->
+        <div class="sticky-subnav shadow-sm w-full">
+            <div class="max-w-5xl mx-auto px-4 flex justify-between md:justify-center md:space-x-12 overflow-x-auto whitespace-nowrap scrollbar-hide">
+                <a href="#section-menstrual" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">생리통·생리불순</a>
+                <a href="#section-infertility" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">난임(불임)</a>
+                <a href="#section-postpartum" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">산후관리</a>
+                <a href="#section-menopause" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">갱년기</a>
+                <a href="#section-diet" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">한방 다이어트</a>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 1: 생리통·생리불순               -->
+        <!-- ========================================== -->
+        <section id="section-menstrual" class="py-24 bg-white relative">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="md:w-1/2 reveal">
+                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Menstrual Health</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">생리통·생리불순</h2>
+                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">
+                            진통제에 의존하지 않는<br>근본적인 자궁 환경 개선.
+                        </h3>
+                        <p class="text-brand-graytext leading-relaxed mb-6 word-keep font-light">
+                            매월 찾아오는 극심한 통증과 불규칙한 주기는 자궁과 난소로 가는 기혈 순환이 원활하지 않다는 몸의 신호입니다. 스트레스, 차가운 기운, 체내에 쌓인 어혈(노폐물)이 주된 원인입니다.
+                        </p>
+                        <p class="text-brand-graytext leading-relaxed mb-8 word-keep font-light">
+                            단순히 통증을 덮어두는 것이 아니라, 자궁 내 어혈을 깨끗하게 배출하고 하복부를 따뜻하게 순환시키는 맞춤 한약과 뜸 치료를 통해 스스로 규칙적이고 건강한 생리를 할 수 있도록 자생력을 길러줍니다.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2 reveal delay-200">
+                        <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
+                            <img src="https://placehold.co/800x600/F9F7F3/B69A7B?text=Menstrual+Health" alt="생리통 치료" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 2: 난임(불임)                      -->
+        <!-- ========================================== -->
+        <section id="section-infertility" class="py-24 bg-brand-ivory relative">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row-reverse gap-12 items-center">
+                    <div class="md:w-1/2 reveal">
+                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Infertility Care</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">난임(불임)</h2>
+                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">
+                            건강한 새 생명을 맞이하기 위한<br>따뜻하고 비옥한 자궁 환경 조성.
+                        </h3>
+                        <p class="text-brand-graytext leading-relaxed mb-6 word-keep font-light">
+                            기질적인 이상이 없음에도 임신이 잘 되지 않거나 유산이 반복된다면, 자궁의 기능적 저하와 차가운 환경(자궁냉증)을 먼저 살펴보아야 합니다.
+                        </p>
+                        <p class="text-brand-graytext leading-relaxed mb-8 word-keep font-light">
+                            착상에 유리한 환경을 만들기 위해 자궁 심부의 온도를 높이고 난소의 기능을 강화하는 치료를 진행합니다. 부부의 체질과 건강 상태를 면밀히 분석하여, 건강한 임신과 안성적인 출산을 위한 1:1 맞춤 한방 치료를 제공합니다.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-sm font-medium text-brand-dark"><i class="fas fa-seedling text-brand-gold mr-3"></i> 착상률을 높이는 자궁 내막 강화</li>
+                            <li class="flex items-center text-sm font-medium text-brand-dark"><i class="fas fa-seedling text-brand-gold mr-3"></i> 난소 기능 개선 및 건강한 난자 배출 유도</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 reveal delay-200">
+                        <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
+                            <img src="https://placehold.co/800x600/FFFFFF/B69A7B?text=Infertility+Care" alt="난임 한방치료" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 3: 산후관리                        -->
+        <!-- ========================================== -->
+        <section id="section-postpartum" class="py-24 bg-white relative">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="md:w-1/2 reveal">
+                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Postpartum Care</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">산후관리 (산후풍 예방)</h2>
+                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">
+                            출산 후 약해진 기혈을 보충하고<br>평생의 관절 건강을 지킵니다.
+                        </h3>
+                        <p class="text-brand-graytext leading-relaxed mb-6 word-keep font-light">
+                            출산 과정에서 여성의 몸은 막대한 기혈을 소모하며 뼈와 관절이 크게 이완됩니다. 이 시기에 올바른 관리가 이루어지지 않으면 찬 기운이 몸에 침투하여 시림, 관절통, 우울감 등의 산후풍을 겪게 됩니다.
+                        </p>
+                        <p class="text-brand-graytext leading-relaxed mb-8 word-keep font-light">
+                            자궁 내 잔여 어혈과 오로를 깨끗이 배출시키는 처방을 시작으로, 늘어난 관절과 인대를 수축시키고 기력을 보강하는 녹용보약 등 산모의 회복 단계에 맞춘 체계적인 산후조리 한약을 처방합니다.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2 reveal delay-200">
+                        <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
+                            <img src="https://placehold.co/800x600/F9F7F3/B69A7B?text=Postpartum+Care" alt="산후조리 보약" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 4: 갱년기                          -->
+        <!-- ========================================== -->
+        <section id="section-menopause" class="py-24 bg-brand-ivory relative">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row-reverse gap-12 items-center">
+                    <div class="md:w-1/2 reveal">
+                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Menopause Syndrome</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">갱년기 증후군</h2>
+                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">
+                            위로 뜨는 열은 내리고<br>부족해진 진액을 채워줍니다.
+                        </h3>
+                        <p class="text-brand-graytext leading-relaxed mb-6 word-keep font-light">
+                            여성 호르몬의 급격한 감소로 인해 안면홍조, 발한, 가슴 두근거림, 불면증, 우울감 등 신체적·심리적 변화가 크게 찾아오는 시기입니다. 
+                        </p>
+                        <p class="text-brand-graytext leading-relaxed mb-8 word-keep font-light">
+                            한의학에서는 이를 진액이 고갈되어 허열이 위로 뜨는 '상열하한(上熱下寒)'의 상태로 봅니다. 인위적인 호르몬 투여가 아닌, 오장육부의 균형을 맞추고 고갈된 신음(腎陰)을 보충하여 갱년기를 편안하고 건강하게 넘길 수 있도록 돕습니다.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2 reveal delay-200">
+                        <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
+                            <img src="https://placehold.co/800x600/FFFFFF/B69A7B?text=Menopause+Treatment" alt="갱년기 한방치료" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 5: 한방 다이어트                   -->
+        <!-- ========================================== -->
+        <section id="section-diet" class="py-24 bg-white relative">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="md:w-1/2 reveal">
+                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Herbal Diet</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">한방 다이어트</h2>
+                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">
+                            굶지 않는 건강한 감량,<br>대사량을 높여 요요를 방지합니다.
+                        </h3>
+                        <p class="text-brand-graytext leading-relaxed mb-6 word-keep font-light">
+                            무리한 단식은 근육량 감소와 기초대사량 저하를 불러와 결국 더 쉽게 살이 찌는 요요현상을 초래합니다. 안준석 한의원의 다이어트는 '비우고, 태우고, 채우는' 체질 개선 프로그램입니다.
+                        </p>
+                        <p class="text-brand-graytext leading-relaxed mb-8 word-keep font-light">
+                            식욕을 자연스럽게 억제함과 동시에 신진대사를 촉진시켜 체지방 위주의 감량을 유도합니다. 부족해지기 쉬운 기혈을 보충하는 약재를 더해 다이어트 중 발생할 수 있는 탈모, 어지럼증, 생리불순을 예방하며 건강하게 아름다움을 되찾아 드립니다.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-sm font-medium text-brand-dark"><i class="fas fa-check text-brand-gold mr-3"></i> 식욕 조절 및 포만감 형성</li>
+                            <li class="flex items-center text-sm font-medium text-brand-dark"><i class="fas fa-check text-brand-gold mr-3"></i> 체지방 분해 촉진 및 노폐물(습담) 배출</li>
+                            <li class="flex items-center text-sm font-medium text-brand-dark"><i class="fas fa-check text-brand-gold mr-3"></i> 개인별 체질과 체형에 맞춘 1:1 맞춤 탕약</li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 reveal delay-200">
+                        <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
+                            <img src="https://placehold.co/800x600/F9F7F3/B69A7B?text=Healthy+Diet" alt="한방 다이어트" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- FOOTER & INFO                              -->
+    <!-- ========================================== -->
+    <footer class="bg-gray-900 text-gray-400 pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div class="lg:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-8 h-8 border border-gray-500 flex flex-col items-center justify-center p-1 text-brand-gold font-serif leading-none text-[8px] text-center">
+                        <div>安漢</div><div>浚醫</div><div>哲院</div>
+                    </div>
+                    <span class="text-white text-xl font-serif font-bold">안준석 한의원</span>
+                </div>
+                <p class="text-sm leading-relaxed mb-6 max-w-sm font-light">
+                    눈에 보이는 증상 너머 근본을 다스립니다.<br>
+                    20년 임상 노하우로 환자분들의 건강한 일상을 책임지겠습니다.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 tracking-widest text-sm uppercase">Clinic Info</h4>
+                <ul class="space-y-4 text-sm font-light">
+                    <li>
+                        <span class="block text-gray-500 mb-1">진료예약 및 상담</span>
+                        <strong class="text-xl text-brand-gold font-serif">02-2069-2500</strong>
+                    </li>
+                    <li><span class="block text-gray-500 mb-1">평일 (야간진료)</span><span class="text-gray-300">09:30 - 20:00</span></li>
+                    <li><span class="block text-gray-500 mb-1">토/일/공휴일</span><span class="text-gray-300">09:30 - 16:00 (점심시간 없음)</span></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 tracking-widest text-sm uppercase">Contact</h4>
+                <ul class="space-y-3 text-sm font-light">
+                    <li class="leading-relaxed text-gray-300">서울특별시 영등포구 당산로 83<br>한화포레나당산 108호</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-gray-800 text-xs text-center text-gray-500 font-light">
+            <p>&copy; 2024 Ahn Junseok Oriental Medical Clinic. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Scroll Animation Observer
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '0px', threshold: 0.15 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            
+            // Sub-navigation Active State based on Scroll
+            const sections = document.querySelectorAll('section[id^="section-"]');
+            const navLinks = document.querySelectorAll('.sticky-subnav a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    // Adjusted for header (96) + subnav (approx 60) + padding
+                    if (pageYOffset >= sectionTop - 160) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
