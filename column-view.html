@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>칼럼 상세 보기 - 안준석 한의원</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { gold: '#B69A7B', dark: '#333333', graytext: '#666666', ivory: '#F9F7F3', lightBorder: '#EFEFEF' }
+                    },
+                    fontFamily: { sans: ['"Noto Sans KR"', 'sans-serif'], serif: ['"Nanum Myeongjo"', 'serif'] }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #ffffff; color: #333; }
+        .font-serif { font-family: 'Nanum Myeongjo', serif; }
+        .mega-menu-panel { transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; }
+        .sub-link { transition: all 0.2s ease; }
+        .sub-link:hover { color: #B69A7B; font-weight: 500; transform: translateY(-2px); }
+        
+        /* 에디터(Quill)에서 작성한 본문 디자인 예쁘게 나오도록 기본 설정 */
+        .post-content h2 { font-size: 1.5rem; font-weight: bold; margin-top: 2rem; margin-bottom: 1rem; color: #333; }
+        .post-content h3 { font-size: 1.25rem; font-weight: bold; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #444; }
+        .post-content p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem; color: #555; }
+        .post-content img { max-width: 100%; border-radius: 0.5rem; margin: 2rem auto; display: block; }
+        .post-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .post-content ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .post-content blockquote { border-left: 4px solid #B69A7B; padding-left: 1rem; color: #666; font-style: italic; background-color: #f9f9f9; padding: 1rem; margin-bottom: 1rem; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-gold selection:text-white">
+
+    <!-- HEADER (column.html과 동일) -->
+    <div id="header-wrapper" class="fixed top-0 left-0 w-full z-50 group bg-white border-b border-brand-lightBorder shadow-sm">
+        <header class="relative z-20 h-24 flex items-center justify-between px-6 xl:px-12 max-w-screen-2xl mx-auto">
+            <a href="index.html" class="flex items-center gap-3 shrink-0 cursor-pointer">
+                <div class="w-10 h-10 border border-brand-gold flex flex-col items-center justify-center p-1 text-brand-gold font-serif leading-none text-[10px] text-center shrink-0">
+                    <div>安漢</div><div>浚醫</div><div>哲院</div>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <span class="text-brand-dark text-2xl font-serif font-bold tracking-widest">안준석 한의원</span>
+                    <span class="text-[10px] text-brand-gold tracking-wide mt-0.5">Ahn Junseok Oriental Clinic</span>
+                </div>
+            </a>
+            
+            <nav class="hidden lg:block w-[880px] xl:w-[1050px] mx-auto absolute left-1/2 -translate-x-1/2 h-full">
+                <ul class="grid grid-cols-8 h-full text-center">
+                    <li class="h-full flex items-center justify-center"><a href="2.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">한의원 소개</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="3.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">목·허리 디스크</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="4.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">이명/난청</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="5.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">여성/다이어트</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="6.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors word-keep">교통사고후유증</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="7.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">맞춤한약</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="notice.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">공지사항</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="column.html" class="text-brand-gold text-[15px] font-bold w-full h-full flex items-center justify-center transition-colors border-b-2 border-brand-gold">칼럼</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <!-- 메인 본문 영역 -->
+    <main class="pt-32 pb-24 min-h-[70vh]">
+        <article class="max-w-4xl mx-auto px-6">
+            <!-- 로딩 표시 -->
+            <div id="loading-indicator" class="text-center py-20 text-gray-400">
+                <i class="fa-solid fa-spinner fa-spin mr-2 text-2xl"></i><br><br>글을 불러오는 중입니다...
+            </div>
+
+            <!-- 진짜 데이터가 들어갈 공간 (초기에는 숨김) -->
+            <div id="post-content-container" class="hidden">
+                <header class="text-center mb-12 border-b border-gray-200 pb-8">
+                    <span id="post-category" class="text-sm text-brand-gold font-bold uppercase tracking-widest mb-4 block">CATEGORY</span>
+                    <h1 id="post-title" class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-6 leading-tight">칼럼 제목이 들어갑니다</h1>
+                    <div class="text-sm text-gray-400 flex items-center justify-center gap-4">
+                        <span>안준석 한의원</span>
+                        <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                        <span id="post-date">2026.00.00</span>
+                    </div>
+                </header>
+
+                <div id="post-body" class="post-content mb-16">
+                    <!-- 본문 내용이 여기에 들어갑니다 -->
+                </div>
+
+                <div class="text-center pt-8 border-t border-gray-200">
+                    <a href="column.html" class="inline-flex items-center justify-center px-8 py-3 bg-brand-ivory hover:bg-brand-gold hover:text-white text-brand-dark font-medium rounded-full transition-colors border border-gray-200 hover:border-brand-gold">
+                        목록으로 돌아가기
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-gray-400 py-16 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 text-center text-sm">
+            <p>&copy; 2026 Ahn Junseok Oriental Clinic. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 서버에서 데이터 불러오기 스크립트 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // 주소창에서 id 번호 알아내기 (예: column-view.html?id=3)
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('id');
+
+            if (!postId) {
+                alert('잘못된 접근입니다.');
+                window.location.href = 'column.html';
+                return;
+            }
+
+            try {
+                // 해당 ID의 글만 서버에서 쏙 빼오기
+                const response = await fetch(`/api/posts?id=${postId}`);
+                const post = await response.json();
+
+                if (!post || post.error || post.is_published === 0) {
+                    alert('존재하지 않거나 비공개된 글입니다.');
+                    window.location.href = 'column.html';
+                    return;
+                }
+
+                // 카테고리 이름 변환
+                const categoryMap = { 'spine': '척추·관절 질환', 'tinnitus': '이명·난청', 'diet': '여성·다이어트', 'traffic': '교통사고 후유증' };
+                const catName = categoryMap[post.category] || '건강 칼럼';
+                const date = new Date(post.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\.\s/g, '.').replace(/\.$/, '');
+
+                // 화면에 진짜 데이터 씌우기
+                document.getElementById('post-category').textContent = catName;
+                document.getElementById('post-title').textContent = post.title;
+                document.getElementById('post-date').textContent = date;
+                document.getElementById('post-body').innerHTML = post.content; // 에디터로 쓴 굵기, 사진, 색상 그대로 들어감
+
+                // 로딩 화면 숨기고 진짜 화면 보여주기
+                document.getElementById('loading-indicator').classList.add('hidden');
+                document.getElementById('post-content-container').classList.remove('hidden');
+
+            } catch (error) {
+                alert('글을 불러오는데 실패했습니다.');
+                window.location.href = 'column.html';
+            }
+        });
+    </script>
+</body>
+</html>
