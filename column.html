@@ -62,7 +62,6 @@
                 </div>
             </a>
             
-            <!-- 메인 네비게이션: 8열(grid-cols-8) 및 너비 확장 -->
             <nav class="hidden lg:block w-[880px] xl:w-[1050px] mx-auto absolute left-1/2 -translate-x-1/2 h-full">
                 <ul class="grid grid-cols-8 h-full text-center">
                     <li class="h-full flex items-center justify-center"><a href="2.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">한의원 소개</a></li>
@@ -72,6 +71,7 @@
                     <li class="h-full flex items-center justify-center"><a href="6.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors word-keep">교통사고후유증</a></li>
                     <li class="h-full flex items-center justify-center"><a href="7.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">맞춤한약</a></li>
                     <li class="h-full flex items-center justify-center"><a href="notice.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">공지사항</a></li>
+                    <!-- 현재 칼럼 페이지 활성화 표시 -->
                     <li class="h-full flex items-center justify-center"><a href="column.html" class="text-brand-gold text-[15px] font-bold w-full h-full flex items-center justify-center transition-colors border-b-2 border-brand-gold">칼럼</a></li>
                 </ul>
             </nav>
@@ -83,7 +83,6 @@
             </div>
         </header>
 
-        <!-- 메가 메뉴 패널: 8열(grid-cols-8), 너비 확장 및 가운데 정렬(text-center px-2) -->
         <div class="mega-menu-panel absolute top-24 left-0 w-full bg-white z-10 border-t border-brand-lightBorder shadow-xl pb-12 pt-8 opacity-0 invisible -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
             <div class="w-[880px] xl:w-[1050px] mx-auto grid grid-cols-8 text-center">
                 <ul class="space-y-4 text-center px-2 border-r border-gray-100">
@@ -115,13 +114,13 @@
                     <li><a href="7.html#section-custom" class="sub-link text-sm text-gray-500 block w-full">개별맞춤한약</a></li>
                     <li><a href="7.html#section-gongjin" class="sub-link text-sm text-gray-500 block w-full">공진단</a></li>
                 </ul>
+                <!-- 7열: 공지사항 (군더더기 제거) -->
                 <ul class="space-y-4 text-center px-2 border-r border-gray-100">
                     <li><a href="notice.html" class="sub-link text-sm text-gray-500 block w-full">공지사항</a></li>
-                    <li><a href="notice.html" class="sub-link text-sm text-gray-500 block w-full">병원소식</a></li>
                 </ul>
+                <!-- 8열: 칼럼 (군더더기 제거 및 현재 칼럼 페이지 활성화 표시) -->
                 <ul class="space-y-4 text-center px-2">
-                    <li><a href="column.html" class="sub-link text-sm text-brand-gold font-bold block w-full">건강 칼럼</a></li>
-                    <li><a href="column.html" class="sub-link text-sm text-gray-500 block w-full">언론 보도</a></li>
+                    <li><a href="column.html" class="sub-link text-sm text-brand-gold font-bold block w-full">칼럼</a></li>
                 </ul>
             </div>
         </div>
