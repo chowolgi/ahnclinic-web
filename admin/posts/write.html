@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>새 칼럼 작성 - 안준석 한의원</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { brand: { gold: '#B69A7B', dark: '#333333', ivory: '#F9F7F3' } } },
+                fontFamily: { sans: ['"Noto Sans KR"', 'sans-serif'] }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 flex h-screen overflow-hidden antialiased text-gray-800">
+
+    <!-- 사이드바 -->
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col hidden md:flex shrink-0">
+        <div class="h-16 flex items-center px-6 border-b border-gray-100">
+            <span class="text-lg font-bold tracking-tight text-brand-gold">안준석 한의원 Admin</span>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1 px-3">
+                <li><a href="/admin/posts/" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg bg-brand-gold/10 text-brand-gold"><i class="fa-solid fa-pen-to-square w-5 text-center mr-2"></i> 칼럼 관리</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
+            <h1 class="text-xl font-bold">새 칼럼 작성</h1>
+        </header>
+
+        <div class="flex-1 overflow-auto p-8">
+            <div class="max-w-4xl mx-auto bg-white border border-gray-200 rounded-xl shadow-sm p-8">
+                
+                <form onsubmit="handleSave(event)" class="space-y-6">
+                    <!-- 카테고리 -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">카테고리</label>
+                        <select id="category" class="w-full md:w-1/2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold">
+                            <option value="spine">척추/관절 (Spine Health)</option>
+                            <option value="tinnitus">이명/난청 (Tinnitus)</option>
+                            <option value="diet">여성/다이어트 (Diet)</option>
+                            <option value="traffic">교통사고 (Traffic Accident)</option>
+                        </select>
+                    </div>
+
+                    <!-- 제목 -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">제목</label>
+                        <input type="text" id="title" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold" placeholder="칼럼 제목을 입력하세요">
+                    </div>
+
+                    <!-- 내용 (간단한 텍스트 에디터) -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">내용</label>
+                        <textarea id="content" required rows="15" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold resize-none" placeholder="칼럼 내용을 작성해 주세요..."></textarea>
+                    </div>
+
+                    <!-- 버튼 -->
+                    <div class="flex justify-end space-x-3 pt-4 border-t border-gray-100">
+                        <a href="/admin/posts/" class="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">취소</a>
+                        <button type="submit" class="px-6 py-2.5 bg-brand-gold text-white font-medium rounded-lg hover:bg-[#9A7D5E] transition-colors shadow-sm">저장하기</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 현재는 UI 테스트용입니다. DB 연동 후 실제 저장 코드로 바뀝니다.
+        function handleSave(event) {
+            event.preventDefault();
+            alert('글쓰기 화면 테스트 성공! 이제 진짜 데이터베이스(DB)를 연결하면 저장이 완료됩니다.');
+            window.location.href = '/admin/posts/';
+        }
+    </script>
+</body>
+</html>
