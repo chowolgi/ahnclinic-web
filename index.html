@@ -22,9 +22,9 @@
                 extend: {
                     colors: {
                         brand: {
-                            gold: '#B69A7B',      /* 우아한 골드/브론즈 포인트 */
-                            dark: '#333333',      /* 가독성을 위한 부드러운 다크 그레이 */
-                            graytext: '#666666',  /* 본문 텍스트용 그레이 */
+                            gold: '#B69A7B',      /* 우아한 샴페인 골드 */
+                            dark: '#333333',      /* 다크 그레이 */
+                            graytext: '#666666',  /* 본문 서브 텍스트 */
                             ivory: '#F9F7F3',     /* 따뜻한 아이보리 배경 */
                             lightBorder: '#EFEFEF'
                         }
@@ -69,7 +69,7 @@
 <body class="antialiased selection:bg-brand-gold selection:text-white">
 
     <!-- ========================================== -->
-    <!-- HEADER & MEGA MENU                         -->
+    <!-- HEADER & MEGA MENU (8개 독립 메뉴 구조)    -->
     <!-- ========================================== -->
     <div id="header-wrapper" class="fixed top-0 left-0 w-full z-50 group bg-white border-b border-brand-lightBorder shadow-sm">
         <header class="relative z-20 h-24 flex items-center justify-between px-4 xl:px-12 max-w-screen-2xl mx-auto">
@@ -85,32 +85,32 @@
                 </div>
             </a>
             
-            <!-- Main Navigation (8개의 메뉴 칸) -->
+            <!-- Main Navigation (8개 칸) -->
             <nav class="hidden lg:block w-[900px] xl:w-[1100px] mx-auto absolute left-1/2 -translate-x-1/2 h-full">
                 <ul class="grid grid-cols-8 h-full text-center">
                     <li class="h-full flex items-center justify-center">
-                        <a href="2.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">한의원 소개</a>
+                        <a href="2.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">한의원 소개</a>
                     </li>
                     <li class="h-full flex items-center justify-center">
-                        <a href="3.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">목·허리 디스크</a>
+                        <a href="3.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">목·허리 디스크</a>
                     </li>
                     <li class="h-full flex items-center justify-center">
-                        <a href="4.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">이명/난청</a>
+                        <a href="4.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">이명/난청</a>
                     </li>
                     <li class="h-full flex items-center justify-center">
-                        <a href="5.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">여성/다이어트</a>
+                        <a href="5.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">여성/다이어트</a>
                     </li>
                     <li class="h-full flex items-center justify-center">
-                        <a href="6.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors word-keep">교통사고후유증</a>
+                        <a href="6.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors word-keep">교통사고후유증</a>
                     </li>
                     <li class="h-full flex items-center justify-center">
-                        <a href="7.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">맞춤한약</a>
+                        <a href="7.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">맞춤한약</a>
                     </li>
                     <li class="h-full flex items-center justify-center">
-                        <a href="notice.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">공지사항</a>
+                        <a href="notice.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">공지사항</a>
                     </li>
                     <li class="h-full flex items-center justify-center">
-                        <a href="column.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">칼럼</a>
+                        <a href="column.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">칼럼</a>
                     </li>
                 </ul>
             </nav>
@@ -123,7 +123,7 @@
             </div>
         </header>
 
-        <!-- Mega Menu Dropdown (8개의 칼럼 구조) -->
+        <!-- Mega Menu Dropdown (8개 칸 연동) -->
         <div class="mega-menu-panel absolute top-24 left-0 w-full bg-white z-10 border-t border-brand-lightBorder shadow-xl pb-12 pt-8 opacity-0 invisible -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
             <div class="w-[900px] xl:w-[1100px] mx-auto grid grid-cols-8 text-center">
                 <ul class="space-y-4 text-left px-3 border-r border-gray-100">
