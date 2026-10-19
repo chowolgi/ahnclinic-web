@@ -72,7 +72,7 @@
     <!-- HEADER & MEGA MENU                         -->
     <!-- ========================================== -->
     <div id="header-wrapper" class="fixed top-0 left-0 w-full z-50 group bg-white border-b border-brand-lightBorder shadow-sm">
-        <header class="relative z-20 h-24 flex items-center justify-between px-6 xl:px-12 max-w-screen-2xl mx-auto">
+        <header class="relative z-20 h-24 flex items-center justify-between px-4 xl:px-12 max-w-screen-2xl mx-auto">
             
             <!-- Logo -->
             <a href="index.html" class="flex items-center gap-3 shrink-0 cursor-pointer">
@@ -80,34 +80,37 @@
                     <div>安漢</div><div>浚醫</div><div>哲院</div>
                 </div>
                 <div class="flex flex-col justify-center">
-                    <span class="text-brand-dark text-2xl font-serif font-bold tracking-widest">안준석 한의원</span>
-                    <span class="text-[10px] text-brand-gold tracking-wide mt-0.5">Ahn Junseok Oriental Clinic</span>
+                    <span class="text-brand-dark text-xl xl:text-2xl font-serif font-bold tracking-widest">안준석 한의원</span>
+                    <span class="text-[9px] xl:text-[10px] text-brand-gold tracking-wide mt-0.5">Ahn Junseok Oriental Clinic</span>
                 </div>
             </a>
             
-            <!-- Main Navigation -->
-            <nav class="hidden lg:block w-[800px] xl:w-[1000px] mx-auto absolute left-1/2 -translate-x-1/2 h-full">
-                <ul class="grid grid-cols-7 h-full text-center">
+            <!-- Main Navigation (8개의 메뉴 칸) -->
+            <nav class="hidden lg:block w-[900px] xl:w-[1100px] mx-auto absolute left-1/2 -translate-x-1/2 h-full">
+                <ul class="grid grid-cols-8 h-full text-center">
                     <li class="h-full flex items-center justify-center">
-                        <a href="2.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">한의원 소개</a>
+                        <a href="2.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">한의원 소개</a>
                     </li>
                     <li class="h-full flex items-center justify-center">
-                        <a href="3.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">목·허리 디스크</a>
+                        <a href="3.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">목·허리 디스크</a>
                     </li>
                     <li class="h-full flex items-center justify-center">
-                        <a href="4.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">이명/난청</a>
+                        <a href="4.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">이명/난청</a>
                     </li>
                     <li class="h-full flex items-center justify-center">
-                        <a href="5.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">여성/다이어트</a>
+                        <a href="5.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">여성/다이어트</a>
                     </li>
                     <li class="h-full flex items-center justify-center">
-                        <a href="6.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors word-keep">교통사고후유증</a>
+                        <a href="6.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors word-keep">교통사고후유증</a>
                     </li>
                     <li class="h-full flex items-center justify-center">
-                        <a href="7.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">맞춤한약</a>
+                        <a href="7.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">맞춤한약</a>
                     </li>
                     <li class="h-full flex items-center justify-center">
-                        <a href="#" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">커뮤니티</a>
+                        <a href="notice.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">공지사항</a>
+                    </li>
+                    <li class="h-full flex items-center justify-center">
+                        <a href="column.html" class="text-brand-dark hover:text-brand-gold text-[14px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">칼럼</a>
                     </li>
                 </ul>
             </nav>
@@ -120,42 +123,44 @@
             </div>
         </header>
 
-        <!-- Mega Menu Dropdown -->
+        <!-- Mega Menu Dropdown (8개의 칼럼 구조) -->
         <div class="mega-menu-panel absolute top-24 left-0 w-full bg-white z-10 border-t border-brand-lightBorder shadow-xl pb-12 pt-8 opacity-0 invisible -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
-            <div class="w-[800px] xl:w-[1000px] mx-auto grid grid-cols-7 text-center">
-                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
-                    <li><a href="2.html" class="sub-link text-sm text-gray-500 block w-full">인사말</a></li>
-                    <li><a href="2.html#section-doctor" class="sub-link text-sm text-gray-500 block w-full">의료진 소개</a></li>
-                    <li><a href="2.html#section-info" class="sub-link text-sm text-gray-500 block w-full">진료안내</a></li>
-                    <li><a href="2.html#section-location" class="sub-link text-sm text-gray-500 block w-full">오시는길</a></li>
+            <div class="w-[900px] xl:w-[1100px] mx-auto grid grid-cols-8 text-center">
+                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
+                    <li><a href="2.html" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">인사말</a></li>
+                    <li><a href="2.html#section-doctor" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">의료진 소개</a></li>
+                    <li><a href="2.html#section-info" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">진료안내</a></li>
+                    <li><a href="2.html#section-location" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">오시는길</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
-                    <li><a href="3.html#section-acupo" class="sub-link text-sm text-gray-500 block w-full">침도요법</a></li>
-                    <li><a href="3.html#section-chuna" class="sub-link text-sm text-gray-500 block w-full">추나&골타</a></li>
-                    <li><a href="3.html#section-disc" class="sub-link text-sm text-gray-500 block w-full">협착증/디스크</a></li>
-                    <li><a href="3.html#section-shoulder" class="sub-link text-sm text-gray-500 block w-full">오십견</a></li>
+                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
+                    <li><a href="3.html#section-acupo" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">침도요법</a></li>
+                    <li><a href="3.html#section-chuna" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">추나&골타</a></li>
+                    <li><a href="3.html#section-disc" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">협착증/디스크</a></li>
+                    <li><a href="3.html#section-shoulder" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">오십견</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
-                    <li><a href="4.html#section-tinnitus" class="sub-link text-sm text-gray-500 block w-full">이명</a></li>
-                    <li><a href="4.html#section-hearing-loss" class="sub-link text-sm text-gray-500 block w-full">돌발성 난청</a></li>
-                    <li><a href="4.html#section-facial-palsy" class="sub-link text-sm text-gray-500 block w-full">구안와사</a></li>
+                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
+                    <li><a href="4.html#section-tinnitus" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">이명</a></li>
+                    <li><a href="4.html#section-hearing-loss" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">돌발성 난청</a></li>
+                    <li><a href="4.html#section-facial-palsy" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">구안와사</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
-                    <li><a href="5.html#section-infertility" class="sub-link text-sm text-gray-500 block w-full">불임/산후관리</a></li>
-                    <li><a href="5.html#section-menopause" class="sub-link text-sm text-gray-500 block w-full">갱년기</a></li>
-                    <li><a href="5.html#section-diet" class="sub-link text-sm text-gray-500 block w-full">다이어트</a></li>
+                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
+                    <li><a href="5.html#section-infertility" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">불임/산후관리</a></li>
+                    <li><a href="5.html#section-menopause" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">갱년기</a></li>
+                    <li><a href="5.html#section-diet" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">다이어트</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
-                    <li><a href="6.html#section-symptoms" class="sub-link text-sm text-gray-500 block w-full">교통사고증상</a></li>
-                    <li><a href="6.html#section-insurance" class="sub-link text-sm text-gray-500 block w-full">자동차보험</a></li>
+                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
+                    <li><a href="6.html#section-symptoms" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">교통사고증상</a></li>
+                    <li><a href="6.html#section-insurance" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">자동차보험</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
-                    <li><a href="7.html#section-custom" class="sub-link text-sm text-gray-500 block w-full">개별맞춤한약</a></li>
-                    <li><a href="7.html#section-gongjin" class="sub-link text-sm text-gray-500 block w-full">공진단</a></li>
+                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
+                    <li><a href="7.html#section-custom" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">개별맞춤한약</a></li>
+                    <li><a href="7.html#section-gongjin" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">공진단</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-4">
-                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">공지사항</a></li>
-                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">온라인상담</a></li>
+                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
+                    <li><a href="notice.html" class="sub-link text-xs xl:text-sm text-brand-gold font-bold block w-full">공지사항 보기</a></li>
+                </ul>
+                <ul class="space-y-4 text-left px-3">
+                    <li><a href="column.html" class="sub-link text-xs xl:text-sm text-brand-gold font-bold block w-full">건강칼럼 보기</a></li>
                 </ul>
             </div>
         </div>
@@ -192,7 +197,6 @@
             <!-- Slide 1 -->
             <div class="slide active">
                 <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/F9F7F3/B69A7B?text=Bright+Warm+Clinic+Interior')] bg-cover bg-center"></div>
-                <!-- Soft Overlay for text readability -->
                 <div class="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent"></div>
                 <div class="relative z-10 h-full flex items-center px-8 md:px-24 max-w-7xl mx-auto">
                     <div class="slide-content max-w-2xl">
@@ -314,15 +318,13 @@
         </section>
 
         <!-- ========================================== -->
-        <!-- 3. PHILOSOPHY / TRUST (Warm Beige)         -->
+        <!-- 3. PHILOSOPHY / TRUST                      -->
         <!-- ========================================== -->
         <section class="py-24 bg-brand-ivory relative overflow-hidden">
-            <!-- Decorative circle -->
             <div class="absolute -right-40 -top-40 w-96 h-96 bg-white rounded-full opacity-50 blur-3xl"></div>
             
             <div class="max-w-7xl mx-auto px-6 relative z-10">
                 <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-                    <!-- Text Area -->
                     <div class="lg:w-1/2 reveal">
                         <div class="text-brand-gold mb-6"><i class="fas fa-quote-left text-3xl opacity-60"></i></div>
                         <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Doctor's Philosophy</span>
@@ -344,15 +346,12 @@
                                 <p class="text-brand-graytext text-sm mb-1">안준석 한의원 대표원장</p>
                                 <p class="text-2xl font-serif text-brand-dark"><strong class="font-bold">안 준 석</strong></p>
                             </div>
-                            <!-- Signature image placeholder -->
                             <img src="https://placehold.co/120x50/F9F7F3/B69A7B?text=Signature" alt="서명" class="h-10 opacity-80">
                         </div>
                     </div>
 
-                    <!-- Image Area -->
                     <div class="lg:w-1/2 reveal delay-200">
                         <div class="relative">
-                            <!-- Background accent box -->
                             <div class="absolute inset-0 bg-brand-gold/10 transform translate-x-6 translate-y-6 rounded-2xl"></div>
                             <img src="https://placehold.co/600x700/EAEAEA/888888?text=Doctor+Portrait" alt="원장님 사진" class="relative z-10 w-full h-auto rounded-2xl shadow-xl">
                         </div>
@@ -378,7 +377,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                    <!-- Review 1 -->
                     <div class="bg-brand-ivory p-10 rounded-2xl shadow-sm hover:shadow-md transition-shadow reveal">
                         <div class="flex text-brand-gold mb-6 space-x-1 text-sm">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -395,7 +393,6 @@
                         </div>
                     </div>
 
-                    <!-- Review 2 -->
                     <div class="bg-brand-ivory p-10 rounded-2xl shadow-sm hover:shadow-md transition-shadow reveal delay-100">
                         <div class="flex text-brand-gold mb-6 space-x-1 text-sm">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -412,7 +409,6 @@
                         </div>
                     </div>
 
-                    <!-- Review 3 -->
                     <div class="bg-brand-ivory p-10 rounded-2xl shadow-sm hover:shadow-md transition-shadow reveal delay-200">
                         <div class="flex text-brand-gold mb-6 space-x-1 text-sm">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -429,13 +425,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Mobile button -->
-                <div class="mt-10 text-center md:hidden">
-                    <a href="#" class="inline-flex items-center justify-center border border-brand-dark text-brand-dark px-8 py-3 text-sm hover:bg-brand-dark hover:text-white transition-colors">
-                        후기 더보기
-                    </a>
-                </div>
             </div>
         </section>
 
@@ -443,17 +432,13 @@
         <!-- 5. LOCATION & INFO                         -->
         <!-- ========================================== -->
         <section id="section-location" class="py-0 flex flex-col lg:flex-row bg-white border-t border-gray-100">
-            <!-- Map Area -->
             <div class="lg:w-1/2 min-h-[400px] lg:min-h-[600px] relative reveal">
                 <img src="https://placehold.co/1000x800/EAEAEA/999999?text=Map+Integration+Area" alt="오시는길 지도" class="w-full h-full object-cover absolute inset-0">
-                
-                <!-- Floating Route Button on Map -->
                 <a href="#" class="absolute bottom-8 right-8 bg-white px-6 py-3 rounded-full shadow-lg text-brand-dark font-medium flex items-center gap-2 hover:bg-brand-gold hover:text-white transition-colors z-10">
                     <i class="fas fa-location-arrow"></i> 길찾기
                 </a>
             </div>
             
-            <!-- Info Area -->
             <div class="lg:w-1/2 bg-white flex items-center p-10 lg:p-24 reveal delay-200">
                 <div class="w-full max-w-lg">
                     <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Location & Info</span>
@@ -506,7 +491,6 @@
     <!-- ========================================== -->
     <footer class="bg-brand-dark text-gray-400 py-16 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-            <!-- Logo & About -->
             <div class="lg:col-span-2">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-8 h-8 border border-gray-500 flex flex-col items-center justify-center p-1 text-gray-400 font-serif leading-none text-[8px] text-center">
@@ -518,46 +502,36 @@
                     눈에 보이는 증상 너머 근본을 다스립니다.<br>
                     20년 임상 노하우로 환자분들의 건강한 일상을 책임지겠습니다.
                 </p>
-                <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-gold hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#03C75A] hover:text-white transition-colors font-bold text-xs">N</a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-yellow-400 hover:text-black transition-colors"><i class="fas fa-comment-dots"></i></a>
-                </div>
             </div>
 
-            <!-- Quick Links -->
             <div>
                 <h4 class="text-white font-bold mb-6">Quick Links</h4>
                 <ul class="space-y-3 text-sm">
                     <li><a href="2.html" class="hover:text-brand-gold transition-colors">한의원 소개</a></li>
-                    <li><a href="2.html#section-doctor" class="hover:text-brand-gold transition-colors">의료진 소개</a></li>
-                    <li><a href="#" class="hover:text-brand-gold transition-colors">주요 진료과목</a></li>
-                    <li><a href="#" class="hover:text-brand-gold transition-colors">치료 후기</a></li>
-                    <li><a href="#section-location" class="hover:text-brand-gold transition-colors">오시는 길</a></li>
+                    <li><a href="3.html" class="hover:text-brand-gold transition-colors">목·허리 디스크</a></li>
+                    <li><a href="7.html" class="hover:text-brand-gold transition-colors">맞춤한약</a></li>
+                    <li><a href="notice.html" class="hover:text-brand-gold transition-colors">공지사항</a></li>
+                    <li><a href="column.html" class="hover:text-brand-gold transition-colors">건강칼럼</a></li>
                 </ul>
             </div>
 
-            <!-- Info -->
             <div>
                 <h4 class="text-white font-bold mb-6">Contact</h4>
                 <ul class="space-y-3 text-sm">
                     <li>상호명: 안준석 한의원</li>
                     <li>대표자: 안준석</li>
-                    <li>사업자등록번호: 123-45-67890</li>
                     <li>주소: 서울특별시 영등포구 영등포로 200</li>
-                    <li class="mt-4"><a href="#" class="text-brand-gold hover:text-white underline">개인정보처리방침</a> | <a href="#" class="hover:text-white">이용약관</a></li>
                 </ul>
             </div>
         </div>
         
-        <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-gray-800 text-sm text-center lg:text-left flex flex-col lg:flex-row justify-between items-center">
-            <p>&copy; 2024 Ahn Junseok Oriental Clinic. All rights reserved.</p>
+        <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-gray-800 text-sm text-center">
+            <p>&copy; 2026 Ahn Junseok Oriental Clinic. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script>
-        // --- Hero Slider Logic ---
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.absolute.bottom-10 button');
@@ -601,7 +575,7 @@
         }
 
         function startInterval() {
-            slideInterval = setInterval(nextSlide, 5000); // 5 seconds
+            slideInterval = setInterval(nextSlide, 5000);
         }
 
         function resetInterval() {
@@ -609,29 +583,21 @@
             startInterval();
         }
 
-        // Initialize slider
         updateSlider();
         startInterval();
 
-        // --- Intersection Observer for Scroll Animations (Better Performance than scroll listener) ---
         document.addEventListener("DOMContentLoaded", function() {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15 // Trigger when 15% of the element is visible
-            };
-
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        observer.unobserve(entry.target); // Run animation only once
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
 
-            const revealElements = document.querySelectorAll('.reveal');
-            revealElements.forEach(el => observer.observe(el));
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         });
     </script>
 </body>
