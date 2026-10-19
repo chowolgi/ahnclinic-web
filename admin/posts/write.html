@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>새 칼럼 작성 - 안준석 한의원</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-    
+
+    <!-- Quill Editor CSS (본문 에디터 디자인을 위해 추가) -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
@@ -18,72 +23,119 @@
             }
         }
     </script>
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #F9F7F3; }
+        
+        /* 토글 스위치 커스텀 */
+        .toggle-checkbox:checked { right: 0; border-color: #B69A7B; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #B69A7B; }
+        
+        /* 본문 에디터(Quill) UI를 이미지와 똑같이 둥글고 깔끔하게 튜닝 */
+        .ql-toolbar.ql-snow { border-radius: 0.5rem 0.5rem 0 0; background-color: #f8f9fa; border-color: #e5e7eb; padding: 12px; }
+        .ql-container.ql-snow { border-radius: 0 0 0.5rem 0.5rem; border-color: #e5e7eb; background-color: #ffffff; min-height: 400px; font-family: 'Noto Sans KR', sans-serif; font-size: 1rem; }
+        .ql-editor { padding: 1.5rem; }
+    </style>
 </head>
-<body class="bg-gray-50 flex h-screen overflow-hidden antialiased text-gray-800">
+<body class="antialiased text-gray-800">
 
-    <!-- 사이드바 -->
-    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col hidden md:flex shrink-0">
-        <div class="h-16 flex items-center px-6 border-b border-gray-100">
-            <span class="text-lg font-bold tracking-tight text-brand-gold">안준석 한의원 Admin</span>
+    <div class="max-w-5xl mx-auto px-6 py-12">
+        
+        <!-- 뒤로가기 -->
+        <a href="/admin/posts/" class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-brand-dark mb-8 transition-colors">
+            <i class="fa-solid fa-arrow-left mr-2"></i> 목록으로
+        </a>
+
+        <!-- 헤더 -->
+        <div class="mb-10 border-b border-gray-200 pb-6">
+            <span class="text-xs font-bold text-brand-gold tracking-widest uppercase mb-2 block">New Column</span>
+            <h1 class="text-3xl font-bold text-brand-dark">새 칼럼 작성</h1>
         </div>
-        <nav class="flex-1 overflow-y-auto py-4">
-            <ul class="space-y-1 px-3">
-                <li><a href="/admin/posts/" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg bg-brand-gold/10 text-brand-gold"><i class="fa-solid fa-pen-to-square w-5 text-center mr-2"></i> 칼럼 관리</a></li>
-            </ul>
-        </nav>
-    </aside>
 
-    <!-- 메인 콘텐츠 -->
-    <main class="flex-1 flex flex-col overflow-hidden">
-        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
-            <h1 class="text-xl font-bold">새 칼럼 작성</h1>
-        </header>
+        <!-- 작성 폼 -->
+        <form class="space-y-8" onsubmit="event.preventDefault(); alert('저장 기능은 DB 연동 후 작동합니다.'); window.location.href='/admin/posts/';">
 
-        <div class="flex-1 overflow-auto p-8">
-            <div class="max-w-4xl mx-auto bg-white border border-gray-200 rounded-xl shadow-sm p-8">
-                
-                <form onsubmit="handleSave(event)" class="space-y-6">
-                    <!-- 카테고리 -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">카테고리</label>
-                        <select id="category" class="w-full md:w-1/2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold">
-                            <option value="spine">척추/관절 (Spine Health)</option>
-                            <option value="tinnitus">이명/난청 (Tinnitus)</option>
-                            <option value="diet">여성/다이어트 (Diet)</option>
-                            <option value="traffic">교통사고 (Traffic Accident)</option>
-                        </select>
-                    </div>
-
-                    <!-- 제목 -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">제목</label>
-                        <input type="text" id="title" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold" placeholder="칼럼 제목을 입력하세요">
-                    </div>
-
-                    <!-- 내용 (간단한 텍스트 에디터) -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">내용</label>
-                        <textarea id="content" required rows="15" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold resize-none" placeholder="칼럼 내용을 작성해 주세요..."></textarea>
-                    </div>
-
-                    <!-- 버튼 -->
-                    <div class="flex justify-end space-x-3 pt-4 border-t border-gray-100">
-                        <a href="/admin/posts/" class="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">취소</a>
-                        <button type="submit" class="px-6 py-2.5 bg-brand-gold text-white font-medium rounded-lg hover:bg-[#9A7D5E] transition-colors shadow-sm">저장하기</button>
-                    </div>
-                </form>
-
+            <!-- 제목 -->
+            <div>
+                <label class="block text-sm font-bold text-gray-800 mb-3">제목</label>
+                <input type="text" required class="w-full px-5 py-4 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent transition-shadow" placeholder="칼럼 제목을 입력하세요">
             </div>
-        </div>
-    </main>
 
+            <!-- URL 주소 (슬러그) -->
+            <div>
+                <label class="block text-sm font-bold text-gray-800 mb-3">URL 주소 (슬러그)</label>
+                <input type="text" class="w-full px-5 py-4 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-transparent transition-shadow text-gray-600" placeholder="예: online-marketing (영문, 숫자, 하이픈만 사용 권장)">
+                <p class="mt-2 text-xs text-gray-500">* 입력하지 않으면 제목이 자동으로 URL이 됩니다. 한글 제목은 주소가 길어질 수 있으므로 짧은 영문 입력을 권장합니다.</p>
+            </div>
+
+            <!-- 카테고리 & 공개여부 -->
+            <div class="flex flex-col md:flex-row md:items-center gap-8">
+                <div class="w-full md:w-1/3">
+                    <label class="block text-sm font-bold text-gray-800 mb-3">카테고리</label>
+                    <div class="relative">
+                        <select required class="w-full px-4 py-3.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold bg-white appearance-none cursor-pointer">
+                            <option value="">카테고리 선택</option>
+                            <option value="spine">척추/관절</option>
+                            <option value="tinnitus">이명/난청</option>
+                            <option value="diet">여성/다이어트</option>
+                            <option value="traffic">교통사고</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"></i>
+                    </div>
+                </div>
+                <div class="flex items-center pt-8">
+                    <!-- 토글 스위치 -->
+                    <div class="relative inline-block w-12 mr-3 align-middle select-none transition duration-200 ease-in">
+                        <input type="checkbox" name="toggle" id="publish-toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-300 appearance-none cursor-pointer transition-all duration-300 z-10 top-0 left-0" checked/>
+                        <label for="publish-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-300"></label>
+                    </div>
+                    <label for="publish-toggle" class="text-sm font-bold text-gray-700 cursor-pointer">홈페이지에 공개</label>
+                </div>
+            </div>
+
+            <!-- 대표 이미지 -->
+            <div>
+                <label class="block text-sm font-bold text-gray-800 mb-1">대표 이미지 <span class="font-normal text-gray-400 text-xs ml-1">목록 썸네일 · 선택</span></label>
+                <div class="mt-2 flex items-center w-full px-4 py-3 border border-gray-300 rounded-lg bg-white">
+                    <label class="cursor-pointer bg-[#222222] hover:bg-black text-white text-sm font-medium py-2.5 px-5 rounded transition-colors mr-4">
+                        파일 선택
+                        <input type="file" class="hidden" accept="image/*" onchange="document.getElementById('file-name').textContent = this.files[0] ? this.files[0].name : '선택된 파일 없음'">
+                    </label>
+                    <span id="file-name" class="text-gray-500 text-sm">선택된 파일 없음</span>
+                </div>
+                <p class="mt-2 text-xs text-gray-500">비워두면 본문 첫 번째 사진이 자동으로 대표 이미지가 됩니다.</p>
+            </div>
+
+            <!-- 본문 (Quill 에디터 영역) -->
+            <div>
+                <label class="block text-sm font-bold text-gray-800 mb-3">본문</label>
+                <div id="editor-container"></div>
+            </div>
+
+            <!-- 하단 버튼 -->
+            <div class="pt-10 pb-20 flex justify-center">
+                <button type="submit" class="bg-brand-gold hover:bg-[#9A7D5E] text-white font-bold py-4 px-16 rounded-lg text-lg transition-colors shadow-md">
+                    칼럼 등록하기
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- 에디터 스크립트 -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script>
-        // 현재는 UI 테스트용입니다. DB 연동 후 실제 저장 코드로 바뀝니다.
-        function handleSave(event) {
-            event.preventDefault();
-            alert('글쓰기 화면 테스트 성공! 이제 진짜 데이터베이스(DB)를 연결하면 저장이 완료됩니다.');
-            window.location.href = '/admin/posts/';
-        }
+        // 본문 에디터 초기화
+        var quill = new Quill('#editor-container', {
+            theme: 'snow',
+            placeholder: '내용을 입력하세요. 사진 버튼을 누르면 본문에 이미지를 넣을 수 있습니다.',
+            modules: {
+                toolbar: [
+                    ['bold', 'italic', 'underline'], // 굵게, 기울임, 밑줄
+                    [{ 'header': 2 }, { 'header': 3 }], // H2, H3
+                    [{ 'list': 'bullet' }, { 'list': 'ordered' }], // 기호 목록, 번호 목록
+                    ['blockquote', 'link', 'image'] // 인용, 링크, 사진
+                ]
+            }
+        });
     </script>
 </body>
 </html>
