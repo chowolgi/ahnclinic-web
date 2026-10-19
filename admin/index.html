@@ -3,120 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 로그인 - 안준석 한의원</title>
+    <title>칼럼 관리 - 안준석 한의원 관리자</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            gold: '#B69A7B',
-                            dark: '#333333',
-                            graytext: '#666666',
-                            ivory: '#F9F7F3',
-                            lightBorder: '#EFEFEF'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['"Noto Sans KR"', 'sans-serif'],
-                        serif: ['"Nanum Myeongjo"', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
     <style>
-        body { font-family: 'Noto Sans KR', sans-serif; background-color: #F9F7F3; }
-        .font-serif { font-family: 'Nanum Myeongjo', serif; }
+        body { font-family: 'Noto Sans KR', sans-serif; }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4 selection:bg-brand-gold selection:text-white">
+<body class="bg-gray-50 flex h-screen overflow-hidden antialiased text-gray-800">
 
-    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl border border-gray-100 p-8 sm:p-10">
+    <!-- 왼쪽 사이드바 (LNB) -->
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col hidden md:flex shrink-0">
+        <div class="h-16 flex items-center px-6 border-b border-gray-100">
+            <span class="text-lg font-bold tracking-tight text-[#B69A7B]">안준석 한의원 Admin</span>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1 px-3">
+                <li>
+                    <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-50 hover:text-[#B69A7B] transition-colors">
+                        <i class="fa-solid fa-chart-line w-5 text-center mr-2"></i> 대시보드
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg bg-[#B69A7B]/10 text-[#B69A7B]">
+                        <i class="fa-solid fa-pen-to-square w-5 text-center mr-2"></i> 칼럼 관리
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-50 hover:text-[#B69A7B] transition-colors">
+                        <i class="fa-solid fa-bullhorn w-5 text-center mr-2"></i> 공지사항 관리
+                    </a>
+                </li>
+                <li class="pt-4 mt-4 border-t border-gray-100">
+                    <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-500 hover:bg-gray-50 hover:text-red-500 transition-colors">
+                        <i class="fa-solid fa-arrow-right-from-bracket w-5 text-center mr-2"></i> 로그아웃
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main class="flex-1 flex flex-col overflow-hidden">
         
-        <!-- 로고 및 헤더 -->
-        <div class="text-center mb-8">
-            <div class="w-12 h-12 border border-brand-gold mx-auto flex flex-col items-center justify-center p-1 text-brand-gold font-serif leading-none text-[10px] text-center mb-5">
-                <div>安漢</div><div>浚醫</div><div>哲院</div>
+        <!-- 상단 헤더 -->
+        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
+            <h1 class="text-xl font-bold">칼럼 목록</h1>
+            <div class="flex items-center gap-4">
+                <a href="/" target="_blank" class="text-sm text-gray-500 hover:text-gray-900"><i class="fa-solid fa-up-right-from-square mr-1"></i> 사이트 보러가기</a>
             </div>
-            <h1 class="text-2xl font-serif font-bold text-gray-900 mb-2">관리자 로그인</h1>
-            <p class="text-sm text-gray-500">안준석 한의원 통합 관리 시스템</p>
-        </div>
+        </header>
 
-        <!-- 로그인 폼 -->
-        <form onsubmit="handleLogin(event)" class="space-y-6">
-            
-            <div>
-                <label for="admin_id" class="block text-sm font-medium text-gray-700 mb-2">아이디</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <i class="fa-solid fa-user text-gray-400 text-sm"></i>
+        <!-- 데이터 표시 및 테이블 영역 -->
+        <div class="flex-1 overflow-auto p-8">
+            <div class="max-w-6xl mx-auto">
+                
+                <div class="flex justify-between items-center mb-6">
+                    <div class="relative">
+                        <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                        <input type="text" placeholder="제목 검색..." class="pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#B69A7B] focus:ring-1 focus:ring-[#B69A7B] w-64">
                     </div>
-                    <input type="text" id="admin_id" required class="block w-full pl-11 pr-4 py-3.5 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-1 focus:ring-brand-gold focus:border-brand-gold transition-colors bg-gray-50 focus:bg-white" placeholder="관리자 아이디를 입력하세요">
+                    <a href="/admin/posts/write.html" class="bg-[#B69A7B] hover:bg-[#9A7D5E] text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm flex items-center">
+                        <i class="fa-solid fa-plus mr-2"></i> 새 칼럼 작성
+                    </a>
                 </div>
-            </div>
 
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">비밀번호</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <i class="fa-solid fa-lock text-gray-400 text-sm"></i>
-                    </div>
-                    <input type="password" id="password" required class="block w-full pl-11 pr-4 py-3.5 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-1 focus:ring-brand-gold focus:border-brand-gold transition-colors bg-gray-50 focus:bg-white" placeholder="비밀번호를 입력하세요">
+                <!-- 데이터 테이블 -->
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider border-b border-gray-200">
+                                <th class="px-6 py-4 font-medium w-16 text-center">No</th>
+                                <th class="px-6 py-4 font-medium w-32">카테고리</th>
+                                <th class="px-6 py-4 font-medium">제목</th>
+                                <th class="px-6 py-4 font-medium w-32">작성일</th>
+                                <th class="px-6 py-4 font-medium w-24">상태</th>
+                                <th class="px-6 py-4 font-medium w-32 text-center">관리</th>
+                            </tr>
+                        </thead>
+                        <!-- 진짜 데이터를 불러와서 렌더링할 빈 <tbody> -->
+                        <tbody id="post-list-body" class="divide-y divide-gray-100 text-sm">
+                            <tr>
+                                <td colspan="6" class="px-6 py-8 text-center text-gray-400">데이터를 불러오는 중입니다...</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
 
-            <div class="flex items-center justify-between pt-2">
-                <div class="flex items-center">
-                    <input id="remember-me" type="checkbox" class="h-4 w-4 text-brand-gold focus:ring-brand-gold border-gray-300 rounded accent-brand-gold cursor-pointer">
-                    <label for="remember-me" class="ml-2 block text-sm text-gray-600 cursor-pointer">아이디 저장</label>
+                <!-- 페이지네이션 -->
+                <div class="flex items-center justify-center mt-8 space-x-2">
+                    <button class="w-8 h-8 flex items-center justify-center rounded-md border border-gray-200 text-gray-400 hover:bg-gray-50 cursor-not-allowed"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded-md bg-[#B69A7B] text-white font-medium text-sm">1</button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded-md border border-gray-200 text-gray-400 hover:bg-gray-50 cursor-not-allowed"><i class="fa-solid fa-chevron-right text-xs"></i></button>
                 </div>
-                <a href="/" class="text-sm font-medium text-gray-400 hover:text-brand-gold transition-colors"><i class="fa-solid fa-house mr-1"></i> 홈으로</a>
+
             </div>
-
-            <button type="submit" class="w-full bg-brand-gold hover:bg-[#9A7D5E] text-white font-bold py-4 px-4 rounded-xl transition-all duration-200 focus:outline-none shadow-md hover:shadow-lg mt-4">
-                로그인
-            </button>
-        </form>
-
-        <div class="mt-8 text-center">
-            <p class="text-xs text-gray-400">&copy; 2026 Ahn Junseok Oriental Clinic.</p>
         </div>
+    </main>
 
-    </div>
-
-    <!-- 로그인 처리 자바스크립트 -->
+    <!-- 데이터베이스에서 데이터 불러오기 스크립트 -->
     <script>
-        function handleLogin(event) {
-            event.preventDefault(); // 폼 제출 새로고침 방지
+        document.addEventListener('DOMContentLoaded', async () => {
+            const tbody = document.getElementById('post-list-body');
             
-            const idInput = document.getElementById('admin_id').value;
-            const pwInput = document.getElementById('password').value;
+            try {
+                // 백엔드 API에서 데이터 요청
+                const response = await fetch('/api/posts');
+                const posts = await response.json();
 
-            // 설정하신 아이디와 비밀번호 확인
-            if (idInput === 'admin' && pwInput === 'tkdtmd1!') {
-                // 브라우저에 임시 로그인 상태 저장 (창을 닫으면 초기화됨)
-                sessionStorage.setItem('isAdminLoggedIn', 'true');
-                // 대시보드로 이동
-                window.location.href = '/admin/posts/';
-            } else {
-                alert('아이디 또는 비밀번호가 일치하지 않습니다. 다시 확인해 주세요.');
-                document.getElementById('password').value = ''; // 비밀번호 칸 비우기
+                // 작성된 글이 없을 때
+                if (!posts || posts.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="6" class="px-6 py-12 text-center text-gray-500">등록된 칼럼이 없습니다.</td></tr>`;
+                    return;
+                }
+
+                // 테이블 안의 로딩 텍스트 지우기
+                tbody.innerHTML = '';
+
+                // 카테고리별 디자인 설정
+                const categoryStyles = {
+                    'spine': { name: '척추/관절', style: 'bg-blue-50 text-blue-600' },
+                    'tinnitus': { name: '이명/난청', style: 'bg-purple-50 text-purple-600' },
+                    'diet': { name: '여성/다이어트', style: 'bg-red-50 text-red-600' },
+                    'traffic': { name: '교통사고', style: 'bg-yellow-50 text-yellow-600' }
+                };
+
+                // 데이터를 하나씩 행(tr)으로 만들기
+                posts.forEach((post, index) => {
+                    const catInfo = categoryStyles[post.category] || { name: '기타', style: 'bg-gray-50 text-gray-600' };
+                    // 날짜 변환 (YYYY.MM.DD)
+                    const date = new Date(post.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\.\s/g, '.').replace(/\.$/, '');
+                    
+                    const statusHtml = post.is_published 
+                        ? `<span class="text-green-600 text-xs font-bold flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>발행됨</span>`
+                        : `<span class="text-gray-400 text-xs font-bold flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-gray-400 mr-1.5"></span>임시저장</span>`;
+
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-gray-50 transition-colors";
+                    tr.innerHTML = `
+                        <td class="px-6 py-4 text-center text-gray-400">${posts.length - index}</td>
+                        <td class="px-6 py-4"><span class="${catInfo.style} px-2 py-1 rounded text-xs font-medium">${catInfo.name}</span></td>
+                        <td class="px-6 py-4 font-medium text-gray-900 cursor-pointer hover:text-[#B69A7B]">${post.title}</td>
+                        <td class="px-6 py-4 text-gray-500">${date}</td>
+                        <td class="px-6 py-4">${statusHtml}</td>
+                        <td class="px-6 py-4 text-center space-x-3">
+                            <button class="inline-flex items-center text-gray-500 hover:text-[#B69A7B] transition-colors text-xs font-bold">
+                                <i class="fa-solid fa-pen mr-1.5"></i>수정
+                            </button>
+                            <button class="inline-flex items-center text-gray-500 hover:text-red-500 transition-colors text-xs font-bold">
+                                <i class="fa-solid fa-trash mr-1.5"></i>삭제
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+            } catch (error) {
+                console.error(error);
+                tbody.innerHTML = `<tr><td colspan="6" class="px-6 py-12 text-center text-red-500">데이터를 불러오는 중 오류가 발생했습니다. 새로고침 해주세요.</td></tr>`;
             }
-        }
+        });
     </script>
 </body>
 </html>
