@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>칼럼 수정 - 안준석 한의원</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { brand: { gold: '#B69A7B', dark: '#333333' } } } } }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #F9F7F3; }
+        .toggle-checkbox:checked { right: 0; border-color: #B69A7B; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #B69A7B; }
+        .ql-toolbar.ql-snow { border-radius: 0.5rem 0.5rem 0 0; background-color: #f8f9fa; border-color: #e5e7eb; padding: 12px; }
+        .ql-container.ql-snow { border-radius: 0 0 0.5rem 0.5rem; background-color: #ffffff; min-height: 400px; font-family: 'Noto Sans KR', sans-serif; font-size: 1rem; }
+        .ql-editor { padding: 1.5rem; }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="max-w-5xl mx-auto px-6 py-12">
+        <a href="/admin/posts/" class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-brand-dark mb-8 transition-colors">
+            <i class="fa-solid fa-arrow-left mr-2"></i> 목록으로
+        </a>
+
+        <div class="mb-10 border-b border-gray-200 pb-6">
+            <span class="text-xs font-bold text-brand-gold tracking-widest uppercase mb-2 block">Edit Column</span>
+            <h1 class="text-3xl font-bold text-brand-dark">칼럼 수정하기</h1>
+        </div>
+
+        <form id="edit-form" class="space-y-8">
+            <div>
+                <label class="block text-sm font-bold text-gray-800 mb-3">제목</label>
+                <input type="text" id="title" required class="w-full px-5 py-4 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold">
+            </div>
+            <div>
+                <label class="block text-sm font-bold text-gray-800 mb-3">URL 주소 (슬러그)</label>
+                <input type="text" id="slug" class="w-full px-5 py-4 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold text-gray-600">
+            </div>
+            <div class="flex flex-col md:flex-row md:items-center gap-8">
+                <div class="w-full md:w-1/3">
+                    <label class="block text-sm font-bold text-gray-800 mb-3">카테고리</label>
+                    <select id="category" required class="w-full px-4 py-3.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold bg-white">
+                        <option value="spine">척추/관절</option>
+                        <option value="tinnitus">이명/난청</option>
+                        <option value="diet">여성/다이어트</option>
+                        <option value="traffic">교통사고</option>
+                    </select>
+                </div>
+                <div class="flex items-center pt-8">
+                    <div class="relative inline-block w-12 mr-3 align-middle select-none">
+                        <input type="checkbox" id="publish-toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-300 appearance-none cursor-pointer transition-all duration-300 z-10 top-0 left-0"/>
+                        <label for="publish-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-300"></label>
+                    </div>
+                    <label for="publish-toggle" class="text-sm font-bold text-gray-700 cursor-pointer">홈페이지에 공개</label>
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-bold text-gray-800 mb-3">본문</label>
+                <div id="editor-container"></div>
+            </div>
+            <div class="pt-10 pb-20 flex justify-center">
+                <button type="submit" class="bg-brand-gold hover:bg-[#9A7D5E] text-white font-bold py-4 px-16 rounded-lg text-lg transition-colors shadow-md">
+                    수정 완료하기
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        var quill = new Quill('#editor-container', {
+            theme: 'snow',
+            modules: { toolbar: [ ['bold', 'italic', 'underline'], [{ 'header': 2 }, { 'header': 3 }], [{ 'list': 'bullet' }, { 'list': 'ordered' }], ['blockquote', 'link', 'image'] ] }
+        });
+
+        // 주소창에서 수정할 글 번호(id) 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('id');
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (!postId) {
+                alert('잘못된 접근입니다.');
+                window.location.href = '/admin/posts/';
+                return;
+            }
+
+            // 기존 데이터 불러와서 화면에 채워넣기
+            try {
+                const response = await fetch(`/api/posts?id=${postId}`);
+                const post = await response.json();
+
+                if (post) {
+                    document.getElementById('title').value = post.title;
+                    document.getElementById('slug').value = post.slug;
+                    document.getElementById('category').value = post.category;
+                    document.getElementById('publish-toggle').checked = post.is_published === 1;
+                    quill.root.innerHTML = post.content;
+                }
+            } catch (error) {
+                alert('글을 불러오는데 실패했습니다.');
+            }
+        });
+
+        // 수정한 데이터 서버에 전송하기 (PUT)
+        document.getElementById('edit-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const content = quill.root.innerHTML;
+            
+            const postData = {
+                id: postId,
+                title: document.getElementById('title').value,
+                slug: document.getElementById('slug').value,
+                category: document.getElementById('category').value,
+                is_published: document.getElementById('publish-toggle').checked,
+                content: content
+            };
+
+            try {
+                const response = await fetch('/api/posts', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(postData)
+                });
+                const result = await response.json();
+                if (result.success) {
+                    alert("수정이 완료되었습니다!");
+                    window.location.href = '/admin/posts/';
+                } else {
+                    alert("수정 실패: " + result.error);
+                }
+            } catch (error) {
+                alert("서버 오류가 발생했습니다.");
+            }
+        });
+    </script>
+</body>
+</html>
