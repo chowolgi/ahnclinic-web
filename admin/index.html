@@ -87,7 +87,6 @@
                                 <th class="px-6 py-4 font-medium w-32 text-center">관리</th>
                             </tr>
                         </thead>
-                        <!-- 진짜 데이터를 불러와서 렌더링할 빈 <tbody> -->
                         <tbody id="post-list-body" class="divide-y divide-gray-100 text-sm">
                             <tr>
                                 <td colspan="6" class="px-6 py-8 text-center text-gray-400">데이터를 불러오는 중입니다...</td>
@@ -107,26 +106,45 @@
         </div>
     </main>
 
-    <!-- 데이터베이스에서 데이터 불러오기 스크립트 -->
     <script>
+        // 삭제 기능 함수 추가
+        window.deletePost = async function(id) {
+            if (confirm('정말로 이 칼럼을 삭제하시겠습니까? (복구할 수 없습니다)')) {
+                try {
+                    const response = await fetch(`/api/posts?id=${id}`, { method: 'DELETE' });
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        alert('성공적으로 삭제되었습니다.');
+                        location.reload(); // 화면 새로고침
+                    } else {
+                        alert('삭제 실패: ' + result.error);
+                    }
+                } catch (error) {
+                    alert('서버 오류가 발생했습니다.');
+                }
+            }
+        };
+
+        // 수정 기능 임시 함수 추가
+        window.editPost = function(id) {
+            alert('수정 화면을 만드는 작업이 필요합니다. 곧 진행할 예정입니다!');
+        };
+
         document.addEventListener('DOMContentLoaded', async () => {
             const tbody = document.getElementById('post-list-body');
             
             try {
-                // 백엔드 API에서 데이터 요청
                 const response = await fetch('/api/posts');
                 const posts = await response.json();
 
-                // 작성된 글이 없을 때
                 if (!posts || posts.length === 0) {
                     tbody.innerHTML = `<tr><td colspan="6" class="px-6 py-12 text-center text-gray-500">등록된 칼럼이 없습니다.</td></tr>`;
                     return;
                 }
 
-                // 테이블 안의 로딩 텍스트 지우기
                 tbody.innerHTML = '';
 
-                // 카테고리별 디자인 설정
                 const categoryStyles = {
                     'spine': { name: '척추/관절', style: 'bg-blue-50 text-blue-600' },
                     'tinnitus': { name: '이명/난청', style: 'bg-purple-50 text-purple-600' },
@@ -134,10 +152,8 @@
                     'traffic': { name: '교통사고', style: 'bg-yellow-50 text-yellow-600' }
                 };
 
-                // 데이터를 하나씩 행(tr)으로 만들기
                 posts.forEach((post, index) => {
                     const catInfo = categoryStyles[post.category] || { name: '기타', style: 'bg-gray-50 text-gray-600' };
-                    // 날짜 변환 (YYYY.MM.DD)
                     const date = new Date(post.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\.\s/g, '.').replace(/\.$/, '');
                     
                     const statusHtml = post.is_published 
@@ -146,6 +162,7 @@
 
                     const tr = document.createElement('tr');
                     tr.className = "hover:bg-gray-50 transition-colors";
+                    // 수정/삭제 버튼에 onclick 이벤트 추가됨
                     tr.innerHTML = `
                         <td class="px-6 py-4 text-center text-gray-400">${posts.length - index}</td>
                         <td class="px-6 py-4"><span class="${catInfo.style} px-2 py-1 rounded text-xs font-medium">${catInfo.name}</span></td>
@@ -153,10 +170,10 @@
                         <td class="px-6 py-4 text-gray-500">${date}</td>
                         <td class="px-6 py-4">${statusHtml}</td>
                         <td class="px-6 py-4 text-center space-x-3">
-                            <button class="inline-flex items-center text-gray-500 hover:text-[#B69A7B] transition-colors text-xs font-bold">
+                            <button onclick="editPost(${post.id})" class="inline-flex items-center text-gray-500 hover:text-[#B69A7B] transition-colors text-xs font-bold">
                                 <i class="fa-solid fa-pen mr-1.5"></i>수정
                             </button>
-                            <button class="inline-flex items-center text-gray-500 hover:text-red-500 transition-colors text-xs font-bold">
+                            <button onclick="deletePost(${post.id})" class="inline-flex items-center text-gray-500 hover:text-red-500 transition-colors text-xs font-bold">
                                 <i class="fa-solid fa-trash mr-1.5"></i>삭제
                             </button>
                         </td>
