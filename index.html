@@ -69,12 +69,13 @@
 <body class="antialiased selection:bg-brand-gold selection:text-white">
 
     <!-- ========================================== -->
-    <!-- HEADER & MEGA MENU (8개 독립 메뉴 구조)    -->
+    <!-- HEADER & MEGA MENU (여백 넓힘 적용)        -->
     <!-- ========================================== -->
     <div id="header-wrapper" class="fixed top-0 left-0 w-full z-50 group bg-white border-b border-brand-lightBorder shadow-sm">
-        <header class="relative z-20 h-24 flex items-center justify-between px-4 xl:px-12 max-w-screen-2xl mx-auto">
+        <!-- 좌우 패딩을 넓혀서(px-6 md:px-16) 로고가 왼쪽으로 여유 있게 배치되도록 수정 -->
+        <header class="relative z-20 h-24 flex items-center justify-between px-6 md:px-16 max-w-[1700px] mx-auto">
             
-            <!-- Logo -->
+            <!-- Logo (왼쪽 여유 공간 확보) -->
             <a href="index.html" class="flex items-center gap-3 shrink-0 cursor-pointer">
                 <div class="w-10 h-10 border border-brand-gold flex flex-col items-center justify-center p-1 text-brand-gold font-serif leading-none text-[10px] text-center shrink-0">
                     <div>安漢</div><div>浚醫</div><div>哲院</div>
@@ -85,8 +86,8 @@
                 </div>
             </a>
             
-            <!-- Main Navigation (8개 칸) -->
-            <nav class="hidden lg:block w-[900px] xl:w-[1100px] mx-auto absolute left-1/2 -translate-x-1/2 h-full">
+            <!-- Main Navigation (8개 메뉴 칸 간격 조정) -->
+            <nav class="hidden lg:block w-[880px] xl:w-[1050px] mx-auto absolute left-1/2 -translate-x-1/2 h-full">
                 <ul class="grid grid-cols-8 h-full text-center">
                     <li class="h-full flex items-center justify-center">
                         <a href="2.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">한의원 소개</a>
@@ -123,43 +124,43 @@
             </div>
         </header>
 
-        <!-- Mega Menu Dropdown (8개 칸 연동) -->
+        <!-- Mega Menu Dropdown -->
         <div class="mega-menu-panel absolute top-24 left-0 w-full bg-white z-10 border-t border-brand-lightBorder shadow-xl pb-12 pt-8 opacity-0 invisible -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
-            <div class="w-[900px] xl:w-[1100px] mx-auto grid grid-cols-8 text-center">
-                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
+            <div class="w-[880px] xl:w-[1050px] mx-auto grid grid-cols-8 text-center">
+                <ul class="space-y-4 text-left px-2 border-r border-gray-100">
                     <li><a href="2.html" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">인사말</a></li>
                     <li><a href="2.html#section-doctor" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">의료진 소개</a></li>
                     <li><a href="2.html#section-info" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">진료안내</a></li>
                     <li><a href="2.html#section-location" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">오시는길</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
+                <ul class="space-y-4 text-left px-2 border-r border-gray-100">
                     <li><a href="3.html#section-acupo" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">침도요법</a></li>
                     <li><a href="3.html#section-chuna" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">추나&골타</a></li>
                     <li><a href="3.html#section-disc" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">협착증/디스크</a></li>
                     <li><a href="3.html#section-shoulder" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">오십견</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
+                <ul class="space-y-4 text-left px-2 border-r border-gray-100">
                     <li><a href="4.html#section-tinnitus" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">이명</a></li>
                     <li><a href="4.html#section-hearing-loss" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">돌발성 난청</a></li>
                     <li><a href="4.html#section-facial-palsy" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">구안와사</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
+                <ul class="space-y-4 text-left px-2 border-r border-gray-100">
                     <li><a href="5.html#section-infertility" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">불임/산후관리</a></li>
                     <li><a href="5.html#section-menopause" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">갱년기</a></li>
                     <li><a href="5.html#section-diet" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">다이어트</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
+                <ul class="space-y-4 text-left px-2 border-r border-gray-100">
                     <li><a href="6.html#section-symptoms" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">교통사고증상</a></li>
                     <li><a href="6.html#section-insurance" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">자동차보험</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
+                <ul class="space-y-4 text-left px-2 border-r border-gray-100">
                     <li><a href="7.html#section-custom" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">개별맞춤한약</a></li>
                     <li><a href="7.html#section-gongjin" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">공진단</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
+                <ul class="space-y-4 text-left px-2 border-r border-gray-100">
                     <li><a href="notice.html" class="sub-link text-xs xl:text-sm text-brand-gold font-bold block w-full">공지사항 보기</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-3">
+                <ul class="space-y-4 text-left px-2">
                     <li><a href="column.html" class="sub-link text-xs xl:text-sm text-brand-gold font-bold block w-full">건강칼럼 보기</a></li>
                 </ul>
             </div>
