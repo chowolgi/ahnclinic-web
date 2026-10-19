@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>칼럼 관리 - 안준석 한의원 관리자</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 flex h-screen overflow-hidden antialiased text-gray-800">
+
+    <!-- 왼쪽 사이드바 (LNB) -->
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col hidden md:flex shrink-0">
+        <div class="h-16 flex items-center px-6 border-b border-gray-100">
+            <span class="text-lg font-bold tracking-tight text-[#B69A7B]">안준석 한의원 Admin</span>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1 px-3">
+                <li>
+                    <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-50 hover:text-[#B69A7B] transition-colors">
+                        <i class="fa-solid fa-chart-line w-5 text-center mr-2"></i> 대시보드
+                    </a>
+                </li>
+                <li>
+                    <!-- 현재 페이지 활성화 (칼럼 관리) -->
+                    <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg bg-[#B69A7B]/10 text-[#B69A7B]">
+                        <i class="fa-solid fa-pen-to-square w-5 text-center mr-2"></i> 칼럼 관리
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-50 hover:text-[#B69A7B] transition-colors">
+                        <i class="fa-solid fa-bullhorn w-5 text-center mr-2"></i> 공지사항 관리
+                    </a>
+                </li>
+                <li class="pt-4 mt-4 border-t border-gray-100">
+                    <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-500 hover:bg-gray-50 hover:text-red-500 transition-colors">
+                        <i class="fa-solid fa-arrow-right-from-bracket w-5 text-center mr-2"></i> 로그아웃
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main class="flex-1 flex flex-col overflow-hidden">
+        
+        <!-- 상단 헤더 -->
+        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
+            <h1 class="text-xl font-bold">칼럼 목록</h1>
+            <div class="flex items-center gap-4">
+                <a href="/" target="_blank" class="text-sm text-gray-500 hover:text-gray-900"><i class="fa-solid fa-up-right-from-square mr-1"></i> 사이트 보러가기</a>
+            </div>
+        </header>
+
+        <!-- 데이터 표시 및 테이블 영역 -->
+        <div class="flex-1 overflow-auto p-8">
+            <div class="max-w-6xl mx-auto">
+                
+                <!-- 검색 및 작성 버튼 -->
+                <div class="flex justify-between items-center mb-6">
+                    <div class="relative">
+                        <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                        <input type="text" placeholder="제목 검색..." class="pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#B69A7B] focus:ring-1 focus:ring-[#B69A7B] w-64">
+                    </div>
+                    <!-- 글쓰기 버튼 -->
+                    <button class="bg-[#B69A7B] hover:bg-[#9A7D5E] text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm flex items-center">
+                        <i class="fa-solid fa-plus mr-2"></i> 새 칼럼 작성
+                    </button>
+                </div>
+
+                <!-- 데이터 테이블 -->
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider border-b border-gray-200">
+                                <th class="px-6 py-4 font-medium w-16 text-center">No</th>
+                                <th class="px-6 py-4 font-medium w-32">카테고리</th>
+                                <th class="px-6 py-4 font-medium">제목</th>
+                                <th class="px-6 py-4 font-medium w-32">작성일</th>
+                                <th class="px-6 py-4 font-medium w-24">상태</th>
+                                <th class="px-6 py-4 font-medium w-24 text-center">관리</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 text-sm">
+                            
+                            <!-- 예시 데이터 1 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 text-center text-gray-400">2</td>
+                                <td class="px-6 py-4"><span class="bg-blue-50 text-blue-600 px-2 py-1 rounded text-xs font-medium">Spine Health</span></td>
+                                <td class="px-6 py-4 font-medium text-gray-900 cursor-pointer hover:text-[#B69A7B]">허리디스크와 협착증, 어떻게 구별하고 치료할까요?</td>
+                                <td class="px-6 py-4 text-gray-500">2026.10.10</td>
+                                <td class="px-6 py-4"><span class="text-green-600 text-xs font-bold flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>발행됨</span></td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="text-gray-400 hover:text-[#B69A7B] mx-1"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="text-gray-400 hover:text-red-500 mx-1"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+
+                            <!-- 예시 데이터 2 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 text-center text-gray-400">1</td>
+                                <td class="px-6 py-4"><span class="bg-purple-50 text-purple-600 px-2 py-1 rounded text-xs font-medium">Tinnitus</span></td>
+                                <td class="px-6 py-4 font-medium text-gray-900 cursor-pointer hover:text-[#B69A7B]">만성 이명과 돌발성 난청, 골든타임의 중요성</td>
+                                <td class="px-6 py-4 text-gray-500">2026.09.28</td>
+                                <td class="px-6 py-4"><span class="text-green-600 text-xs font-bold flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>발행됨</span></td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="text-gray-400 hover:text-[#B69A7B] mx-1"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="text-gray-400 hover:text-red-500 mx-1"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 페이지네이션 -->
+                <div class="flex items-center justify-center mt-8 space-x-2">
+                    <button class="w-8 h-8 flex items-center justify-center rounded-md border border-gray-200 text-gray-400 hover:bg-gray-50 cursor-not-allowed"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded-md bg-[#B69A7B] text-white font-medium text-sm">1</button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded-md border border-gray-200 text-gray-400 hover:bg-gray-50 cursor-not-allowed"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
