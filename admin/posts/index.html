@@ -71,7 +71,7 @@
                         <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
                         <input type="text" placeholder="제목 검색..." class="pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#B69A7B] focus:ring-1 focus:ring-[#B69A7B] w-64">
                     </div>
-                    <!-- ✅ 글쓰기 버튼을 링크(a 태그)로 변경함 -->
+                    <!-- 글쓰기 버튼 -->
                     <a href="/admin/posts/write.html" class="bg-[#B69A7B] hover:bg-[#9A7D5E] text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm flex items-center">
                         <i class="fa-solid fa-plus mr-2"></i> 새 칼럼 작성
                     </a>
@@ -87,7 +87,7 @@
                                 <th class="px-6 py-4 font-medium">제목</th>
                                 <th class="px-6 py-4 font-medium w-32">작성일</th>
                                 <th class="px-6 py-4 font-medium w-24">상태</th>
-                                <th class="px-6 py-4 font-medium w-24 text-center">관리</th>
+                                <th class="px-6 py-4 font-medium w-32 text-center">관리</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100 text-sm">
@@ -99,9 +99,14 @@
                                 <td class="px-6 py-4 font-medium text-gray-900 cursor-pointer hover:text-[#B69A7B]">허리디스크와 협착증, 어떻게 구별하고 치료할까요?</td>
                                 <td class="px-6 py-4 text-gray-500">2026.10.10</td>
                                 <td class="px-6 py-4"><span class="text-green-600 text-xs font-bold flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>발행됨</span></td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="text-gray-400 hover:text-[#B69A7B] mx-1"><i class="fa-solid fa-pen"></i></button>
-                                    <button class="text-gray-400 hover:text-red-500 mx-1"><i class="fa-solid fa-trash"></i></button>
+                                <!-- 수정/삭제 버튼에 텍스트 적용 -->
+                                <td class="px-6 py-4 text-center space-x-3">
+                                    <button class="inline-flex items-center text-gray-500 hover:text-[#B69A7B] transition-colors text-xs font-bold">
+                                        <i class="fa-solid fa-pen mr-1.5"></i>수정
+                                    </button>
+                                    <button class="inline-flex items-center text-gray-500 hover:text-red-500 transition-colors text-xs font-bold">
+                                        <i class="fa-solid fa-trash mr-1.5"></i>삭제
+                                    </button>
                                 </td>
                             </tr>
 
@@ -112,9 +117,14 @@
                                 <td class="px-6 py-4 font-medium text-gray-900 cursor-pointer hover:text-[#B69A7B]">만성 이명과 돌발성 난청, 골든타임의 중요성</td>
                                 <td class="px-6 py-4 text-gray-500">2026.09.28</td>
                                 <td class="px-6 py-4"><span class="text-green-600 text-xs font-bold flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>발행됨</span></td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="text-gray-400 hover:text-[#B69A7B] mx-1"><i class="fa-solid fa-pen"></i></button>
-                                    <button class="text-gray-400 hover:text-red-500 mx-1"><i class="fa-solid fa-trash"></i></button>
+                                <!-- 수정/삭제 버튼에 텍스트 적용 -->
+                                <td class="px-6 py-4 text-center space-x-3">
+                                    <button class="inline-flex items-center text-gray-500 hover:text-[#B69A7B] transition-colors text-xs font-bold">
+                                        <i class="fa-solid fa-pen mr-1.5"></i>수정
+                                    </button>
+                                    <button class="inline-flex items-center text-gray-500 hover:text-red-500 transition-colors text-xs font-bold">
+                                        <i class="fa-solid fa-trash mr-1.5"></i>삭제
+                                    </button>
                                 </td>
                             </tr>
 
