@@ -45,6 +45,8 @@
         .mega-menu-panel { transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; }
         .sub-link { transition: all 0.2s ease; }
         .sub-link:hover { color: #B69A7B; font-weight: 500; transform: translateY(-2px); }
+        /* 본문 미리보기 말줄임표 처리용 */
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     </style>
 </head>
 <body class="antialiased selection:bg-brand-gold selection:text-white">
@@ -71,7 +73,6 @@
                     <li class="h-full flex items-center justify-center"><a href="6.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors word-keep">교통사고후유증</a></li>
                     <li class="h-full flex items-center justify-center"><a href="7.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">맞춤한약</a></li>
                     <li class="h-full flex items-center justify-center"><a href="notice.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">공지사항</a></li>
-                    <!-- 현재 칼럼 페이지 활성화 표시 -->
                     <li class="h-full flex items-center justify-center"><a href="column.html" class="text-brand-gold text-[15px] font-bold w-full h-full flex items-center justify-center transition-colors border-b-2 border-brand-gold">칼럼</a></li>
                 </ul>
             </nav>
@@ -114,11 +115,9 @@
                     <li><a href="7.html#section-custom" class="sub-link text-sm text-gray-500 block w-full">개별맞춤한약</a></li>
                     <li><a href="7.html#section-gongjin" class="sub-link text-sm text-gray-500 block w-full">공진단</a></li>
                 </ul>
-                <!-- 7열: 공지사항 (군더더기 제거) -->
                 <ul class="space-y-4 text-center px-2 border-r border-gray-100">
                     <li><a href="notice.html" class="sub-link text-sm text-gray-500 block w-full">공지사항</a></li>
                 </ul>
-                <!-- 8열: 칼럼 (군더더기 제거 및 현재 칼럼 페이지 활성화 표시) -->
                 <ul class="space-y-4 text-center px-2">
                     <li><a href="column.html" class="sub-link text-sm text-brand-gold font-bold block w-full">칼럼</a></li>
                 </ul>
@@ -134,18 +133,11 @@
         </section>
 
         <section class="py-16 max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-brand-ivory p-8 rounded-2xl border border-gray-100 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-                    <span class="text-xs text-brand-gold font-bold uppercase tracking-wider mb-2 block">Spine Health</span>
-                    <h3 class="text-xl font-bold text-brand-dark mb-3">허리디스크와 협착증, 어떻게 구별하고 치료할까요?</h3>
-                    <p class="text-brand-graytext text-sm leading-relaxed mb-4">수술을 고민하기 전 알아두어야 할 한의학적 보존 치료와 도침 요법의 핵심을 설명해 드립니다.</p>
-                    <span class="text-xs text-gray-400">2026.10.10</span>
-                </div>
-                <div class="bg-brand-ivory p-8 rounded-2xl border border-gray-100 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-                    <span class="text-xs text-brand-gold font-bold uppercase tracking-wider mb-2 block">Tinnitus</span>
-                    <h3 class="text-xl font-bold text-brand-dark mb-3">만성 이명과 돌발성 난청, 골든타임의 중요성</h3>
-                    <p class="text-brand-graytext text-sm leading-relaxed mb-4">귀에서 소리가 나는 이명 증상의 원인과 초기 대응 방법, 그리고 한방 집중 치료의 효과.</p>
-                    <span class="text-xs text-gray-400">2026.09.28</span>
+            <!-- ★ 진짜 데이터가 들어갈 빈 공간 (id 추가됨) ★ -->
+            <div id="column-list" class="grid md:grid-cols-2 gap-8">
+                <!-- 로딩 중 표시 -->
+                <div class="col-span-1 md:col-span-2 text-center text-gray-400 py-12">
+                    <i class="fa-solid fa-spinner fa-spin mr-2"></i>칼럼을 불러오는 중입니다...
                 </div>
             </div>
         </section>
@@ -157,5 +149,66 @@
             <p>&copy; 2026 Ahn Junseok Oriental Clinic. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- ★ 데이터베이스(DB)에서 글 목록 불러오는 스크립트 ★ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const listContainer = document.getElementById('column-list');
+
+            try {
+                // 백엔드에서 글 목록 가져오기
+                const response = await fetch('/api/posts');
+                const posts = await response.json();
+
+                // '홈페이지에 공개(is_published = 1)'로 설정된 글만 필터링
+                const publishedPosts = posts.filter(post => post.is_published === 1);
+
+                // 등록된 공개 글이 없을 경우
+                if (!publishedPosts || publishedPosts.length === 0) {
+                    listContainer.innerHTML = `<div class="col-span-1 md:col-span-2 text-center text-gray-500 py-12">등록된 건강 칼럼이 없습니다.</div>`;
+                    return;
+                }
+
+                // 로딩 메시지 지우기
+                listContainer.innerHTML = '';
+
+                // 카테고리 영문 변환용 매핑
+                const categoryMap = {
+                    'spine': 'SPINE HEALTH',
+                    'tinnitus': 'TINNITUS',
+                    'diet': 'DIET & WOMEN',
+                    'traffic': 'TRAFFIC ACCIDENT'
+                };
+
+                // 각 칼럼 데이터를 카드 형태의 HTML로 만들어 화면에 추가
+                publishedPosts.forEach(post => {
+                    const catName = categoryMap[post.category] || 'COLUMN';
+                    const date = new Date(post.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\.\s/g, '.').replace(/\.$/, '');
+
+                    // 본문에서 HTML 태그(<b>, <img> 등)를 제외하고 순수 텍스트만 뽑아서 미리보기용으로 자름
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = post.content;
+                    const textContent = tempDiv.textContent || tempDiv.innerText || "";
+                    const preview = textContent.length > 80 ? textContent.substring(0, 80) + '...' : textContent;
+
+                    // 카드 생성 (클릭 시 column-view.html 로 이동하게 설정)
+                    const card = document.createElement('a');
+                    card.href = `column-view.html?id=${post.id}`; // 상세 보기 페이지로 이동
+                    card.className = "bg-brand-ivory p-8 rounded-2xl border border-gray-100 shadow-sm cursor-pointer hover:shadow-md transition-all hover:-translate-y-1 block";
+                    card.innerHTML = `
+                        <span class="text-xs text-brand-gold font-bold uppercase tracking-wider mb-2 block">${catName}</span>
+                        <h3 class="text-xl font-bold text-brand-dark mb-3 truncate">${post.title}</h3>
+                        <p class="text-brand-graytext text-sm leading-relaxed mb-4 line-clamp-2 min-h-[2.5rem]">${preview}</p>
+                        <span class="text-xs text-gray-400">${date}</span>
+                    `;
+                    
+                    listContainer.appendChild(card);
+                });
+            } catch (error) {
+                console.error(error);
+                listContainer.innerHTML = `<div class="col-span-1 md:col-span-2 text-center text-red-500 py-12">칼럼 목록을 불러오는 중 오류가 발생했습니다.</div>`;
+            }
+        });
+    </script>
 </body>
 </html>
