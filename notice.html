@@ -44,7 +44,7 @@
         .word-keep { word-break: keep-all; }
         .mega-menu-panel { transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; }
         .sub-link { transition: all 0.2s ease; }
-        .sub-link:hover { color: #B69A7B; font-weight: 500; transform: translateX(5px); }
+        .sub-link:hover { color: #B69A7B; font-weight: 500; transform: translateY(-2px); }
     </style>
 </head>
 <body class="antialiased selection:bg-brand-gold selection:text-white">
@@ -62,15 +62,19 @@
                 </div>
             </a>
             
-            <nav class="hidden lg:block w-[800px] xl:w-[1000px] mx-auto absolute left-1/2 -translate-x-1/2 h-full">
-                <ul class="grid grid-cols-7 h-full text-center">
+            <!-- ✅ 메인 네비게이션: 8열(grid-cols-8) 완벽 분리 및 너비 확장 -->
+            <nav class="hidden lg:block w-[880px] xl:w-[1050px] mx-auto absolute left-1/2 -translate-x-1/2 h-full">
+                <ul class="grid grid-cols-8 h-full text-center">
                     <li class="h-full flex items-center justify-center"><a href="2.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">한의원 소개</a></li>
                     <li class="h-full flex items-center justify-center"><a href="3.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">목·허리 디스크</a></li>
                     <li class="h-full flex items-center justify-center"><a href="4.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">이명/난청</a></li>
                     <li class="h-full flex items-center justify-center"><a href="5.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">여성/다이어트</a></li>
                     <li class="h-full flex items-center justify-center"><a href="6.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors word-keep">교통사고후유증</a></li>
                     <li class="h-full flex items-center justify-center"><a href="7.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">맞춤한약</a></li>
+                    <!-- 7번째: 공지사항 (현재 페이지 강조) -->
                     <li class="h-full flex items-center justify-center"><a href="notice.html" class="text-brand-gold text-[15px] font-bold w-full h-full flex items-center justify-center transition-colors border-b-2 border-brand-gold">공지사항</a></li>
+                    <!-- 8번째: 칼럼 분리 -->
+                    <li class="h-full flex items-center justify-center"><a href="column.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">칼럼</a></li>
                 </ul>
             </nav>
 
@@ -81,39 +85,44 @@
             </div>
         </header>
 
+        <!-- ✅ 메가 메뉴 패널: 8열(grid-cols-8) 맞춤 및 서브메뉴 분리 -->
         <div class="mega-menu-panel absolute top-24 left-0 w-full bg-white z-10 border-t border-brand-lightBorder shadow-xl pb-12 pt-8 opacity-0 invisible -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
-            <div class="w-[800px] xl:w-[1000px] mx-auto grid grid-cols-7 text-center">
-                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+            <div class="w-[880px] xl:w-[1050px] mx-auto grid grid-cols-8 text-center">
+                <ul class="space-y-4 text-center px-2 border-r border-gray-100">
                     <li><a href="2.html" class="sub-link text-sm text-gray-500 block w-full">인사말</a></li>
                     <li><a href="2.html#section-doctor" class="sub-link text-sm text-gray-500 block w-full">의료진 소개</a></li>
                     <li><a href="2.html#section-info" class="sub-link text-sm text-gray-500 block w-full">진료안내</a></li>
                     <li><a href="2.html#section-location" class="sub-link text-sm text-gray-500 block w-full">오시는길</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                <ul class="space-y-4 text-center px-2 border-r border-gray-100">
                     <li><a href="3.html#section-acupo" class="sub-link text-sm text-gray-500 block w-full">침도요법</a></li>
                     <li><a href="3.html#section-chuna" class="sub-link text-sm text-gray-500 block w-full">추나&골타</a></li>
                     <li><a href="3.html#section-disc" class="sub-link text-sm text-gray-500 block w-full">협착증/디스크</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                <ul class="space-y-4 text-center px-2 border-r border-gray-100">
                     <li><a href="4.html#section-tinnitus" class="sub-link text-sm text-gray-500 block w-full">이명</a></li>
                     <li><a href="4.html#section-hearing-loss" class="sub-link text-sm text-gray-500 block w-full">돌발성 난청</a></li>
                     <li><a href="4.html#section-facial-palsy" class="sub-link text-sm text-gray-500 block w-full">구안와사</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                <ul class="space-y-4 text-center px-2 border-r border-gray-100">
                     <li><a href="5.html#section-infertility" class="sub-link text-sm text-gray-500 block w-full">불임/산후관리</a></li>
                     <li><a href="5.html#section-menopause" class="sub-link text-sm text-gray-500 block w-full">갱년기</a></li>
                     <li><a href="5.html#section-diet" class="sub-link text-sm text-gray-500 block w-full">다이어트</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                <ul class="space-y-4 text-center px-2 border-r border-gray-100">
                     <li><a href="6.html#section-symptoms" class="sub-link text-sm text-gray-500 block w-full">교통사고증상</a></li>
                     <li><a href="6.html#section-insurance" class="sub-link text-sm text-gray-500 block w-full">자동차보험</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                <ul class="space-y-4 text-center px-2 border-r border-gray-100">
                     <li><a href="7.html#section-custom" class="sub-link text-sm text-gray-500 block w-full">개별맞춤한약</a></li>
                     <li><a href="7.html#section-gongjin" class="sub-link text-sm text-gray-500 block w-full">공진단</a></li>
                 </ul>
-                <ul class="space-y-4 text-left px-4">
+                <!-- 7열: 공지사항 서브메뉴 -->
+                <ul class="space-y-4 text-center px-2 border-r border-gray-100">
                     <li><a href="notice.html" class="sub-link text-sm text-brand-gold font-bold block w-full">공지사항</a></li>
+                </ul>
+                <!-- 8열: 칼럼 서브메뉴 -->
+                <ul class="space-y-4 text-center px-2">
                     <li><a href="column.html" class="sub-link text-sm text-gray-500 block w-full">칼럼</a></li>
                 </ul>
             </div>
