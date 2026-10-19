@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>맞춤한약 - 안준석 한의원</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#B69A7B',      /* 우아한 샴페인 골드 */
+                            dark: '#333333',      /* 텍스트용 다크 그레이 */
+                            graytext: '#666666',  /* 본문 서브 텍스트 */
+                            ivory: '#F9F7F3',     /* 따뜻한 아이보리 배경 */
+                            lightBorder: '#EFEFEF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                        serif: ['"Nanum Myeongjo"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth Scroll with offset for sticky headers */
+        html { scroll-behavior: smooth; scroll-padding-top: 150px; }
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #ffffff; overflow-x: hidden; color: #333; }
+        .font-serif { font-family: 'Nanum Myeongjo', serif; }
+        .word-keep { word-break: keep-all; }
+        
+        /* Mega Menu Transition */
+        .mega-menu-panel {
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        }
+
+        .sub-link { transition: all 0.2s ease; }
+        .sub-link:hover { color: #B69A7B; font-weight: 500; transform: translateX(5px); }
+        
+        /* Sticky Sub-navigation */
+        .sticky-subnav {
+            position: sticky;
+            top: 96px; /* Height of main header (h-24) */
+            z-index: 40;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #EFEFEF;
+        }
+        .sticky-subnav a {
+            position: relative;
+        }
+        .sticky-subnav a::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: transparent;
+            transition: background-color 0.3s;
+        }
+        .sticky-subnav a:hover::after,
+        .sticky-subnav a.active::after {
+            background-color: #B69A7B;
+        }
+        .sticky-subnav a:hover,
+        .sticky-subnav a.active {
+            color: #B69A7B;
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-gold selection:text-white">
+
+    <!-- ========================================== -->
+    <!-- HEADER & MEGA MENU                         -->
+    <!-- ========================================== -->
+    <div id="header-wrapper" class="fixed top-0 left-0 w-full z-50 group bg-white/95 backdrop-blur-md border-b border-brand-lightBorder shadow-sm transition-all duration-300">
+        <header class="relative z-20 h-24 flex items-center justify-between px-6 xl:px-12 max-w-screen-2xl mx-auto">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-3 shrink-0 cursor-pointer">
+                <div class="w-10 h-10 border border-brand-gold flex flex-col items-center justify-center p-1 text-brand-gold font-serif leading-none text-[10px] text-center shrink-0">
+                    <div>安漢</div><div>浚醫</div><div>哲院</div>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <span class="text-brand-dark text-2xl font-serif font-bold tracking-widest">안준석 한의원</span>
+                    <span class="text-[10px] text-brand-gold tracking-wide mt-0.5 uppercase">Ahn Junseok Oriental Clinic</span>
+                </div>
+            </a>
+            
+            <!-- Main Navigation -->
+            <nav class="hidden lg:block w-[800px] xl:w-[1000px] mx-auto absolute left-1/2 -translate-x-1/2 h-full">
+                <ul class="grid grid-cols-7 h-full text-center">
+                    <li class="h-full flex items-center justify-center"><a href="2.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">한의원 소개</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="3.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">목·허리 디스크</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="4.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">이명/난청</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="5.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">여성/다이어트</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="6.html" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center word-keep">교통사고후유증</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="7.html" class="text-brand-gold text-[15px] font-bold transition-colors w-full h-full flex items-center justify-center border-b-2 border-brand-gold">맞춤한약</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="#" class="text-brand-dark hover:text-brand-gold text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">커뮤니티</a></li>
+                </ul>
+            </nav>
+
+            <!-- Hamburger -->
+            <div class="flex items-center gap-4 shrink-0">
+                <button class="w-10 h-10 rounded-full bg-brand-ivory text-brand-dark hover:bg-brand-gold hover:text-white flex items-center justify-center transition-colors shadow-sm">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Mega Menu Dropdown -->
+        <div class="mega-menu-panel absolute top-24 left-0 w-full bg-white z-10 border-t border-brand-lightBorder shadow-xl pb-12 pt-8 opacity-0 invisible -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+            <div class="w-[800px] xl:w-[1000px] mx-auto grid grid-cols-7 text-center">
+                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                    <li><a href="2.html" class="sub-link text-sm text-gray-500 block w-full">인사말</a></li>
+                    <li><a href="2.html#section-doctor" class="sub-link text-sm text-gray-500 block w-full">의료진 소개</a></li>
+                    <li><a href="2.html#section-info" class="sub-link text-sm text-gray-500 block w-full">진료안내</a></li>
+                    <li><a href="2.html#section-location" class="sub-link text-sm text-gray-500 block w-full">오시는길</a></li>
+                </ul>
+                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                    <li><a href="3.html#section-acupo" class="sub-link text-sm text-gray-500 block w-full">침도요법</a></li>
+                    <li><a href="3.html#section-chuna" class="sub-link text-sm text-gray-500 block w-full">추나&골타</a></li>
+                    <li><a href="3.html#section-disc" class="sub-link text-sm text-gray-500 block w-full">협착증/오십견</a></li>
+                </ul>
+                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                    <li><a href="4.html#section-tinnitus" class="sub-link text-sm text-gray-500 block w-full">이명</a></li>
+                    <li><a href="4.html#section-hearing-loss" class="sub-link text-sm text-gray-500 block w-full">돌발성 난청</a></li>
+                    <li><a href="4.html#section-facial-palsy" class="sub-link text-sm text-gray-500 block w-full">구안와사</a></li>
+                </ul>
+                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                    <li><a href="5.html#section-infertility" class="sub-link text-sm text-gray-500 block w-full">불임/산후관리</a></li>
+                    <li><a href="5.html#section-menopause" class="sub-link text-sm text-gray-500 block w-full">갱년기</a></li>
+                    <li><a href="5.html#section-diet" class="sub-link text-sm text-gray-500 block w-full">다이어트</a></li>
+                </ul>
+                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                    <li><a href="6.html#section-symptoms" class="sub-link text-sm text-gray-500 block w-full">교통사고증상</a></li>
+                    <li><a href="6.html#section-insurance" class="sub-link text-sm text-gray-500 block w-full">자동차보험</a></li>
+                </ul>
+                <ul class="space-y-4 text-left px-4 border-r border-gray-100">
+                    <li><a href="7.html#section-custom" class="sub-link text-sm text-gray-500 block w-full">개별맞춤한약</a></li>
+                    <li><a href="7.html#section-gongjin" class="sub-link text-sm text-gray-500 block w-full">공진단</a></li>
+                </ul>
+                <ul class="space-y-4 text-left px-4">
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">공지사항</a></li>
+                    <li><a href="#" class="sub-link text-sm text-gray-500 block w-full">온라인상담</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- FLOATING RIGHT MENU                        -->
+    <!-- ========================================== -->
+    <div class="fixed right-4 md:right-6 top-1/2 -translate-y-1/2 z-40 bg-white/90 backdrop-blur-md rounded-full shadow-lg border border-gray-100 p-2 flex flex-col gap-2">
+        <a href="#" class="w-12 h-12 md:w-14 md:h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
+            <div class="w-5 h-5 md:w-6 md:h-6 bg-brand-gold text-white rounded-full font-bold text-[10px] md:text-[11px] flex items-center justify-center mb-1 group-hover:scale-110 transition-transform"><i class="fas fa-calendar-check"></i></div>
+            <span class="text-[9px] md:text-[10px] text-gray-600 font-medium">예약</span>
+        </a>
+        <div class="w-8 h-px bg-gray-200 mx-auto my-1"></div>
+        <a href="#" class="w-12 h-12 md:w-14 md:h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
+            <div class="w-5 h-5 md:w-6 md:h-6 bg-[#03C75A] text-white rounded font-bold text-[10px] md:text-[11px] flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">N</div>
+            <span class="text-[9px] md:text-[10px] text-gray-600 font-medium">블로그</span>
+        </a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="pt-24">
+        
+        <!-- ========================================== -->
+        <!-- SUBPAGE HERO SECTION                       -->
+        <!-- ========================================== -->
+        <section class="relative h-[400px] md:h-[450px] w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+            <div class="absolute w-full text-center text-gray-300/40 font-bold text-[5rem] md:text-[10rem] lg:text-[12rem] tracking-tighter uppercase whitespace-nowrap select-none pointer-events-none drop-shadow-sm">
+                HERBAL MEDICINE
+            </div>
+            
+            <div class="relative z-10 text-center px-6 mt-6 md:mt-8 reveal">
+                <span class="text-brand-gold font-bold tracking-widest text-xs md:text-sm mb-4 block uppercase">Premium Care</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-brand-dark mb-6 drop-shadow-sm">맞춤한약</h1>
+                <p class="text-brand-graytext font-light text-base md:text-lg tracking-wide max-w-xl mx-auto word-keep">
+                    청정 한약재와 1:1 맞춤 처방으로<br>근본적인 체질 개선을 돕습니다
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- STICKY SUB-NAVIGATION                      -->
+        <!-- ========================================== -->
+        <div class="sticky-subnav shadow-sm w-full bg-white/95 backdrop-blur-sm">
+            <div class="max-w-3xl mx-auto px-4 flex justify-between md:justify-center md:space-x-24 overflow-x-auto whitespace-nowrap scrollbar-hide">
+                <a href="#section-custom" class="py-5 px-4 text-sm md:text-base font-medium text-gray-600">개별 맞춤 한약</a>
+                <a href="#section-gongjin" class="py-5 px-4 text-sm md:text-base font-medium text-gray-600">명품 공진단</a>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 1: 개별 맞춤 한약                  -->
+        <!-- ========================================== -->
+        <section id="section-custom" class="py-24 bg-white relative">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row gap-12 lg:gap-20 items-center">
+                    <div class="md:w-1/2 reveal">
+                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Customized Herbal Medicine</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">1:1 개별 맞춤 한약</h2>
+                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">
+                            체질과 증상에 꼭 맞는,<br>내 몸을 살리는 <span class="text-brand-gold">맑은 처방</span>.
+                        </h3>
+                        <p class="text-brand-graytext leading-relaxed mb-6 word-keep font-light">
+                            타고난 체질과 현재의 병증은 사람마다 다릅니다. 안준석 한의원은 세밀한 진맥과 심도 깊은 상담을 통해 오장육부의 불균형을 정확히 파악하고, 오직 한 분만을 위한 최적의 맞춤 처방을 내립니다.
+                        </p>
+                        <p class="text-brand-graytext leading-relaxed mb-8 word-keep font-light">
+                            식약처의 엄격한 품질 검사를 통과한 hGMP(우수한약재 제조 및 품질관리기준) 인증 청정 한약재만을 고집합니다. 남녀노소 누구나 안심하고 복용할 수 있는 깨끗하고 바른 한약을 정성껏 달여 만성 질환 치료부터 기력 보강까지 몸의 자생력을 키워줍니다.
+                        </p>
+                        <ul class="space-y-4 border-t border-brand-lightBorder pt-6 mt-6">
+                            <li class="flex items-start">
+                                <div class="mt-1 w-5 h-5 rounded-full bg-brand-ivory flex items-center justify-center text-brand-gold mr-3 shrink-0"><i class="fas fa-check text-xs"></i></div>
+                                <span class="text-sm font-medium text-brand-dark leading-snug">면역력 증진 및 만성 피로 회복</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="mt-1 w-5 h-5 rounded-full bg-brand-ivory flex items-center justify-center text-brand-gold mr-3 shrink-0"><i class="fas fa-check text-xs"></i></div>
+                                <span class="text-sm font-medium text-brand-dark leading-snug">큰 병이나 수술 후 기력 회복 및 소화기 질환 개선</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="mt-1 w-5 h-5 rounded-full bg-brand-ivory flex items-center justify-center text-brand-gold mr-3 shrink-0"><i class="fas fa-check text-xs"></i></div>
+                                <span class="text-sm font-medium text-brand-dark leading-snug">잦은 잔병치레를 막는 근본적인 체질 개선 보약</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 reveal delay-200">
+                        <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-brand-lightBorder group">
+                            <div class="absolute inset-0 bg-brand-gold/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
+                            <img src="https://images.unsplash.com/photo-1628185566052-192e44d56d81?q=80&w=800&auto=format&fit=crop" alt="개별 맞춤 한약" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 2: 명품 공진단                     -->
+        <!-- ========================================== -->
+        <section id="section-gongjin" class="py-24 bg-brand-ivory relative">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row-reverse gap-12 lg:gap-20 items-center">
+                    <div class="md:w-1/2 reveal">
+                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Premium Gongjindan</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">명품 공진단</h2>
+                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">
+                            황제에게 진상되던 천하 제일의 명약,<br>당신의 <span class="text-brand-gold">원기를 깨우다</span>.
+                        </h3>
+                        <p class="text-brand-graytext leading-relaxed mb-6 word-keep font-light">
+                            공진단은 동의보감에서 '체질이 선천적으로 허약하더라도, 원기를 든든히 하여 신수(腎水)를 오르게 하고 심화(心火)를 내리게 하므로 온갖 병이 생기지 않는다'고 극찬한 최고의 보약(황제의 보약)입니다.
+                        </p>
+                        <p class="text-brand-graytext leading-relaxed mb-8 word-keep font-light">
+                            최상급 정품 사향, 녹용, 당귀, 산수유 등 귀한 한약재만을 엄선하여 원장님이 직접 정성껏 조제합니다. 극심한 피로, 수험생의 체력 저하, 큰 병이나 수술 후 기력 회복에 탁월한 효과를 발휘하며 귀한 분을 위한 선물로도 좋습니다.
+                        </p>
+                        <div class="bg-white p-6 md:p-8 rounded-xl border border-brand-lightBorder shadow-[0_4px_20px_rgb(0,0,0,0.03)] mb-4">
+                            <h4 class="text-brand-dark font-bold text-sm mb-4"><i class="fas fa-crown text-brand-gold mr-2"></i>이런 분들께 강력히 추천합니다</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-brand-graytext font-light">
+                                <div class="flex items-center"><div class="w-1.5 h-1.5 bg-brand-gold rounded-full mr-2"></div> 만성 피로와 스트레스가 심한 직장인</div>
+                                <div class="flex items-center"><div class="w-1.5 h-1.5 bg-brand-gold rounded-full mr-2"></div> 기력 보충과 면역력이 필요한 어르신</div>
+                                <div class="flex items-center"><div class="w-1.5 h-1.5 bg-brand-gold rounded-full mr-2"></div> 고도의 집중력과 체력이 필요한 수험생</div>
+                                <div class="flex items-center"><div class="w-1.5 h-1.5 bg-brand-gold rounded-full mr-2"></div> 큰 병이나 수술 후 빠른 회복이 필요한 분</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 reveal delay-200">
+                        <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-brand-lightBorder group">
+                            <div class="absolute inset-0 bg-brand-gold/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
+                            <img src="https://images.unsplash.com/photo-1628185566089-a2e633dccb20?q=80&w=800&auto=format&fit=crop" alt="명품 공진단" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- FOOTER & INFO                              -->
+    <!-- ========================================== -->
+    <footer class="bg-gray-900 text-gray-400 pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div class="lg:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-8 h-8 border border-gray-500 flex flex-col items-center justify-center p-1 text-brand-gold font-serif leading-none text-[8px] text-center">
+                        <div>安漢</div><div>浚醫</div><div>哲院</div>
+                    </div>
+                    <span class="text-white text-xl font-serif font-bold">안준석 한의원</span>
+                </div>
+                <p class="text-sm leading-relaxed mb-6 max-w-sm font-light">
+                    눈에 보이는 증상 너머 근본을 다스립니다.<br>
+                    20년 임상 노하우로 환자분들의 건강한 일상을 책임지겠습니다.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 tracking-widest text-sm uppercase">Clinic Info</h4>
+                <ul class="space-y-4 text-sm font-light">
+                    <li>
+                        <span class="block text-gray-500 mb-1">진료예약 및 상담</span>
+                        <strong class="text-xl text-brand-gold font-serif">02-2069-2500</strong>
+                    </li>
+                    <li><span class="block text-gray-500 mb-1">평일 (야간진료)</span><span class="text-gray-300">09:30 - 20:00</span></li>
+                    <li><span class="block text-gray-500 mb-1">토/일/공휴일</span><span class="text-gray-300">09:30 - 16:00 (점심시간 없음)</span></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 tracking-widest text-sm uppercase">Contact</h4>
+                <ul class="space-y-3 text-sm font-light">
+                    <li class="leading-relaxed text-gray-300">서울특별시 영등포구 당산로 83<br>한화포레나당산 108호</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-gray-800 text-xs text-center text-gray-500 font-light">
+            <p>&copy; 2024 Ahn Junseok Oriental Medical Clinic. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Scroll Animation Observer
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '0px', threshold: 0.15 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            
+            // Sub-navigation Active State based on Scroll
+            const sections = document.querySelectorAll('section[id^="section-"]');
+            const navLinks = document.querySelectorAll('.sticky-subnav a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 160) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
