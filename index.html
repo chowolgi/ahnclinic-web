@@ -21,8 +21,8 @@
         }
 
         body {
-            color: #222;
-            background-color: #fff;
+            color: #333;
+            background-color: #FDFCF0; /* 따뜻한 아이보리 배경 */
             line-height: 1.6;
         }
 
@@ -45,16 +45,16 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 50px;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(253, 252, 240, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid #EBE7D9;
         }
 
         .logo {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
-            color: #111;
+            color: #2c2c2c;
             letter-spacing: -1px;
         }
 
@@ -80,7 +80,7 @@
         }
 
         .nav-item > a:hover {
-            color: #d4af37;
+            color: #B59A58; /* 고급스러운 골드 포인트 */
         }
 
         /* Dropdown Style */
@@ -91,7 +91,7 @@
             transform: translateX(-50%) translateY(10px);
             background: #fff;
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            border: 1px solid #eee;
+            border: 1px solid #EBE7D9;
             border-radius: 8px;
             width: max-content;
             min-width: 160px;
@@ -111,7 +111,7 @@
         }
 
         .dropdown a {
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 14px;
             color: #555;
             font-weight: 400;
@@ -119,14 +119,14 @@
         }
 
         .dropdown a:hover {
-            background-color: #fafafa;
-            color: #d4af37;
-            padding-left: 25px; /* 약간의 호버 애니메이션 */
+            background-color: #FDFCF0;
+            color: #B59A58;
+            padding-left: 25px;
         }
 
         /* Header Reservation Button */
         .nav-reserve-btn {
-            background-color: #111;
+            background-color: #2c2c2c;
             color: #fff !important;
             padding: 10px 24px !important;
             border-radius: 30px;
@@ -136,24 +136,24 @@
         }
 
         .nav-reserve-btn:hover {
-            background-color: #d4af37;
-            color: #111 !important;
+            background-color: #B59A58;
+            color: #fff !important;
         }
 
-        /* Floating Quick Menu */
+        /* Floating Quick Menu (카톡 제거됨) */
         .floating-bar {
             position: fixed;
             right: 30px;
             top: 50%;
             transform: translateY(-50%);
             background: #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border-radius: 12px;
             display: flex;
             flex-direction: column;
             z-index: 999;
             overflow: hidden;
-            border: 1px solid #eee;
+            border: 1px solid #EBE7D9;
         }
 
         .floating-item {
@@ -167,7 +167,7 @@
             font-size: 12px;
             font-weight: 500;
             color: #555;
-            border-bottom: 1px solid #f2f2f2;
+            border-bottom: 1px solid #f9f9f9;
             transition: all 0.3s;
         }
 
@@ -177,11 +177,11 @@
 
         .floating-item i {
             font-size: 18px;
-            color: #333;
+            color: #2c2c2c;
         }
 
         .floating-item:hover {
-            background-color: #111;
+            background-color: #B59A58;
             color: #fff;
         }
 
@@ -193,7 +193,7 @@
         .hero {
             position: relative;
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             display: flex;
             align-items: center;
             padding-left: 10%;
@@ -209,7 +209,7 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 20px;
-            color: #d4af37;
+            color: #E2C77D; /* 밝은 골드 */
             font-weight: 600;
         }
 
@@ -219,13 +219,14 @@
             line-height: 1.2;
             margin-bottom: 25px;
             letter-spacing: -1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         .hero-desc {
             font-size: 18px;
             font-weight: 300;
             line-height: 1.6;
-            color: #ddd;
+            color: #eee;
             margin-bottom: 40px;
         }
 
@@ -242,7 +243,7 @@
         .section-header h2 {
             font-size: 38px;
             font-weight: 700;
-            color: #111;
+            color: #2c2c2c;
             letter-spacing: -1px;
             margin-bottom: 15px;
         }
@@ -254,7 +255,7 @@
 
         /* Interactive Treatment Section */
         .treatments {
-            background-color: #f9f9f9;
+            background-color: #fff;
         }
 
         .treatment-container {
@@ -267,7 +268,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            border-bottom: 2px solid #e0e0e0;
+            border-bottom: 2px solid #EBE7D9;
             margin-bottom: 50px;
             overflow-x: auto;
             padding-bottom: 0;
@@ -278,7 +279,7 @@
             border: none;
             font-size: 18px;
             font-weight: 600;
-            color: #777;
+            color: #999;
             padding: 15px 25px;
             cursor: pointer;
             position: relative;
@@ -297,24 +298,20 @@
             transition: background-color 0.3s;
         }
 
-        .tab-btn:hover {
-            color: #111;
-        }
-
-        .tab-btn.active {
-            color: #111;
+        .tab-btn:hover, .tab-btn.active {
+            color: #2c2c2c;
         }
 
         .tab-btn.active::after {
-            background-color: #d4af37;
+            background-color: #B59A58;
         }
 
         .tab-content-wrap {
-            background: #fff;
+            background: #FDFCF0; /* 아이보리 배경 */
             border-radius: 16px;
             padding: 60px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            border: 1px solid #eee;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #EBE7D9;
         }
 
         .tab-panel {
@@ -337,7 +334,7 @@
         .panel-info h3 {
             font-size: 30px;
             font-weight: 700;
-            color: #111;
+            color: #2c2c2c;
             margin-bottom: 20px;
         }
 
@@ -365,14 +362,14 @@
         }
 
         .panel-feature-item i {
-            color: #d4af37;
+            color: #B59A58;
         }
 
         .panel-btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: #111;
+            background: #2c2c2c;
             color: #fff;
             padding: 14px 28px;
             border-radius: 8px;
@@ -382,8 +379,8 @@
         }
 
         .panel-btn:hover {
-            background: #d4af37;
-            color: #111;
+            background: #B59A58;
+            color: #fff;
         }
 
         .panel-img {
@@ -392,27 +389,17 @@
             background-size: cover;
             background-position: center;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         /* Doctor's Letter */
         .doctor-letter {
-            background-color: #1b1b1b;
-            color: #fff;
+            background-color: #2c2c2c;
+            color: #FDFCF0;
             position: relative;
             overflow: hidden;
             text-align: center;
             padding: 140px 20px;
-        }
-
-        .doctor-letter-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            opacity: 0.15;
         }
 
         .doctor-content {
@@ -424,7 +411,7 @@
         .doctor-content span {
             font-size: 13px;
             letter-spacing: 3px;
-            color: #d4af37;
+            color: #B59A58;
             text-transform: uppercase;
             font-weight: 600;
             display: block;
@@ -442,19 +429,19 @@
             font-size: 20px;
             font-weight: 300;
             line-height: 1.8;
-            color: #ccc;
+            color: #ddd;
             margin-bottom: 40px;
         }
 
         .doctor-sign {
             font-size: 18px;
             font-weight: 600;
-            color: #fff;
+            color: #FDFCF0;
         }
 
         /* Health Column Section */
         .column-section {
-            background-color: #fff;
+            background-color: #FDFCF0; /* 아이보리 배경 */
         }
 
         .column-grid {
@@ -470,13 +457,14 @@
             background: #fff;
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid #eaeaea;
+            border: 1px solid #EBE7D9;
             transition: all 0.3s;
         }
 
         .column-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            border-color: #B59A58;
         }
 
         .column-img {
@@ -491,14 +479,14 @@
 
         .column-date {
             font-size: 13px;
-            color: #888;
+            color: #999;
             margin-bottom: 10px;
         }
 
         .column-title {
             font-size: 18px;
             font-weight: 700;
-            color: #111;
+            color: #2c2c2c;
             margin-bottom: 15px;
             line-height: 1.4;
         }
@@ -511,7 +499,7 @@
 
         /* Footer */
         footer {
-            background-color: #111;
+            background-color: #1a1a1a;
             color: #888;
             padding: 80px 50px 40px;
             font-size: 14px;
@@ -523,13 +511,13 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid #333;
             padding-bottom: 50px;
             margin-bottom: 40px;
         }
 
         .footer-info h3 {
-            color: #fff;
+            color: #FDFCF0;
             font-size: 20px;
             font-weight: 700;
             margin-bottom: 20px;
@@ -545,7 +533,7 @@
             margin: 0 auto;
             text-align: center;
             font-size: 13px;
-            color: #666;
+            color: #555;
         }
 
         /* Responsive */
@@ -557,54 +545,52 @@
             .column-grid {
                 grid-template-columns: 1fr;
             }
-            .hero-title {
-                font-size: 38px;
-            }
             header {
                 padding: 20px 20px;
             }
             .nav-menu {
-                display: none;
+                display: none; /* 모바일 메뉴는 추후 구현 가능 */
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header with Dropdown -->
+    <!-- Header with Linked Dropdown -->
     <header>
         <a href="index.html" class="logo">안준석한의원</a>
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="#">한의원 소개 <i class="fa-solid fa-chevron-down" style="font-size: 12px; margin-top: 2px;"></i></a>
+                <a href="2.html">한의원 소개 <i class="fa-solid fa-chevron-down" style="font-size: 12px; margin-top: 2px;"></i></a>
                 <div class="dropdown">
-                    <a href="greeting.html">인사말</a>
-                    <a href="doctors.html">의료진 소개</a>
-                    <a href="price.html">치료 금액</a>
+                    <a href="2.html">인사말</a>
+                    <a href="2.html">의료진 소개</a>
+                    <a href="2.html">치료 금액</a>
                 </div>
             </li>
             <li class="nav-item">
                 <a href="#treatments-section">진료안내 <i class="fa-solid fa-chevron-down" style="font-size: 12px; margin-top: 2px;"></i></a>
                 <div class="dropdown">
-                    <a href="spine.html">목·허리디스크</a>
-                    <a href="ear.html">이명/난청</a>
-                    <a href="women.html">여성질환/다이어트</a>
-                    <a href="car.html">교통사고후유증</a>
-                    <a href="medicine.html">맞춤한약</a>
+                    <a href="3.html">목·허리디스크</a>
+                    <a href="4.html">이명/난청</a>
+                    <a href="5.html">여성질환/다이어트</a>
+                    <a href="6.html">교통사고후유증</a>
+                    <a href="7.html">맞춤한약</a>
                 </div>
             </li>
             <li class="nav-item">
                 <a href="column.html">건강칼럼</a>
             </li>
             <li class="nav-item">
-                <a href="https://naver.me/xxxxxx" target="_blank" class="nav-reserve-btn">예약하기</a>
+                <!-- 네이버 예약 링크 (실제 주소로 변경해주세요) -->
+                <a href="https://booking.naver.com/" target="_blank" class="nav-reserve-btn">예약하기</a>
             </li>
         </ul>
     </header>
 
     <!-- Floating Quick Menu -->
     <div class="floating-bar">
-        <a href="https://naver.me/xxxxxx" target="_blank" class="floating-item">
+        <a href="https://booking.naver.com/" target="_blank" class="floating-item">
             <i class="fa-regular fa-calendar-check"></i>
             <span>예약</span>
         </a>
@@ -635,6 +621,7 @@
         </div>
         
         <div class="treatment-container">
+            <!-- 탭 버튼 -->
             <div class="treatment-tabs">
                 <button class="tab-btn active" onclick="switchTab(event, 'tab-1')">목·허리 디스크</button>
                 <button class="tab-btn" onclick="switchTab(event, 'tab-2')">이명/난청</button>
@@ -644,7 +631,7 @@
             </div>
 
             <div class="tab-content-wrap">
-                <!-- Panel 1 -->
+                <!-- Panel 1: 목/허리디스크 (3.html 연동) -->
                 <div id="tab-1" class="tab-panel active">
                     <div class="panel-info">
                         <h3>목·허리 디스크 / 통증 클리닉</h3>
@@ -654,12 +641,12 @@
                             <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 침도 요법을 통한 급·만성 통증 완화</div>
                             <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 추나 요법으로 근본적인 구조 개선</div>
                         </div>
-                        <a href="spine.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="3.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80');"></div>
                 </div>
 
-                <!-- Panel 2 -->
+                <!-- Panel 2: 이명/난청 (4.html 연동) -->
                 <div id="tab-2" class="tab-panel">
                     <div class="panel-info">
                         <h3>이명 / 난청 / 구안와사 클리닉</h3>
@@ -669,12 +656,12 @@
                             <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 기혈 순환을 돕는 침·뜸 복합 치료</div>
                             <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 구안와사 골든타임 집중 케어</div>
                         </div>
-                        <a href="ear.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="4.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80');"></div>
                 </div>
 
-                <!-- Panel 3 -->
+                <!-- Panel 3: 여성질환/다이어트 (5.html 연동) -->
                 <div id="tab-3" class="tab-panel">
                     <div class="panel-info">
                         <h3>여성질환 / 한방 다이어트</h3>
@@ -684,12 +671,12 @@
                             <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 호르몬 밸런스 및 산후·갱년기 조리</div>
                             <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 무리 없는 요요 방지 다이어트</div>
                         </div>
-                        <a href="women.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="5.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80');"></div>
                 </div>
 
-                <!-- Panel 4 -->
+                <!-- Panel 4: 교통사고후유증 (6.html 연동) -->
                 <div id="tab-4" class="tab-panel">
                     <div class="panel-info">
                         <h3>교통사고 후유증 클리닉</h3>
@@ -699,12 +686,12 @@
                             <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 침, 약침, 추나, 맞춤 한약 종합 치료</div>
                             <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 자동차보험 적용으로 비용 부담 최소화</div>
                         </div>
-                        <a href="car.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="6.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80');"></div>
                 </div>
 
-                <!-- Panel 5 -->
+                <!-- Panel 5: 맞춤한약 (7.html 연동) -->
                 <div id="tab-5" class="tab-panel">
                     <div class="panel-info">
                         <h3>개별 맞춤 한약 / 공진단</h3>
@@ -714,7 +701,7 @@
                             <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 원내 직접 탕전으로 신뢰성 확보</div>
                             <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 체력 증진을 위한 프리미엄 공진단</div>
                         </div>
-                        <a href="medicine.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="7.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80');"></div>
                 </div>
@@ -724,7 +711,6 @@
 
     <!-- Doctor's Letter -->
     <section class="doctor-letter">
-        <div class="doctor-letter-bg"></div>
         <div class="doctor-content">
             <span>Director's Philosophy</span>
             <h2>안준석 원장이 여러분께 보내는 편지</h2>
@@ -745,30 +731,33 @@
             <p>풍부한 임상 경험을 바탕으로 알기 쉽게 전해드리는 한의학 이야기입니다.</p>
         </div>
         <div class="column-grid">
-            <div class="column-card">
-                <div class="column-img" style="height: 200px; background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80');"></div>
+            <!-- 칼럼 1 (column.html 연동) -->
+            <a href="column.html" class="column-card">
+                <div class="column-img" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80');"></div>
                 <div class="column-info">
                     <div class="column-date">2026.10.15</div>
                     <h3 class="column-title">허리 통증, 무조건 수술만이 답일까요?</h3>
                     <p class="column-desc">디스크 탈출증과 협착증의 차이, 그리고 일상에서 실천할 수 있는 올바른 척추 관리법을 알아봅니다.</p>
                 </div>
-            </div>
-            <div class="column-card">
-                <div class="column-img" style="height: 200px; background-image: url('https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80');"></div>
+            </a>
+            <!-- 칼럼 2 (column.html 연동) -->
+            <a href="column.html" class="column-card">
+                <div class="column-img" style="background-image: url('https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80');"></div>
                 <div class="column-info">
                     <div class="column-date">2026.09.28</div>
                     <h3 class="column-title">자꾸만 들리는 이명, 원인과 관리법</h3>
                     <p class="column-desc">만성적인 이명 증상을 완화하기 위해 한의학에서는 어떤 방식으로 접근하고 치료하는지 설명해 드립니다.</p>
                 </div>
-            </div>
-            <div class="column-card">
-                <div class="column-img" style="height: 200px; background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80');"></div>
+            </a>
+            <!-- 칼럼 3 (column.html 연동) -->
+            <a href="column.html" class="column-card">
+                <div class="column-img" style="background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80');"></div>
                 <div class="column-info">
                     <div class="column-date">2026.09.10</div>
                     <h3 class="column-title">교통사고 후유증, 방치하면 안 되는 이유</h3>
                     <p class="column-desc">사고 직후엔 괜찮아 보여도 수일 뒤 찾아오는 통증의 주원인인 어혈을 다스리는 한방 치료의 중요성.</p>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
