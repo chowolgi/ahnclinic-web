@@ -44,7 +44,7 @@
         .font-serif { font-family: 'Nanum Myeongjo', serif; }
         .word-keep { word-break: keep-all; }
         
-        /* 심플한 GNB 메뉴 호버 효과 */
+        /* GNB 드롭다운 및 메뉴 스타일 */
         .gnb-link {
             position: relative;
             padding-bottom: 5px;
@@ -63,6 +63,66 @@
             background-color: #B69A7B;
         }
         
+        .dropdown {
+            position: absolute;
+            top: 85px;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            border: 1px solid #EBE7D9;
+            border-radius: 8px;
+            width: max-content;
+            min-width: 140px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 10px 0;
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown a {
+            padding: 12px 20px;
+            font-size: 14px;
+            color: #666;
+            font-weight: 400;
+            transition: all 0.2s;
+            display: block;
+            text-align: center;
+        }
+
+        .dropdown a:hover {
+            background-color: #FDFCF0;
+            color: #B69A7B;
+            font-weight: 500;
+        }
+
+        .nav-reserve-btn {
+            background-color: #2c2c2c;
+            color: #fff !important;
+            padding: 12px 28px !important;
+            border-radius: 30px;
+            font-size: 15px !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-reserve-btn:hover {
+            background-color: #B69A7B;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(182, 154, 123, 0.3);
+        }
+
+        /* 서브페이지 내부 목차 (Sticky Subnav) */
         .sticky-subnav {
             position: sticky;
             top: 96px;
@@ -95,7 +155,7 @@
 </head>
 <body class="antialiased selection:bg-brand-gold selection:text-white">
 
-    <!-- HEADER (6.html - 교통사고후유증 활성화) -->
+    <!-- HEADER -->
     <div class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-brand-lightBorder shadow-sm transition-all duration-300">
         <header class="relative z-20 h-24 flex items-center justify-between px-4 xl:px-12 max-w-screen-2xl mx-auto">
             <!-- 로고 영역 -->
@@ -112,14 +172,44 @@
             <!-- 네비게이션 메뉴 -->
             <nav class="hidden lg:flex flex-1 justify-center h-full">
                 <ul class="flex items-center gap-12 h-full text-[15px] font-medium text-brand-dark">
-                    <li class="h-full flex items-center"><a href="3.html" class="gnb-link hover:text-brand-gold transition-colors">목·허리 디스크</a></li>
-                    <li class="h-full flex items-center"><a href="4.html" class="gnb-link hover:text-brand-gold transition-colors">이명/난청</a></li>
-                    <li class="h-full flex items-center"><a href="5.html" class="gnb-link hover:text-brand-gold transition-colors">여성/다이어트</a></li>
-                    <!-- 6.html 현재 페이지 active 적용 -->
-                    <li class="h-full flex items-center"><a href="6.html" class="gnb-link active text-brand-gold font-bold">교통사고후유증</a></li>
-                    <li class="h-full flex items-center"><a href="7.html" class="gnb-link hover:text-brand-gold transition-colors">맞춤한약</a></li>
+                    <!-- 1. 한의원 소개 (드롭다운) -->
+                    <li class="nav-item h-full flex items-center relative">
+                        <a href="2.html" class="gnb-link hover:text-brand-gold transition-colors flex items-center gap-1.5">
+                            한의원 소개 <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </a>
+                        <div class="dropdown">
+                            <a href="2.html#section-greeting">인사말</a>
+                            <a href="2.html#section-doctor">의료진 소개</a>
+                            <a href="2.html#section-price">치료 금액</a>
+                            <a href="2.html#section-location">오시는 길</a>
+                        </div>
+                    </li>
+                    
+                    <!-- 2. 진료안내 (드롭다운) -->
+                    <li class="nav-item h-full flex items-center relative">
+                        <a href="3.html" class="gnb-link active text-brand-gold font-bold flex items-center gap-1.5">
+                            진료안내 <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </a>
+                        <div class="dropdown">
+                            <a href="3.html">목·허리 디스크</a>
+                            <a href="4.html">이명/난청</a>
+                            <a href="5.html">여성/다이어트</a>
+                            <a href="6.html">교통사고후유증</a>
+                            <a href="7.html">맞춤한약</a>
+                        </div>
+                    </li>
+                    
+                    <!-- 3. 건강칼럼 -->
+                    <li class="h-full flex items-center">
+                        <a href="column.html" class="gnb-link hover:text-brand-gold transition-colors">건강칼럼</a>
+                    </li>
                 </ul>
             </nav>
+
+            <!-- 예약하기 다크 둥근 버튼 -->
+            <div class="hidden lg:flex items-center shrink-0">
+                <a href="https://booking.naver.com/" target="_blank" class="nav-reserve-btn">예약하기</a>
+            </div>
 
             <!-- 모바일 햄버거 버튼 -->
             <div class="flex items-center shrink-0 lg:hidden">
@@ -127,22 +217,19 @@
                     <i class="fas fa-bars text-lg"></i>
                 </button>
             </div>
-            
-            <!-- PC 레이아웃 밸런스를 위한 투명 박스 -->
-            <div class="hidden lg:block w-[180px] shrink-0"></div>
         </header>
     </div>
 
     <!-- FLOATING RIGHT MENU -->
     <div class="fixed right-4 md:right-6 top-1/2 -translate-y-1/2 z-40 bg-white/90 backdrop-blur-md rounded-full shadow-lg border border-gray-100 p-2 flex flex-col gap-2">
-        <a href="#" class="w-12 h-12 md:w-14 md:h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
+        <a href="https://booking.naver.com/" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
             <div class="w-5 h-5 md:w-6 md:h-6 bg-brand-gold text-white rounded-full font-bold text-[10px] md:text-[11px] flex items-center justify-center mb-1 group-hover:scale-110 transition-transform"><i class="fas fa-calendar-check"></i></div>
             <span class="text-[9px] md:text-[10px] text-gray-600 font-medium">예약</span>
         </a>
         <div class="w-8 h-px bg-gray-200 mx-auto my-1"></div>
-        <a href="#" class="w-12 h-12 md:w-14 md:h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
-            <div class="w-5 h-5 md:w-6 md:h-6 bg-[#03C75A] text-white rounded font-bold text-[10px] md:text-[11px] flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">N</div>
-            <span class="text-[9px] md:text-[10px] text-gray-600 font-medium">블로그</span>
+        <a href="column.html" class="w-12 h-12 md:w-14 md:h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
+            <div class="w-5 h-5 md:w-6 md:h-6 bg-brand-dark text-white rounded-full font-bold text-[10px] md:text-[11px] flex items-center justify-center mb-1 group-hover:scale-110 transition-transform"><i class="fa-solid fa-pen-nib"></i></div>
+            <span class="text-[9px] md:text-[10px] text-gray-600 font-medium">칼럼</span>
         </a>
     </div>
 
@@ -150,61 +237,85 @@
     <main class="pt-24">
         <!-- 메인 배너 (교통사고후유증용) -->
         <section class="relative h-[400px] w-full flex items-center justify-center bg-brand-ivory overflow-hidden">
-            <div class="absolute inset-0 bg-[url('https://placehold.co/1920x600/EFEFEF/999999?text=Traffic+Accident+Clinic')] bg-cover bg-center opacity-50 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-[url('https://placehold.co/1920x600/EFEFEF/999999?text=Traffic+Accident+Care')] bg-cover bg-center opacity-50 mix-blend-multiply"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent"></div>
             <div class="relative z-10 text-center text-white px-6">
                 <span class="text-brand-gold font-bold tracking-widest text-sm mb-4 block uppercase drop-shadow-md">Traffic Accident Clinic</span>
-                <h1 class="text-4xl md:text-5xl font-serif font-bold mb-4 drop-shadow-lg">교통사고 후유증</h1>
-                <p class="text-gray-200 font-light text-lg tracking-wide">눈에 보이지 않는 통증의 원인인 어혈을 다스려 후유증을 예방합니다</p>
+                <h1 class="text-4xl md:text-5xl font-serif font-bold mb-4 drop-shadow-lg">교통사고 후유증 클리닉</h1>
+                <p class="text-gray-200 font-light text-lg tracking-wide">사고 직후의 미세한 충격과 어혈을 다스려 자동차보험으로 편안하게 회복하세요</p>
             </div>
         </section>
 
         <!-- 서브페이지 내부 목차 (교통사고후유증용) -->
         <div class="sticky-subnav shadow-sm w-full">
             <div class="max-w-4xl mx-auto px-4 flex justify-between md:justify-center md:space-x-16 overflow-x-auto whitespace-nowrap scrollbar-hide">
-                <a href="#section-symptoms" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">교통사고증상</a>
-                <a href="#section-insurance" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">자동차보험</a>
+                <a href="#section-accident" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">후유증 치료 안내</a>
+                <a href="#section-blood" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">어혈 제거 및 한방치료</a>
+                <a href="#section-insurance" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">자동차보험 안내</a>
             </div>
         </div>
 
-        <!-- 섹션 1: 교통사고증상 -->
-        <section id="section-symptoms" class="py-24 bg-white relative">
+        <!-- 섹션 1: 후유증 치료 안내 -->
+        <section id="section-accident" class="py-24 bg-white relative">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row gap-12 items-center">
                     <div class="md:w-1/2 reveal">
-                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Symptoms & Causes</span>
-                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">교통사고 증상과 어혈</h2>
+                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Accident Aftermath</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">교통사고 후유증 치료</h2>
                         <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">
-                            <span class="text-brand-gold">X-ray 검사에는 나타나지 않는 통증,</span><br>원인은 '어혈(瘀血)'입니다.
+                            <span class="text-brand-gold">눈에 보이지 않는 통증까지</span><br>근본적으로 케어합니다.
                         </h3>
                         <p class="text-brand-graytext leading-relaxed mb-6 word-keep font-light">
-                            사고 당시의 물리적 충격으로 인해 미세한 혈관이 파열되어 발생한 어혈은 기혈 순환을 막고 지속적인 통증과 뻐근함을 유발합니다. 맞춤 한약, 약침, 추나요법을 통해 어혈을 배출하고 틀어진 체형을 교정하여 만성 후유증으로 발전하는 것을 예방합니다.
+                            교통사고는 당장의 큰 부상보다 시간이 지난 뒤 찾아오는 목·허리 통증, 두통, 저림, 관절 뻐근함 등의 후유증이 더 위험합니다. 미세한 충격으로 손상된 근육과 인대를 세심하게 살펴 만성 통증으로 이어지지 않도록 집중 치료합니다.
                         </p>
                     </div>
                     <div class="md:w-1/2 reveal delay-200">
                         <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
-                            <img src="https://placehold.co/800x600/F9F7F3/B69A7B?text=Accident+Symptoms" alt="교통사고증상" class="w-full h-full object-cover">
+                            <img src="https://placehold.co/800x600/F9F7F3/B69A7B?text=Accident+Care" alt="교통사고 후유증 치료" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 섹션 2: 자동차보험 -->
-        <section id="section-insurance" class="py-24 bg-brand-ivory relative">
+        <!-- 섹션 2: 어혈 제거 및 한방치료 -->
+        <section id="section-blood" class="py-24 bg-brand-ivory relative">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row-reverse gap-12 items-center">
                     <div class="md:w-1/2 reveal">
-                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Auto Insurance</span>
-                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">자동차보험 적용 안내</h2>
-                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">복잡한 절차 없이,<br>본인 부담금 0원으로 치료에만 전념하세요.</h3>
+                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Blood Stasis & Treatment</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">체내 어혈 제거 및 복합 치료</h2>
+                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">통증의 주원인인 '어혈'을 배출하고<br>신체 정렬을 바로잡습니다.</h3>
                         <p class="text-brand-graytext leading-relaxed mb-6 word-keep font-light">
-                            내원 시 '대인사고 접수번호'와 '상대방 보험사 담당자 연락처'만 알려주시면, 지불보증서 발급부터 치료비 청구까지 한의원에서 모두 알아서 처리해 드립니다. 침, 뜸, 부항, 약침, 추나요법, 한약 등 다양한 한방 복합 치료를 비용 부담 없이 편안하게 받아보세요.
+                            사고 당시 충격으로 미세혈관에 정체된 '어혈'은 통증과 저림을 유발하는 주원인입니다. 맞춤 한약으로 어혈을 체외로 배출하고, 침, 약침, 추나 요법을 병행하여 틀어진 척추와 관절을 부드럽게 교정합니다.
                         </p>
                     </div>
                     <div class="md:w-1/2 reveal delay-200">
                         <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
-                            <img src="https://placehold.co/800x600/FFFFFF/B69A7B?text=Auto+Insurance" alt="자동차보험" class="w-full h-full object-cover">
+                            <img src="https://placehold.co/800x600/FFFFFF/B69A7B?text=Blood+Stasis+Removal" alt="어혈 제거 및 한방치료" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 3: 자동차보험 안내 -->
+        <section id="section-insurance" class="py-24 bg-white relative">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="md:w-1/2 reveal">
+                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Auto Insurance</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">자동차보험 적용 안내</h2>
+                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">
+                            <span class="text-brand-gold">비용 부담 없이 편안하게,</span><br>사건접수번호만 알려주세요.
+                        </h3>
+                        <p class="text-brand-graytext leading-relaxed mb-6 word-keep font-light">
+                            안준석한의원에서는 교통사고 후유증 치료에 대해 자동차보험 적용이 가능합니다. 복잡한 절차 없이 보험사 연락처와 사건 접수번호만 말씀해 주시면, 접수부터 진료비 청구까지의 절차를 편안하게 도와드립니다.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2 reveal delay-200">
+                        <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
+                            <img src="https://placehold.co/800x600/F9F7F3/B69A7B?text=Auto+Insurance" alt="자동차보험 적용" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
