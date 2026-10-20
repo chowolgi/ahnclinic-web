@@ -293,87 +293,11 @@
         .panel-img { width: 100%; height: 350px; background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 
         /* ----------------------------------
-           [따뜻한 아이보리 카드 스타일] 원장님 편지 섹션
+           Health Column Section (진료안내 바로 아래 연결)
         ----------------------------------- */
-        .doctor-letter-section {
-            background-color: #FDFCF0; /* 전체 페이지와 자연스럽게 이어지는 아이보리 톤 */
-            padding: 120px 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .doctor-card {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #ffffff;
-            border: 1px solid #EBE7D9;
-            border-radius: 20px;
-            padding: 80px 60px;
-            box-shadow: 0 15px 40px rgba(182, 154, 123, 0.08); /* 은은한 골드빛 그림자 */
-            position: relative;
-            text-align: center;
-        }
-
-        /* 상단 골드 따옴표 장식 */
-        .doctor-card::before {
-            content: '\f10d'; /* FontAwesome Quote Left */
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 36px;
-            color: #B69A7B;
-            opacity: 0.3;
-        }
-
-        .doctor-card-subtitle {
-            font-size: 13px;
-            letter-spacing: 3px;
-            color: #B69A7B;
-            text-transform: uppercase;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 15px;
-            margin-top: 20px;
-        }
-
-        .doctor-card-title {
-            font-size: 36px;
-            font-family: 'Nanum Myeongjo', serif;
-            font-weight: 700;
-            color: #2c2c2c;
-            margin-bottom: 35px;
-            letter-spacing: -1px;
-        }
-
-        .doctor-card-quote {
-            font-size: 18px;
-            font-weight: 300;
-            line-height: 1.9;
-            color: #555;
-            margin-bottom: 40px;
-            font-family: 'Nanum Myeongjo', serif;
-        }
-
-        .doctor-card-sign {
-            font-size: 17px;
-            font-weight: 600;
-            color: #2c2c2c;
-            letter-spacing: 1px;
-            border-top: 1px solid #EBE7D9;
-            display: inline-block;
-            padding-top: 20px;
-            min-width: 200px;
-        }
-
-        /* ----------------------------------
-           Health Column Section
-        ----------------------------------- */
-        .column-section { background-color: #fff; position: relative; z-index: 10; }
+        .column-section { background-color: #FDFCF0; position: relative; z-index: 10; border-top: 1px solid #EBE7D9; }
         .column-grid { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .column-card { background: #FDFCF0; border-radius: 12px; overflow: hidden; border: 1px solid #EBE7D9; transition: all 0.3s; }
+        .column-card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #EBE7D9; transition: all 0.3s; }
         .column-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); border-color: #B59A58; }
         .column-img { height: 200px; background-size: cover; background-position: center; }
         .column-info { padding: 30px; }
@@ -392,7 +316,6 @@
             .column-grid { grid-template-columns: 1fr; }
             header { padding: 0 20px; }
             .nav-menu { display: none; }
-            .doctor-card { padding: 50px 25px; }
         }
     </style>
 </head>
@@ -560,22 +483,7 @@
         </div>
     </section>
 
-    <!-- [따뜻한 아이보리 카드 스타일] 원장님 편지 섹션 -->
-    <section class="doctor-letter-section">
-        <div class="doctor-card">
-            <span class="doctor-card-subtitle">Director's Philosophy</span>
-            <h2 class="doctor-card-title">안준석 원장이 여러분께 보내는 편지</h2>
-            <p class="doctor-card-quote">
-                "안녕하세요. 안준석한의원 대표원장 안준석입니다.<br>
-                지난 20년간 환자분들의 아픔을 가까이서 마주하며 깨달은 것은,<br>
-                모든 치료의 시작은 '귀를 기울이는 것'에서부터 온다는 점입니다.<br>
-                보이지 않는 원인까지 세심하게 살펴 정직한 진료를 펼치겠습니다."
-            </p>
-            <div class="doctor-card-sign">안준석한의원 대표원장 안 준 석</div>
-        </div>
-    </section>
-
-    <!-- Health Column Section -->
+    <!-- Health Column Section (진료안내 바로 아래에 연결) -->
     <section class="column-section">
         <div class="section-header">
             <h2>안준석 원장의 건강 칼럼</h2>
