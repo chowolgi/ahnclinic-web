@@ -44,17 +44,178 @@
         .font-serif { font-family: 'Nanum Myeongjo', serif; }
         .word-keep { word-break: keep-all; }
         
-        .gnb-link { position: relative; padding-bottom: 5px; }
-        .gnb-link::after {
-            content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px;
-            background-color: transparent; transition: background-color 0.3s;
+        /* GNB 헤더 및 완벽하게 고쳐진 드롭다운 메뉴 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            height: 96px; 
+            background-color: rgba(253, 252, 240, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #EBE7D9;
         }
-        .gnb-link:hover::after, .gnb-link.active::after { background-color: #B69A7B; }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .logo-box {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #B69A7B;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            color: #B69A7B;
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 10px;
+            line-height: 1;
+            text-align: center;
+        }
+
+        .logo-box div { width: 50%; }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo-title {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            letter-spacing: 2px;
+        }
+
+        .logo-subtitle {
+            font-size: 10px;
+            color: #B69A7B;
+            letter-spacing: 1px;
+            margin-top: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 50px; 
+            height: 100%;
+        }
+
+        .nav-item {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item > a {
+            font-size: 16px;
+            font-weight: 500;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s;
+            cursor: pointer;
+            height: 100%;
+            padding: 0 10px;
+        }
+
+        .nav-item > a:hover {
+            color: #B69A7B;
+        }
+
+        .nav-item > a i {
+            font-size: 11px;
+            color: #888;
+            transition: transform 0.3s;
+        }
+
+        .nav-item:hover > a i {
+            transform: rotate(180deg);
+            color: #B69A7B;
+        }
+
+        /* 드롭다운 빈틈없이 안정적으로 연결 */
+        .dropdown {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid #EBE7D9;
+            border-radius: 8px;
+            width: max-content;
+            min-width: 160px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 15px 0;
+            z-index: 1000;
+        }
+
+        .nav-item:hover .dropdown,
+        .dropdown:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown a {
+            padding: 12px 24px;
+            font-size: 14px;
+            color: #666;
+            font-weight: 400;
+            transition: all 0.2s;
+            display: block;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .dropdown a:hover {
+            background-color: #FDFCF0;
+            color: #B69A7B;
+            font-weight: 500;
+        }
+
+        .nav-reserve-btn {
+            background-color: #2c2c2c;
+            color: #fff !important;
+            padding: 12px 28px !important;
+            border-radius: 30px;
+            font-size: 15px !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            height: auto !important;
+        }
+
+        .nav-reserve-btn:hover {
+            background-color: #B69A7B;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(182, 154, 123, 0.3);
+        }
 
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
-        /* 칼럼 카드 호버 효과 */
         .column-card { transition: all 0.3s ease; }
         .column-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); border-color: #B69A7B; }
         .column-card img { transition: transform 0.5s ease; }
@@ -64,36 +225,52 @@
 <body class="antialiased selection:bg-brand-gold selection:text-white">
 
     <!-- HEADER -->
-    <div class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-brand-lightBorder shadow-sm transition-all duration-300">
-        <header class="relative z-20 h-24 flex items-center justify-between px-4 xl:px-12 max-w-screen-2xl mx-auto">
-            <a href="index.html" class="flex items-center gap-3 shrink-0 cursor-pointer">
-                <div class="w-10 h-10 border border-brand-gold flex flex-col items-center justify-center p-1 text-brand-gold font-serif leading-none text-[10px] text-center shrink-0">
-                    <div>安漢</div><div>浚醫</div><div>哲院</div>
-                </div>
-                <div class="flex flex-col justify-center">
-                    <span class="text-brand-dark text-xl xl:text-2xl font-serif font-bold tracking-widest">안준석 한의원</span>
-                    <span class="text-[9px] xl:text-[10px] text-brand-gold tracking-wide mt-0.5 uppercase">Ahn Junseok Oriental Clinic</span>
-                </div>
-            </a>
-            
-            <nav class="hidden lg:flex flex-1 justify-center h-full">
-                <ul class="flex items-center gap-12 h-full text-[15px] font-medium text-brand-dark">
-                    <li class="h-full flex items-center"><a href="3.html" class="gnb-link hover:text-brand-gold transition-colors">목·허리 디스크</a></li>
-                    <li class="h-full flex items-center"><a href="4.html" class="gnb-link hover:text-brand-gold transition-colors">이명/난청</a></li>
-                    <li class="h-full flex items-center"><a href="5.html" class="gnb-link hover:text-brand-gold transition-colors">여성/다이어트</a></li>
-                    <li class="h-full flex items-center"><a href="6.html" class="gnb-link hover:text-brand-gold transition-colors">교통사고후유증</a></li>
-                    <li class="h-full flex items-center"><a href="7.html" class="gnb-link hover:text-brand-gold transition-colors">맞춤한약</a></li>
-                </ul>
-            </nav>
-
-            <div class="flex items-center shrink-0 lg:hidden">
-                <button class="w-10 h-10 rounded-full bg-brand-ivory text-brand-dark hover:bg-brand-gold hover:text-white flex items-center justify-center transition-colors shadow-sm">
-                    <i class="fas fa-bars text-lg"></i>
-                </button>
+    <header>
+        <a href="index.html" class="logo-container">
+            <div class="logo-box">
+                <div>安漢</div><div>浚醫</div><div>哲院</div>
             </div>
-            <div class="hidden lg:block w-[180px] shrink-0"></div>
-        </header>
-    </div>
+            <div class="logo-text">
+                <span class="logo-title">안준석 한의원</span>
+                <span class="logo-subtitle">Ahn Junseok Oriental Clinic</span>
+            </div>
+        </a>
+
+        <ul class="nav-menu">
+            <!-- 1. 한의원 소개 -->
+            <li class="nav-item">
+                <a href="javascript:void(0);">한의원 소개 <i class="fa-solid fa-chevron-down"></i></a>
+                <div class="dropdown">
+                    <a href="2.html#section-greeting">인사말</a>
+                    <a href="2.html#section-doctor">의료진 소개</a>
+                    <a href="2.html#section-price">치료 금액</a>
+                    <a href="2.html#section-location">오시는 길</a>
+                </div>
+            </li>
+            
+            <!-- 2. 진료안내 -->
+            <li class="nav-item">
+                <a href="javascript:void(0);">진료안내 <i class="fa-solid fa-chevron-down"></i></a>
+                <div class="dropdown">
+                    <a href="3.html">목·허리 디스크</a>
+                    <a href="4.html">이명/난청</a>
+                    <a href="5.html">여성/다이어트</a>
+                    <a href="6.html">교통사고후유증</a>
+                    <a href="7.html">맞춤한약</a>
+                </div>
+            </li>
+            
+            <!-- 3. 건강칼럼 -->
+            <li class="nav-item">
+                <a href="column.html" class="gnb-link" style="color: #B69A7B; font-weight: 700;">건강칼럼</a>
+            </li>
+            
+            <!-- 4. 예약하기 버튼 -->
+            <li class="nav-item" style="height: auto;">
+                <a href="https://booking.naver.com/" target="_blank" class="nav-reserve-btn">예약하기</a>
+            </li>
+        </ul>
+    </header>
 
     <!-- FLOATING RIGHT MENU -->
     <div class="fixed right-4 md:right-6 top-1/2 -translate-y-1/2 z-40 bg-white/90 backdrop-blur-md rounded-full shadow-lg border border-gray-100 p-2 flex flex-col gap-2">
@@ -124,7 +301,7 @@
         <!-- 칼럼 리스트 영역 -->
         <section class="py-20 flex-grow">
             <div class="max-w-7xl mx-auto px-6">
-                <!-- 카테고리 필터 (기존 디자인 유지) -->
+                <!-- 카테고리 필터 -->
                 <div class="flex flex-wrap justify-center gap-4 mb-16 reveal">
                     <button class="px-6 py-2 rounded-full border border-brand-gold bg-brand-gold text-white text-sm font-medium transition">전체보기</button>
                     <button class="px-6 py-2 rounded-full border border-brand-lightBorder bg-white text-brand-graytext hover:border-brand-gold hover:text-brand-gold text-sm font-medium transition">통증/척추</button>
@@ -132,15 +309,16 @@
                     <button class="px-6 py-2 rounded-full border border-brand-lightBorder bg-white text-brand-graytext hover:border-brand-gold hover:text-brand-gold text-sm font-medium transition">보약/다이어트</button>
                 </div>
 
-                <!-- 💥 API 데이터를 불러와서 채워넣을 빈 그리드 리스트 💥 -->
+                <!-- API 연동 그리드 -->
                 <div id="column-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- 자바스크립트가 여기에 칼럼을 자동으로 그려줍니다 -->
+                    <!-- 자바스크립트가 칼럼을 불러와 여기에 채워넣습니다 -->
                 </div>
 
                 <!-- 페이지네이션 -->
                 <div class="flex justify-center items-center gap-2 mt-16 reveal">
                     <button class="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-gray-400 hover:border-brand-gold hover:text-brand-gold transition"><i class="fa-solid fa-angle-left"></i></button>
                     <button class="w-10 h-10 rounded-full flex items-center justify-center bg-brand-dark text-white font-medium">1</button>
+                    <button class="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-brand-graytext hover:border-brand-gold hover:text-brand-gold transition font-medium">2</button>
                     <button class="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-gray-400 hover:border-brand-gold hover:text-brand-gold transition"><i class="fa-solid fa-angle-right"></i></button>
                 </div>
             </div>
@@ -154,40 +332,33 @@
         </div>
     </footer>
 
-    <!-- 💥 API 연동 자바스크립트 💥 -->
+    <!-- API 연동 및 애니메이션 스크립트 -->
     <script>
-        // 1. 관리자 페이지에서 쓴 글 목록을 불러옵니다
         async function loadColumns() {
             try {
-                const response = await fetch('/api/posts'); // Cloudflare DB 호출
+                const response = await fetch('/api/posts');
                 if (!response.ok) throw new Error('게시글을 불러오는데 실패했습니다.');
                 
                 const posts = await response.json();
                 const grid = document.getElementById('column-grid');
-                grid.innerHTML = ''; // 화면 초기화
+                grid.innerHTML = '';
 
-                // 2. 불러온 글이 없으면 안내 문구 표시
                 if (!posts || posts.length === 0) {
                     grid.innerHTML = '<p class="col-span-full text-center text-gray-400 py-10">등록된 칼럼이 없습니다.</p>';
                     return;
                 }
 
-                // 3. 불러온 글을 새 디자인 카드 모양으로 렌더링
                 posts.forEach((post, index) => {
-                    const delay = (index % 3) * 100; // 카드 등장 애니메이션 효과
-                    
-                    // 제목, 날짜, 내용 등 데이터 매핑
+                    const delay = (index % 3) * 100;
                     const postDate = post.created_at ? new Date(post.created_at).toLocaleDateString('ko-KR') : '최신 글';
                     const postCategory = post.category || '건강칼럼';
                     const postTitle = post.title || '제목 없음';
                     
-                    // 내용에서 HTML 태그를 제거하고 순수 텍스트만 요약해서 보여줌
                     const tempDiv = document.createElement('div');
                     tempDiv.innerHTML = post.content || '';
                     const plainText = tempDiv.textContent || tempDiv.innerText || '';
                     const postExcerpt = plainText.substring(0, 80) + '...';
 
-                    // 이미지가 없으면 기본 한의원 이미지 사용
                     const postImage = post.image_url || 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80';
                     const postLink = `column-view.html?id=${post.id}`;
 
@@ -220,9 +391,8 @@
             }
         }
 
-        // 스크롤 시 나타나는 애니메이션 설정 및 데이터 로드 실행
         document.addEventListener("DOMContentLoaded", function() {
-            loadColumns(); // 화면이 열리면 위에서 만든 함수 실행!
+            loadColumns();
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
