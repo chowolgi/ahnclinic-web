@@ -22,15 +22,14 @@
                     },
                     colors: {
                         brand: {
-                            bg: '#FAF9F7',       /* 따뜻한 아이보리 배경 */
-                            accent: '#A3845E',   /* 브론즈 골드 포인트 */
-                            accentHover: '#8A6D4B', /* 브론즈 골드 호버 (조금 더 어두운 톤) */
-                            text: '#2A2A2A',     /* 다크 차콜 텍스트 */
-                            light: '#E6E2D8',    /* 부드러운 경계선 베이지 */
+                            bg: '#FCFBF9',       /* 웜 아이보리 */
+                            oatmeal: '#F2EFE9',  /* 차분한 오트밀 베이지 */
+                            gold: '#B89B72',     /* 고급스러운 브론즈 골드 */
+                            goldHover: '#9A7F5A',/* 브론즈 골드 호버 */
+                            text: '#2C2A28',     /* 다크 차콜 (검정 대체) */
+                            border: '#E8E3DB',   /* 경계선 베이지 */
                             white: '#FFFFFF'
-                        },
-                        naver: '#03C75A',
-                        kakao: '#FEE500'
+                        }
                     }
                 }
             }
@@ -38,27 +37,26 @@
     </script>
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Pretendard', sans-serif; background-color: #FAF9F7; color: #2A2A2A; }
+        body { font-family: 'Pretendard', sans-serif; background-color: #FCFBF9; color: #2C2A28; }
         
         /* 탭 버튼 스타일 */
         .tab-btn {
             transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
+            border: 1px solid #E8E3DB;
         }
         .tab-btn.active {
-            background-color: #A3845E;
+            background-color: #B89B72;
             color: #FFFFFF;
-            border-color: #A3845E;
-            box-shadow: 0 10px 15px -3px rgba(163, 132, 94, 0.3);
+            border-color: #B89B72;
+            box-shadow: 0 10px 15px -3px rgba(184, 155, 114, 0.3);
         }
         .tab-btn.inactive {
             background-color: #FFFFFF;
             color: #666;
-            border: 1px solid #E6E2D8;
         }
         .tab-btn.inactive:hover {
-            border-color: #A3845E;
-            color: #A3845E;
+            border-color: #B89B72;
+            color: #B89B72;
         }
         
         /* 페이드 애니메이션 */
@@ -70,50 +68,46 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 히어로 배경 패턴 (은은한 골드 도트) */
+        /* 히어로 배경 패턴 (은은한 오트밀 도트) */
         .hero-pattern {
-            background-image: radial-gradient(circle at 100% 100%, rgba(163, 132, 94, 0.08) 0, rgba(163, 132, 94, 0.08) 10px, transparent 10px, transparent 20px);
+            background-image: radial-gradient(circle at 100% 100%, rgba(184, 155, 114, 0.08) 0, rgba(184, 155, 114, 0.08) 10px, transparent 10px, transparent 20px);
             background-size: 20px 20px;
         }
     </style>
 </head>
-<body class="antialiased relative">
+<body class="antialiased relative selection:bg-brand-gold selection:text-white">
 
     <!-- 1. 헤더 (GNB) -->
-    <header class="sticky top-0 w-full bg-brand-bg/95 backdrop-blur-md shadow-sm z-50 border-b border-brand-light">
+    <header class="sticky top-0 w-full bg-brand-bg/95 backdrop-blur-md shadow-sm z-50 border-b border-brand-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <!-- 로고 -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
                     <div class="flex flex-col">
-                        <span class="text-[10px] md:text-xs text-brand-accent font-serif tracking-widest mb-0.5">安漢 浚醫 哲院</span>
+                        <span class="text-[10px] md:text-xs text-brand-gold font-serif tracking-widest mb-0.5">安漢 浚醫 哲院</span>
                         <span class="text-xl md:text-2xl font-bold text-brand-text tracking-tight">안준석 한의원</span>
                     </div>
                 </div>
                 
-                <!-- GNB 메뉴 (데스크탑) -->
+                <!-- GNB 메뉴 (데스크탑 - 4개로 압축) -->
                 <nav class="hidden lg:flex space-x-10">
-                    <a href="#about" class="text-brand-text hover:text-brand-accent font-medium transition-colors">한의원 소개</a>
-                    <a href="#symptoms" class="text-brand-text hover:text-brand-accent font-medium transition-colors">진료 안내</a>
-                    <a href="#guide" class="text-brand-text hover:text-brand-accent font-medium transition-colors">첫 방문 안내</a>
-                    <a href="#columns" class="text-brand-text hover:text-brand-accent font-medium transition-colors">건강 칼럼</a>
-                    <a href="#location" class="text-brand-text hover:text-brand-accent font-medium transition-colors">오시는 길</a>
+                    <a href="#about" class="text-brand-text hover:text-brand-gold font-medium transition-colors">한의원 소개</a>
+                    <a href="#symptoms" class="text-brand-text hover:text-brand-gold font-medium transition-colors">진료 안내</a>
+                    <a href="#columns" class="text-brand-text hover:text-brand-gold font-medium transition-colors">건강 칼럼</a>
+                    <a href="#location" class="text-brand-text hover:text-brand-gold font-medium transition-colors">진료시간·오시는 길</a>
                 </nav>
                 
-                <!-- 우측 버튼 -->
-                <div class="hidden md:flex items-center space-x-3">
-                    <a href="#" class="bg-kakao text-[#3A1D1D] px-4 py-2 rounded-md text-sm font-bold hover:bg-[#E5CE00] transition-colors shadow-sm flex items-center gap-1.5">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c-4.97 0-9 3.185-9 7.115 0 2.558 1.707 4.79 4.254 5.967-.184.664-.668 2.455-.717 2.65-.06.24.084.237.18.176.126-.08 2.008-1.328 2.846-1.895.776.216 1.597.332 2.437.332 4.97 0 9-3.185 9-7.115C21 7.185 16.97 4 12 4z"/></svg>
-                        카톡상담
-                    </a>
-                    <a href="#" class="bg-brand-text text-brand-bg px-5 py-2 rounded-md text-sm font-bold hover:bg-brand-accent transition-colors shadow">
-                        예약하기
+                <!-- 우측 버튼 (네이버 예약 단독) -->
+                <div class="hidden md:flex items-center">
+                    <a href="#" class="bg-brand-text text-brand-bg px-6 py-2.5 rounded-md text-sm font-bold hover:bg-brand-gold transition-colors shadow flex items-center gap-2">
+                        <span class="font-extrabold text-lg tracking-tighter">N</span>
+                        네이버 예약
                     </a>
                 </div>
 
                 <!-- 모바일 메뉴 버튼 -->
                 <div class="md:hidden flex items-center">
-                    <button class="text-brand-text hover:text-brand-accent focus:outline-none">
+                    <button class="text-brand-text hover:text-brand-gold focus:outline-none">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
                 </div>
@@ -122,26 +116,24 @@
     </header>
 
     <!-- 2. 메인 배너 (히어로 섹션) -->
-    <section class="relative pt-24 pb-24 md:pt-40 md:pb-40 bg-brand-white overflow-hidden hero-pattern border-b border-brand-light">
-        <!-- 은은한 원형 배경 장식 (아이보리 톤) -->
-        <div class="absolute -right-20 -top-20 w-96 h-96 bg-brand-bg rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -left-20 bottom-0 w-80 h-80 bg-brand-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+    <section class="relative pt-24 pb-24 md:pt-40 md:pb-40 bg-brand-white overflow-hidden hero-pattern border-b border-brand-border">
+        <!-- 배경 장식 -->
+        <div class="absolute -right-20 -top-20 w-96 h-96 bg-brand-oatmeal rounded-full blur-3xl pointer-events-none opacity-50"></div>
+        <div class="absolute -left-20 bottom-0 w-80 h-80 bg-brand-gold/5 rounded-full blur-3xl pointer-events-none"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
             <h1 class="text-4xl md:text-6xl font-serif font-bold text-brand-text leading-tight mb-8">
                 당신의 일상을 되찾는<br>
-                <span class="text-brand-accent">가장 바른 진료의 시작</span>
+                <span class="text-brand-gold">가장 바른 진료의 시작</span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-600 mb-12 leading-relaxed font-light max-w-2xl">
+            <p class="text-lg md:text-xl text-gray-500 mb-12 leading-relaxed font-light max-w-2xl">
                 눈에 보이는 증상 너머, 진짜 원인을 찾습니다.<br>
                 안준석한의원은 당신만의 속도에 맞춘 근본적인 치료를 약속합니다.
             </p>
             <div class="flex flex-col sm:flex-row gap-4">
-                <a href="#symptoms" class="inline-flex justify-center items-center bg-brand-accent text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-brand-accentHover transition-colors shadow-lg">
+                <a href="#symptoms" class="inline-flex justify-center items-center bg-brand-gold text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-brand-goldHover transition-colors shadow-lg group">
                     내 증상 찾아보기
-                </a>
-                <a href="#about" class="inline-flex justify-center items-center bg-brand-white text-brand-text border-2 border-brand-light px-8 py-4 rounded-lg font-bold text-lg hover:border-brand-accent hover:text-brand-accent transition-colors">
-                    진료 철학 보기
+                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
                 </a>
             </div>
         </div>
@@ -151,67 +143,60 @@
     <section id="about" class="py-24 bg-brand-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="text-brand-accent font-bold tracking-widest text-sm uppercase">Director's Standard</span>
+                <span class="text-brand-gold font-bold tracking-widest text-sm uppercase">Director's Standard</span>
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-text mt-3 mb-4">안준석 원장의 진료 기준</h2>
-                <div class="w-12 h-1 bg-brand-accent mx-auto mb-6"></div>
-                <p class="text-gray-600 text-lg">환자분들이 믿고 선택하실 수 있도록, 한의원의 중심 원칙을 공개합니다.</p>
+                <div class="w-12 h-1 bg-brand-gold mx-auto mb-6"></div>
+                <p class="text-gray-500 text-lg">환자분들이 믿고 선택하실 수 있도록, 한의원의 중심 원칙을 공개합니다.</p>
             </div>
 
-            <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center lg:items-stretch">
-                <!-- 좌측: 사진/영상 영역 -->
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+                <!-- 좌측: 사진 영역 -->
                 <div class="w-full lg:w-5/12 relative">
-                    <div class="bg-brand-white rounded-2xl aspect-[3/4] flex items-center justify-center relative overflow-hidden shadow-xl border border-brand-light">
-                        <img src="https://placehold.co/600x800/EAE6DF/A3845E?text=Director+Portrait" alt="안준석 원장" class="w-full h-full object-cover opacity-90">
-                        <!-- 영상 플레이 버튼 장식 -->
-                        <div class="absolute bottom-8 right-8 bg-brand-white/95 backdrop-blur p-4 rounded-xl shadow-lg border border-brand-light flex items-center gap-4">
-                            <div class="w-12 h-12 bg-brand-bg rounded-full flex items-center justify-center text-brand-accent border border-brand-light">
-                                <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </div>
-                            <div class="text-sm font-bold text-brand-text">환자의 이야기에<br>답이 있습니다</div>
-                        </div>
+                    <div class="bg-brand-white rounded-2xl aspect-[3/4] flex items-center justify-center relative overflow-hidden shadow-xl border border-brand-border">
+                        <img src="https://placehold.co/600x800/F2EFE9/B89B72?text=Director+Portrait" alt="안준석 원장" class="w-full h-full object-cover opacity-90">
                     </div>
                 </div>
 
                 <!-- 우측: 3가지 진료 원칙 -->
                 <div class="w-full lg:w-7/12 space-y-6 flex flex-col justify-center">
                     <!-- 원칙 1 -->
-                    <div class="bg-brand-white border border-brand-light rounded-2xl p-6 md:p-8 flex gap-5 shadow-sm hover:shadow-md hover:border-brand-accent/50 transition-all duration-300 relative overflow-hidden group">
-                        <div class="absolute left-0 top-0 h-full w-1 bg-brand-accent transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
+                    <div class="bg-brand-white border border-brand-border rounded-2xl p-6 md:p-8 flex gap-5 shadow-sm hover:shadow-md hover:border-brand-gold/50 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute left-0 top-0 h-full w-1 bg-brand-gold transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
                         <div class="flex-shrink-0 z-10">
-                            <div class="w-12 h-12 rounded-full bg-brand-bg text-brand-accent border border-brand-light flex items-center justify-center font-bold text-xl">1</div>
+                            <div class="w-12 h-12 rounded-full bg-brand-oatmeal text-brand-gold border border-brand-border flex items-center justify-center font-bold text-xl">1</div>
                         </div>
                         <div class="z-10">
-                            <h3 class="text-xl font-bold text-brand-text mb-3 group-hover:text-brand-accent transition-colors">환자가 처음 오면 무엇부터 확인하는가</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                단순히 아픈 부위만 보지 않습니다. 언제부터 아팠는지, 어떤 자세에서 불편한지, 평소 수면이나 소화 상태는 어떤지 <strong class="text-brand-text bg-brand-accent/10 px-1 font-semibold">전반적인 일상의 밸런스를 가장 먼저 체크</strong>합니다.
+                            <h3 class="text-xl font-bold text-brand-text mb-3 group-hover:text-brand-gold transition-colors">환자가 처음 오면 무엇부터 확인하는가</h3>
+                            <p class="text-gray-500 leading-relaxed">
+                                단순히 아픈 부위만 보지 않습니다. 언제부터 아팠는지, 어떤 자세에서 불편한지, 평소 수면이나 소화 상태는 어떤지 <strong class="text-brand-text font-semibold">전반적인 일상의 밸런스를 가장 먼저 체크</strong>합니다.
                             </p>
                         </div>
                     </div>
                     
                     <!-- 원칙 2 -->
-                    <div class="bg-brand-white border border-brand-light rounded-2xl p-6 md:p-8 flex gap-5 shadow-sm hover:shadow-md hover:border-brand-accent/50 transition-all duration-300 relative overflow-hidden group">
-                        <div class="absolute left-0 top-0 h-full w-1 bg-brand-accent transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
+                    <div class="bg-brand-white border border-brand-border rounded-2xl p-6 md:p-8 flex gap-5 shadow-sm hover:shadow-md hover:border-brand-gold/50 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute left-0 top-0 h-full w-1 bg-brand-gold transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
                         <div class="flex-shrink-0 z-10">
-                            <div class="w-12 h-12 rounded-full bg-brand-bg text-brand-accent border border-brand-light flex items-center justify-center font-bold text-xl">2</div>
+                            <div class="w-12 h-12 rounded-full bg-brand-oatmeal text-brand-gold border border-brand-border flex items-center justify-center font-bold text-xl">2</div>
                         </div>
                         <div class="z-10">
-                            <h3 class="text-xl font-bold text-brand-text mb-3 group-hover:text-brand-accent transition-colors">치료 방법을 결정할 때 고려하는 것</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                환자분의 직업적 특성과 회복에 투자할 수 있는 시간을 고려합니다. 매일 내원이 어려우신 분께는 맞춤형 한약과 자가 관리법을, 빠른 통증 제어가 필요한 분께는 집중 추나·약침 치료를 설계합니다.
+                            <h3 class="text-xl font-bold text-brand-text mb-3 group-hover:text-brand-gold transition-colors">치료 방법을 결정할 때 고려하는 것</h3>
+                            <p class="text-gray-500 leading-relaxed">
+                                환자분의 <strong class="text-brand-text font-semibold">직업적 특성과 회복에 투자할 수 있는 시간</strong>을 고려합니다. 무리한 일정을 강요하지 않고, 환자 개인의 상황에 맞춘 최적의 치료 방향을 설계합니다.
                             </p>
                         </div>
                     </div>
 
                     <!-- 원칙 3 -->
-                    <div class="bg-brand-white border border-brand-light rounded-2xl p-6 md:p-8 flex gap-5 shadow-sm hover:shadow-md hover:border-brand-accent/50 transition-all duration-300 relative overflow-hidden group">
-                        <div class="absolute left-0 top-0 h-full w-1 bg-brand-accent transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
+                    <div class="bg-brand-white border border-brand-border rounded-2xl p-6 md:p-8 flex gap-5 shadow-sm hover:shadow-md hover:border-brand-gold/50 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute left-0 top-0 h-full w-1 bg-brand-gold transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
                         <div class="flex-shrink-0 z-10">
-                            <div class="w-12 h-12 rounded-full bg-brand-bg text-brand-accent border border-brand-light flex items-center justify-center font-bold text-xl">3</div>
+                            <div class="w-12 h-12 rounded-full bg-brand-oatmeal text-brand-gold border border-brand-border flex items-center justify-center font-bold text-xl">3</div>
                         </div>
                         <div class="z-10">
-                            <h3 class="text-xl font-bold text-brand-text mb-3 group-hover:text-brand-accent transition-colors">환자에게 꼭 설명하는 핵심 내용</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                "왜 아픈가" 그리고 "앞으로 어떻게 변할 것인가"를 투명하게 공유합니다. <strong class="text-brand-text bg-brand-accent/10 px-1 font-semibold">치료의 예상 기간과 호전되는 과정에서의 신체 변화</strong>를 미리 알려드려 불안감을 덜어드립니다.
+                            <h3 class="text-xl font-bold text-brand-text mb-3 group-hover:text-brand-gold transition-colors">환자에게 꼭 설명하는 핵심 내용</h3>
+                            <p class="text-gray-500 leading-relaxed">
+                                "왜 아픈가" 그리고 "앞으로 어떻게 변할 것인가"를 투명하게 공유합니다. <strong class="text-brand-text font-semibold">치료의 예상 기간과 호전되는 과정에서의 신체 변화</strong>를 미리 알려드려 불안감을 덜어드립니다.
                             </p>
                         </div>
                     </div>
@@ -221,7 +206,7 @@
     </section>
 
     <!-- 4. 증상 선택 섹션 -->
-    <section id="symptoms" class="py-24 bg-brand-white border-y border-brand-light">
+    <section id="symptoms" class="py-24 bg-brand-white border-y border-brand-border">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-text mb-4">어디가 불편해서 오셨나요?</h2>
@@ -229,28 +214,28 @@
             </div>
 
             <!-- 자바스크립트로 동작하는 4개의 탭 -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-10">
-                <button onclick="changeSymptom('back')" id="tab-back" class="tab-btn active w-full rounded-xl py-5 px-3 text-center flex flex-col items-center justify-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-10">
+                <button onclick="changeSymptom('back')" id="tab-back" class="tab-btn active w-full rounded-xl py-5 px-4 text-center flex flex-col items-center justify-center h-full">
                     <span class="block text-sm md:text-base mb-1 opacity-80">오래 앉아있으면</span>
                     <span class="block text-base md:text-lg font-bold">허리가 불편해요</span>
                 </button>
-                <button onclick="changeSymptom('neck')" id="tab-neck" class="tab-btn inactive w-full rounded-xl py-5 px-3 text-center flex flex-col items-center justify-center">
+                <button onclick="changeSymptom('neck')" id="tab-neck" class="tab-btn inactive w-full rounded-xl py-5 px-4 text-center flex flex-col items-center justify-center h-full">
                     <span class="block text-sm md:text-base mb-1 opacity-80">목과 어깨가</span>
                     <span class="block text-base md:text-lg font-bold">자주 뻐근해요</span>
                 </button>
-                <button onclick="changeSymptom('ear')" id="tab-ear" class="tab-btn inactive w-full rounded-xl py-5 px-3 text-center flex flex-col items-center justify-center">
+                <button onclick="changeSymptom('ear')" id="tab-ear" class="tab-btn inactive w-full rounded-xl py-5 px-4 text-center flex flex-col items-center justify-center h-full">
                     <span class="block text-sm md:text-base mb-1 opacity-80">귀에서 소리가 나서</span>
                     <span class="block text-base md:text-lg font-bold">궁금해요</span>
                 </button>
-                <button onclick="changeSymptom('accident')" id="tab-accident" class="tab-btn inactive w-full rounded-xl py-5 px-3 text-center flex flex-col items-center justify-center">
+                <button onclick="changeSymptom('accident')" id="tab-accident" class="tab-btn inactive w-full rounded-xl py-5 px-4 text-center flex flex-col items-center justify-center h-full">
                     <span class="block text-sm md:text-base mb-1 opacity-80">교통사고 후 진료를</span>
                     <span class="block text-base md:text-lg font-bold">알아보고 있어요</span>
                 </button>
             </div>
 
             <!-- 하단 진료 안내 내용 (동적 변경 영역) -->
-            <div class="bg-brand-bg rounded-3xl p-8 md:p-12 shadow-md border border-brand-light min-h-[450px]">
-                <div id="symptom-content" class="fade-in grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div class="bg-brand-oatmeal/50 rounded-3xl p-8 md:p-12 shadow-sm border border-brand-border min-h-[450px]">
+                <div id="symptom-content" class="fade-in grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
                     <!-- JS를 통해 콘텐츠가 주입됩니다 -->
                 </div>
             </div>
@@ -260,109 +245,94 @@
     <!-- 5. 건강 칼럼 섹션 -->
     <section id="columns" class="py-24 bg-brand-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-end mb-12 border-b border-brand-light pb-6">
+            <div class="flex justify-between items-end mb-12 border-b border-brand-border pb-6">
                 <div>
-                    <span class="text-brand-accent font-bold tracking-widest text-sm uppercase">Health Column</span>
+                    <span class="text-brand-gold font-bold tracking-widest text-sm uppercase">Health Column</span>
                     <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-text mt-2">안준석 원장의 건강 칼럼</h2>
                 </div>
-                <a href="#" class="hidden md:flex text-brand-text font-medium hover:text-brand-accent items-center transition-colors">
-                    전체보기 
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </a>
             </div>
 
             <!-- 3열 그리드 카드 -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- 칼럼 1 -->
-                <a href="#" class="group block bg-brand-white rounded-2xl overflow-hidden border border-brand-light hover:shadow-xl hover:border-brand-accent/50 transition-all duration-300">
-                    <div class="aspect-[4/3] overflow-hidden bg-brand-bg">
-                        <img src="https://placehold.co/600x450/EAE6DF/A3845E?text=Spine+Health" alt="칼럼 썸네일" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+                <a href="#" class="group block bg-brand-white rounded-2xl overflow-hidden border border-brand-border hover:shadow-xl hover:border-brand-gold/50 transition-all duration-300">
+                    <div class="aspect-[4/3] overflow-hidden bg-brand-oatmeal">
+                        <img src="https://placehold.co/600x450/F2EFE9/B89B72?text=Column+1" alt="칼럼 썸네일" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
                     </div>
                     <div class="p-6">
-                        <div class="text-sm text-brand-accent font-bold mb-2">통증·체형교정</div>
-                        <h3 class="text-lg font-bold text-brand-text mb-3 line-clamp-2 group-hover:text-brand-accent transition-colors">
+                        <div class="text-sm text-brand-gold font-bold mb-2">통증·체형교정</div>
+                        <h3 class="text-lg font-bold text-brand-text mb-3 line-clamp-2 group-hover:text-brand-gold transition-colors">
                             만성 허리 통증, 수술 없이 치료하는 '도침요법'의 원리
                         </h3>
                         <p class="text-gray-500 text-sm line-clamp-2 mb-4 leading-relaxed">
                             오랜 기간 지속된 허리 통증은 단순한 근육 뭉침이 아닌 조직의 유착일 가능성이 높습니다. 특수 침술인 도침을 활용하여 유착을 박리하는 과정을 알아봅니다.
                         </p>
-                        <div class="text-xs text-gray-400 font-medium">2024. 10. 15</div>
                     </div>
                 </a>
 
                 <!-- 칼럼 2 -->
-                <a href="#" class="group block bg-brand-white rounded-2xl overflow-hidden border border-brand-light hover:shadow-xl hover:border-brand-accent/50 transition-all duration-300">
-                    <div class="aspect-[4/3] overflow-hidden bg-brand-bg">
-                        <img src="https://placehold.co/600x450/EAE6DF/A3845E?text=Tinnitus+Care" alt="칼럼 썸네일" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+                <a href="#" class="group block bg-brand-white rounded-2xl overflow-hidden border border-brand-border hover:shadow-xl hover:border-brand-gold/50 transition-all duration-300">
+                    <div class="aspect-[4/3] overflow-hidden bg-brand-oatmeal">
+                        <img src="https://placehold.co/600x450/F2EFE9/B89B72?text=Column+2" alt="칼럼 썸네일" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
                     </div>
                     <div class="p-6">
-                        <div class="text-sm text-brand-accent font-bold mb-2">이명·난청</div>
-                        <h3 class="text-lg font-bold text-brand-text mb-3 line-clamp-2 group-hover:text-brand-accent transition-colors">
+                        <div class="text-sm text-brand-gold font-bold mb-2">이명·난청</div>
+                        <h3 class="text-lg font-bold text-brand-text mb-3 line-clamp-2 group-hover:text-brand-gold transition-colors">
                             귀에서 나는 '삐-' 소리, 방치하면 수면장애로 이어집니다
                         </h3>
                         <p class="text-gray-500 text-sm line-clamp-2 mb-4 leading-relaxed">
                             이명은 귀 자체의 문제를 넘어 전신의 스트레스와 피로 누적이 보내는 신호입니다. 자율신경계 회복과 체질 개선을 통한 근본 치료가 필요한 이유를 설명합니다.
                         </p>
-                        <div class="text-xs text-gray-400 font-medium">2024. 09. 28</div>
                     </div>
                 </a>
 
                 <!-- 칼럼 3 -->
-                <a href="#" class="group block bg-brand-white rounded-2xl overflow-hidden border border-brand-light hover:shadow-xl hover:border-brand-accent/50 transition-all duration-300">
-                    <div class="aspect-[4/3] overflow-hidden bg-brand-bg">
-                        <img src="https://placehold.co/600x450/EAE6DF/A3845E?text=Car+Accident" alt="칼럼 썸네일" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+                <a href="#" class="group block bg-brand-white rounded-2xl overflow-hidden border border-brand-border hover:shadow-xl hover:border-brand-gold/50 transition-all duration-300">
+                    <div class="aspect-[4/3] overflow-hidden bg-brand-oatmeal">
+                        <img src="https://placehold.co/600x450/F2EFE9/B89B72?text=Column+3" alt="칼럼 썸네일" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
                     </div>
                     <div class="p-6">
-                        <div class="text-sm text-brand-accent font-bold mb-2">교통사고 클리닉</div>
-                        <h3 class="text-lg font-bold text-brand-text mb-3 line-clamp-2 group-hover:text-brand-accent transition-colors">
+                        <div class="text-sm text-brand-gold font-bold mb-2">교통사고 클리닉</div>
+                        <h3 class="text-lg font-bold text-brand-text mb-3 line-clamp-2 group-hover:text-brand-gold transition-colors">
                             눈에 보이지 않는 교통사고 어혈, 초기 치료 골든타임
                         </h3>
                         <p class="text-gray-500 text-sm line-clamp-2 mb-4 leading-relaxed">
                             사고 직후 엑스레이상 문제가 없더라도 수일 내에 뻐근함과 두통이 시작될 수 있습니다. 후유증을 예방하는 한의학적 초기 대처법을 안내해 드립니다.
                         </p>
-                        <div class="text-xs text-gray-400 font-medium">2024. 09. 10</div>
                     </div>
                 </a>
-            </div>
-            
-            <div class="mt-10 text-center md:hidden">
-                <a href="#" class="inline-block border border-brand-light bg-brand-white text-brand-text px-8 py-3 rounded-full text-sm font-bold hover:bg-brand-text hover:text-brand-white transition-colors shadow-sm">칼럼 전체보기</a>
             </div>
         </div>
     </section>
 
     <!-- 6. Footer -->
-    <footer id="location" class="bg-brand-text text-brand-bg py-16 border-t-4 border-brand-accent">
+    <footer id="location" class="bg-brand-text text-brand-oatmeal py-16 border-t-4 border-brand-gold">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                 <!-- 병원 정보 -->
                 <div class="col-span-1 lg:col-span-2">
                     <h2 class="text-2xl font-serif font-bold text-brand-white mb-6">안준석 한의원</h2>
                     <p class="mb-2 font-light text-gray-300">서울특별시 영등포구 00로 00, 안준석빌딩 3층</p>
-                    <p class="mb-6 font-light text-sm text-gray-400">사업자등록번호: 123-45-67890 | 대표원장: 안준석</p>
+                    <p class="mb-6 font-light text-sm text-gray-400">대표원장: 안준석 | 사업자등록번호: 123-45-67890</p>
                     <div class="inline-block bg-white/5 px-5 py-3 rounded-lg border border-white/10">
-                        <span class="block text-xs text-brand-accent mb-1">예약 및 상담 문의</span>
+                        <span class="block text-xs text-brand-gold mb-1">예약 및 상담 문의</span>
                         <span class="text-brand-white font-bold text-xl tracking-wider">02-000-0000</span>
                     </div>
                 </div>
                 <!-- 진료 시간 -->
                 <div>
-                    <h3 class="text-brand-accent font-bold mb-4">진료 시간</h3>
+                    <h3 class="text-brand-gold font-bold mb-4">진료 시간</h3>
                     <ul class="space-y-3 text-sm font-light text-gray-300">
                         <li class="flex justify-between border-b border-white/10 pb-2"><span>평일</span> <span class="text-brand-white font-medium">09:30 - 19:00</span></li>
                         <li class="flex justify-between border-b border-white/10 pb-2"><span>토요일</span> <span class="text-brand-white font-medium">09:30 - 14:00</span></li>
                         <li class="flex justify-between pb-2"><span>점심시간</span> <span class="text-brand-white font-medium">13:00 - 14:00</span></li>
-                        <li class="mt-4 text-brand-accent font-bold bg-brand-accent/10 inline-block px-3 py-1 rounded">일요일·공휴일 휴진</li>
+                        <li class="mt-4 text-brand-gold font-bold bg-brand-gold/10 inline-block px-3 py-1 rounded">일요일·공휴일 휴진</li>
                     </ul>
                 </div>
                 <!-- 오시는 길 간략 -->
                 <div>
-                    <h3 class="text-brand-accent font-bold mb-4">오시는 길</h3>
+                    <h3 class="text-brand-gold font-bold mb-4">오시는 길</h3>
                     <p class="text-sm mb-6 leading-relaxed font-light text-gray-300">지하철 00역 0번 출구 도보 3분<br>건물 지하 주차장 2시간 무료 지원</p>
-                    <a href="#" class="inline-flex items-center text-sm font-medium text-brand-white hover:text-brand-accent transition-colors">
-                        네이버 지도로 보기
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
                 </div>
             </div>
             <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-light text-gray-500">
@@ -375,21 +345,12 @@
         </div>
     </footer>
 
-    <!-- 7. 플로팅 액션 버튼 (우측 하단) -->
+    <!-- 7. 플로팅 액션 버튼 (오직 네이버 예약만) -->
     <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
-        <!-- 카톡 상담 -->
-        <a href="#" class="w-14 h-14 bg-kakao rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer group relative">
-            <svg class="w-7 h-7 text-[#3A1D1D]" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 4c-4.97 0-9 3.185-9 7.115 0 2.558 1.707 4.79 4.254 5.967-.184.664-.668 2.455-.717 2.65-.06.24.084.237.18.176.126-.08 2.008-1.328 2.846-1.895.776.216 1.597.332 2.437.332 4.97 0 9-3.185 9-7.115C21 7.185 16.97 4 12 4z"/>
-            </svg>
-            <span class="absolute right-16 bg-brand-text text-brand-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-md">
-                카톡 상담
-            </span>
-        </a>
-        <!-- 네이버 예약 (이 버튼만 네이버 고유의 초록색 유지) -->
-        <a href="#" class="w-14 h-14 bg-naver rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer group relative border-2 border-white/20">
-            <span class="text-white font-extrabold text-xl font-sans tracking-tighter">N</span>
-            <span class="absolute right-16 bg-brand-text text-brand-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-md">
+        <!-- 초록색을 배제하고 브랜드 차콜/골드 톤으로 통일한 네이버 예약 버튼 -->
+        <a href="#" class="w-16 h-16 bg-brand-text rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer group relative border-2 border-brand-gold">
+            <span class="text-brand-gold font-extrabold text-2xl font-sans tracking-tighter">N</span>
+            <span class="absolute right-20 bg-brand-text text-brand-white text-sm font-bold px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-md border border-brand-gold/30">
                 네이버 예약
             </span>
         </a>
@@ -407,8 +368,7 @@
                     "침 및 부항으로 급성 통증 완화",
                     "추나요법으로 근본적 구조 개선"
                 ],
-                btnText: "허리 통증 예약하기",
-                imgText: "Back Pain"
+                imgText: "허리 통증 치료"
             },
             neck: {
                 title: "목·어깨 통증 진료 안내",
@@ -418,8 +378,7 @@
                     "특수 도침으로 굳은 근막 박리",
                     "약침을 통한 염증 및 통증 제거"
                 ],
-                btnText: "목·어깨 예약하기",
-                imgText: "Neck Pain"
+                imgText: "목·어깨 치료"
             },
             ear: {
                 title: "이명·난청 진료 안내",
@@ -429,8 +388,7 @@
                     "귀 주변 경혈 자극 침 치료",
                     "자율신경 안정을 위한 맞춤 한약"
                 ],
-                btnText: "이명·난청 예약하기",
-                imgText: "Tinnitus"
+                imgText: "이명 치료"
             },
             accident: {
                 title: "교통사고 후유증 진료 안내",
@@ -440,8 +398,7 @@
                     "어혈 제거를 위한 체질 맞춤 한약",
                     "집중 물리치료 및 추나 교정"
                 ],
-                btnText: "교통사고 예약하기",
-                imgText: "Accident Clinic"
+                imgText: "교통사고 치료"
             }
         };
 
@@ -451,8 +408,8 @@
         function renderSymptomContent(key) {
             const data = symptomData[key];
             const pointsHtml = data.points.map(point => `
-                <li class="flex items-start text-brand-text bg-brand-white p-4 rounded-xl shadow-sm border border-brand-light">
-                    <div class="mt-0.5 w-5 h-5 rounded-full bg-brand-accent/10 flex items-center justify-center mr-3 flex-shrink-0 text-brand-accent">
+                <li class="flex items-start text-brand-text bg-brand-white p-4 rounded-xl shadow-sm border border-brand-border">
+                    <div class="mt-0.5 w-5 h-5 rounded-full bg-brand-gold/10 flex items-center justify-center mr-3 flex-shrink-0 text-brand-gold">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                     </div>
                     <span class="font-medium">${point}</span>
@@ -466,24 +423,17 @@
                         ${data.desc}
                     </p>
                     
-                    <div class="mb-10">
-                        <h4 class="font-bold text-xs text-brand-accent tracking-widest mb-4 uppercase">안준석한의원의 진료 포인트</h4>
+                    <div class="mb-8">
+                        <h4 class="font-bold text-xs text-brand-gold tracking-widest mb-4 uppercase">안준석한의원의 진료 포인트</h4>
                         <ul class="space-y-3">
                             ${pointsHtml}
                         </ul>
                     </div>
-
-                    <div>
-                        <a href="#" class="inline-flex items-center justify-center bg-brand-text text-brand-bg px-8 py-4 rounded-xl font-bold hover:bg-brand-accent transition-colors w-full sm:w-auto shadow-lg text-lg group">
-                            ${data.btnText}
-                            <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
-                    </div>
                 </div>
                 
                 <div class="order-1 lg:order-2">
-                    <div class="bg-brand-white rounded-2xl aspect-square flex items-center justify-center p-2 relative overflow-hidden border border-brand-light shadow-sm">
-                        <img src="https://placehold.co/600x600/EAE6DF/A3845E?text=${encodeURIComponent(data.imgText)}" alt="${data.title}" class="rounded-xl w-full h-full object-cover opacity-90">
+                    <div class="bg-brand-white rounded-2xl aspect-[4/3] flex items-center justify-center p-2 relative overflow-hidden border border-brand-border shadow-sm">
+                        <img src="https://placehold.co/800x600/F2EFE9/B89B72?text=${encodeURIComponent(data.imgText)}" alt="${data.title}" class="rounded-xl w-full h-full object-cover opacity-90">
                     </div>
                 </div>
             `;
