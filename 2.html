@@ -44,59 +44,149 @@
         .font-serif { font-family: 'Nanum Myeongjo', serif; }
         .word-keep { word-break: keep-all; }
         
-        /* GNB 드롭다운 및 메뉴 스타일 */
-        .gnb-link {
-            position: relative;
-            padding-bottom: 5px;
-        }
-        .gnb-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
+        /* GNB 헤더 및 완벽하게 고쳐진 드롭다운 메뉴 */
+        header {
+            position: fixed;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 2px;
-            background-color: transparent;
-            transition: background-color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            height: 96px; 
+            background-color: rgba(253, 252, 240, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #EBE7D9;
         }
-        .gnb-link:hover::after, .gnb-link.active::after {
-            background-color: #B69A7B;
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
         }
-        
+
+        .logo-box {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #B69A7B;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            color: #B69A7B;
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 10px;
+            line-height: 1;
+            text-align: center;
+        }
+
+        .logo-box div { width: 50%; }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo-title {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            letter-spacing: 2px;
+        }
+
+        .logo-subtitle {
+            font-size: 10px;
+            color: #B69A7B;
+            letter-spacing: 1px;
+            margin-top: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 50px; 
+            height: 100%;
+        }
+
+        .nav-item {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item > a {
+            font-size: 16px;
+            font-weight: 500;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s;
+            cursor: pointer;
+            height: 100%;
+            padding: 0 10px;
+        }
+
+        .nav-item > a:hover {
+            color: #B69A7B;
+        }
+
+        .nav-item > a i {
+            font-size: 11px;
+            color: #888;
+            transition: transform 0.3s;
+        }
+
+        .nav-item:hover > a i {
+            transform: rotate(180deg);
+            color: #B69A7B;
+        }
+
+        /* 드롭다운 빈틈없이 안정적으로 연결 */
         .dropdown {
             position: absolute;
-            top: 85px;
+            top: 80px;
             left: 50%;
             transform: translateX(-50%) translateY(10px);
             background: #fff;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             border: 1px solid #EBE7D9;
             border-radius: 8px;
             width: max-content;
-            min-width: 140px;
+            min-width: 160px;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             display: flex;
             flex-direction: column;
-            padding: 10px 0;
-            z-index: 100;
+            padding: 15px 0;
+            z-index: 1000;
         }
 
-        .nav-item:hover .dropdown {
+        .nav-item:hover .dropdown,
+        .dropdown:hover {
             opacity: 1;
             visibility: visible;
             transform: translateX(-50%) translateY(0);
         }
 
         .dropdown a {
-            padding: 12px 20px;
+            padding: 12px 24px;
             font-size: 14px;
             color: #666;
             font-weight: 400;
             transition: all 0.2s;
             display: block;
             text-align: center;
+            white-space: nowrap;
         }
 
         .dropdown a:hover {
@@ -114,6 +204,7 @@
             font-weight: 500 !important;
             transition: all 0.3s ease;
             letter-spacing: 0.5px;
+            height: auto !important;
         }
 
         .nav-reserve-btn:hover {
@@ -153,4 +244,181 @@
         .delay-200 { transition-delay: 200ms; }
     </style>
 </head>
-<body class="antiali
+<body class="antialiased selection:bg-brand-gold selection:text-white">
+
+    <!-- HEADER -->
+    <header>
+        <a href="index.html" class="logo-container">
+            <div class="logo-box">
+                <div>安漢</div><div>浚醫</div><div>哲院</div>
+            </div>
+            <div class="logo-text">
+                <span class="logo-title">안준석 한의원</span>
+                <span class="logo-subtitle">Ahn Junseok Oriental Clinic</span>
+            </div>
+        </a>
+
+        <ul class="nav-menu">
+            <!-- 1. 한의원 소개 (클릭해도 이동 안 함) -->
+            <li class="nav-item">
+                <a href="javascript:void(0);">한의원 소개 <i class="fa-solid fa-chevron-down"></i></a>
+                <div class="dropdown">
+                    <a href="2.html#section-greeting">인사말</a>
+                    <a href="2.html#section-doctor">의료진 소개</a>
+                    <a href="2.html#section-price">치료 금액</a>
+                    <a href="2.html#section-location">오시는 길</a>
+                </div>
+            </li>
+            
+            <!-- 2. 진료안내 (클릭해도 이동 안 함) -->
+            <li class="nav-item">
+                <a href="javascript:void(0);">진료안내 <i class="fa-solid fa-chevron-down"></i></a>
+                <div class="dropdown">
+                    <a href="3.html">목·허리 디스크</a>
+                    <a href="4.html">이명/난청</a>
+                    <a href="5.html">여성/다이어트</a>
+                    <a href="6.html">교통사고후유증</a>
+                    <a href="7.html">맞춤한약</a>
+                </div>
+            </li>
+            
+            <!-- 3. 건강칼럼 -->
+            <li class="nav-item">
+                <a href="column.html" class="gnb-link">건강칼럼</a>
+            </li>
+            
+            <!-- 4. 예약하기 버튼 -->
+            <li class="nav-item" style="height: auto;">
+                <a href="https://booking.naver.com/" target="_blank" class="nav-reserve-btn">예약하기</a>
+            </li>
+        </ul>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="pt-24">
+        <!-- 메인 배너 -->
+        <section class="relative h-[400px] w-full flex items-center justify-center bg-brand-ivory overflow-hidden">
+            <div class="absolute inset-0 bg-[url('https://placehold.co/1920x600/EFEFEF/999999?text=About+Ahn+Clinic')] bg-cover bg-center opacity-50 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent"></div>
+            <div class="relative z-10 text-center text-white px-6">
+                <span class="text-brand-gold font-bold tracking-widest text-sm mb-4 block uppercase drop-shadow-md">About Us</span>
+                <h1 class="text-4xl md:text-5xl font-serif font-bold mb-4 drop-shadow-lg">한의원 소개</h1>
+                <p class="text-gray-200 font-light text-lg tracking-wide">환자 한 분 한 분의 마음에 귀 기울이는 안준석한의원입니다</p>
+            </div>
+        </section>
+
+        <!-- 서브페이지 내부 목차 (4가지 탭) -->
+        <div class="sticky-subnav shadow-sm w-full">
+            <div class="max-w-4xl mx-auto px-4 flex justify-between md:justify-center md:space-x-16 overflow-x-auto whitespace-nowrap scrollbar-hide">
+                <a href="#section-greeting" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">인사말</a>
+                <a href="#section-doctor" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">의료진 소개</a>
+                <a href="#section-price" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">치료 금액</a>
+                <a href="#section-location" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">오시는 길</a>
+            </div>
+        </div>
+
+        <!-- 섹션 1: 인사말 -->
+        <section id="section-greeting" class="py-24 bg-white relative">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Greeting</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-8">대표원장 인사말</h2>
+                <p class="text-brand-graytext leading-relaxed text-lg mb-6 word-keep font-light">
+                    "안녕하세요. 안준석한의원 대표원장 안준석입니다.<br>
+                    저희 한의원은 환자분들의 아픔에 공감하고, 눈에 보이는 증상뿐만 아니라<br>
+                    그 근본적인 원인을 찾아 바르게 치료하는 것을 원칙으로 삼고 있습니다."
+                </p>
+            </div>
+        </section>
+
+        <!-- 섹션 2: 의료진 소개 -->
+        <section id="section-doctor" class="py-24 bg-brand-ivory relative">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Medical Staff</span>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark">의료진 소개</h2>
+                </div>
+                <div class="flex flex-col md:flex-row gap-10 items-center bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-brand-lightBorder">
+                    <div class="w-48 h-56 rounded-xl overflow-hidden bg-gray-200 shrink-0">
+                        <img src="https://placehold.co/400x500/EFEFEF/B69A7B?text=Doctor" alt="안준석 원장" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold font-serif text-brand-dark mb-2">대표원장 안 준 석</h3>
+                        <p class="text-brand-gold font-medium mb-4 text-sm">한의학 박사 / 한방내과 전문의</p>
+                        <p class="text-brand-graytext leading-relaxed text-sm word-keep font-light">
+                            - 경희대학교 한의과대학 졸업<br>
+                            - 대한한방내과학회 정회원<br>
+                            - 전) 주요 척추·관절 한방병원 진료원장<br>
+                            - 20년 임상 경험을 바탕으로 한 정직하고 세심한 진료
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 3: 치료 금액 -->
+        <section id="section-price" class="py-24 bg-white relative">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Price Info</span>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark">주요 치료 금액 안내</h2>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center p-6 bg-brand-ivory rounded-xl border border-brand-lightBorder">
+                        <span class="font-medium text-brand-dark">초진 및 재진 상담료</span>
+                        <span class="font-bold text-brand-gold">비급여 기준 적용</span>
+                    </div>
+                    <div class="flex justify-between items-center p-6 bg-brand-ivory rounded-xl border border-brand-lightBorder">
+                        <span class="font-medium text-brand-dark">추나 요법 (건강보험 적용)</span>
+                        <span class="font-bold text-brand-gold">약 2만 원 ~ 3만 원 내외</span>
+                    </div>
+                    <div class="flex justify-between items-center p-6 bg-brand-ivory rounded-xl border border-brand-lightBorder">
+                        <span class="font-medium text-brand-dark">개별 맞춤 한약 (1첩/1달)</span>
+                        <span class="font-bold text-brand-gold">체질 및 약재에 따라 상이</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 4: 오시는 길 -->
+        <section id="section-location" class="py-24 bg-brand-ivory relative">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Location</span>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark">오시는 길</h2>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-brand-lightBorder">
+                    <div class="w-full h-80 bg-gray-200 rounded-xl mb-6 flex items-center justify-center text-gray-500">
+                        [네이버 지도 / 카카오 맵 영역]
+                    </div>
+                    <div class="space-y-2 text-brand-graytext text-sm">
+                        <p><strong class="text-brand-dark">주소 :</strong> 서울특별시 영등포구 영등포로 200 (영등포동)</p>
+                        <p><strong class="text-brand-dark">교통 :</strong> 지하철 1호선 영등포역 3번 출구 도보 5분</p>
+                        <p><strong class="text-brand-dark">문의 :</strong> 02-123-4567</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-gray-400 pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 text-center text-xs text-gray-500 font-light">
+            <p>&copy; 2026 Ahn Junseok Oriental Medical Clinic. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '0px', threshold: 0.15 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
