@@ -44,7 +44,7 @@
         .font-serif { font-family: 'Nanum Myeongjo', serif; }
         .word-keep { word-break: keep-all; }
         
-        /* GNB 헤더 및 완벽하게 고쳐진 드롭다운 메뉴 */
+        /* GNB 헤더 및 완벽한 정중앙 배치 스타일 */
         header {
             position: fixed;
             top: 0;
@@ -66,6 +66,7 @@
             align-items: center;
             gap: 12px;
             cursor: pointer;
+            flex: 1;
         }
 
         .logo-box {
@@ -113,6 +114,9 @@
             align-items: center;
             gap: 50px; 
             height: 100%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .nav-item {
@@ -150,7 +154,6 @@
             color: #B69A7B;
         }
 
-        /* 드롭다운 빈틈없이 안정적으로 연결 */
         .dropdown {
             position: absolute;
             top: 80px;
@@ -193,6 +196,13 @@
             background-color: #FDFCF0;
             color: #B69A7B;
             font-weight: 500;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
         }
 
         .nav-reserve-btn {
@@ -259,9 +269,8 @@
         </a>
 
         <ul class="nav-menu">
-            <!-- 1. 한의원 소개 (클릭해도 이동 안 함) -->
             <li class="nav-item">
-                <a href="javascript:void(0);">한의원 소개 <i class="fa-solid fa-chevron-down"></i></a>
+                <a href="javascript:void(0);">한의원 소개 <i class="fa-solid fa-chevron-down text-[10px]"></i></a>
                 <div class="dropdown">
                     <a href="2.html#section-greeting">인사말</a>
                     <a href="2.html#section-doctor">의료진 소개</a>
@@ -270,9 +279,8 @@
                 </div>
             </li>
             
-            <!-- 2. 진료안내 (클릭해도 이동 안 함) -->
             <li class="nav-item">
-                <a href="javascript:void(0);">진료안내 <i class="fa-solid fa-chevron-down"></i></a>
+                <a href="javascript:void(0);">진료안내 <i class="fa-solid fa-chevron-down text-[10px]"></i></a>
                 <div class="dropdown">
                     <a href="3.html">목·허리 디스크</a>
                     <a href="4.html">이명/난청</a>
@@ -282,16 +290,14 @@
                 </div>
             </li>
             
-            <!-- 3. 건강칼럼 -->
             <li class="nav-item">
                 <a href="column.html" class="gnb-link">건강칼럼</a>
             </li>
-            
-            <!-- 4. 예약하기 버튼 -->
-            <li class="nav-item" style="height: auto;">
-                <a href="https://booking.naver.com/" target="_blank" class="nav-reserve-btn">예약하기</a>
-            </li>
         </ul>
+
+        <div class="header-right">
+            <a href="https://booking.naver.com/" target="_blank" class="nav-reserve-btn">예약하기</a>
+        </div>
     </header>
 
     <!-- MAIN CONTENT -->
