@@ -7,7 +7,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -22,7 +22,7 @@
 
         body {
             color: #333;
-            background-color: #FDFCF0; /* 따뜻한 아이보리 배경 */
+            background-color: #FDFCF0;
             line-height: 1.6;
         }
 
@@ -35,7 +35,9 @@
             list-style: none;
         }
 
-        /* Header & Dropdown Menu */
+        /* ----------------------------------
+           새로운 Header & Dropdown Menu 
+        ----------------------------------- */
         header {
             position: fixed;
             top: 0;
@@ -44,57 +46,114 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
+            padding: 0 40px;
+            height: 96px; /* 넉넉한 헤더 높이 */
             background-color: rgba(253, 252, 240, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid #EBE7D9;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: #2c2c2c;
-            letter-spacing: -1px;
+        /* 로고 영역 */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
         }
 
+        .logo-box {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #B69A7B;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            color: #B69A7B;
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 10px;
+            line-height: 1;
+            text-align: center;
+        }
+
+        .logo-box div { width: 50%; }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo-title {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            letter-spacing: 2px;
+        }
+
+        .logo-subtitle {
+            font-size: 10px;
+            color: #B69A7B;
+            letter-spacing: 1px;
+            margin-top: 2px;
+            text-transform: uppercase;
+        }
+
+        /* 4개 메인 카테고리 네비게이션 */
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 50px; /* 메뉴 간 넉넉한 간격 */
         }
 
         .nav-item {
             position: relative;
+            height: 96px;
+            display: flex;
+            align-items: center;
         }
 
         .nav-item > a {
             font-size: 16px;
             font-weight: 500;
-            color: #444;
-            padding: 10px 0;
+            color: #555;
             display: flex;
             align-items: center;
             gap: 6px;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         .nav-item > a:hover {
-            color: #B59A58; /* 고급스러운 골드 포인트 */
+            color: #B69A7B;
         }
 
-        /* Dropdown Style */
+        .nav-item > a i {
+            font-size: 11px;
+            color: #888;
+            transition: transform 0.3s;
+        }
+
+        .nav-item:hover > a i {
+            transform: rotate(180deg);
+            color: #B69A7B;
+        }
+
+        /* 드롭다운 메뉴 */
         .dropdown {
             position: absolute;
-            top: 100%;
+            top: 85px; /* 헤더 아래로 자연스럽게 떨어지도록 위치 조정 */
             left: 50%;
             transform: translateX(-50%) translateY(10px);
             background: #fff;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
             border: 1px solid #EBE7D9;
             border-radius: 8px;
             width: max-content;
-            min-width: 160px;
+            min-width: 140px;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -113,476 +172,177 @@
         .dropdown a {
             padding: 12px 20px;
             font-size: 14px;
-            color: #555;
+            color: #666;
             font-weight: 400;
             transition: all 0.2s;
+            display: block;
+            text-align: center;
         }
 
         .dropdown a:hover {
             background-color: #FDFCF0;
-            color: #B59A58;
-            padding-left: 25px;
+            color: #B69A7B;
+            font-weight: 500;
         }
 
-        /* Header Reservation Button */
+        /* 예약하기 다크 둥근 버튼 */
         .nav-reserve-btn {
             background-color: #2c2c2c;
             color: #fff !important;
-            padding: 10px 24px !important;
+            padding: 12px 28px !important;
             border-radius: 30px;
             font-size: 15px !important;
-            font-weight: 600 !important;
-            transition: background 0.3s;
+            font-weight: 500 !important;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
         }
 
         .nav-reserve-btn:hover {
-            background-color: #B59A58;
-            color: #fff !important;
+            background-color: #B69A7B;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(182, 154, 123, 0.3);
         }
 
-        /* Floating Quick Menu (카톡 제거됨) */
+        /* ----------------------------------
+           나머지 기존 메인 페이지 스타일 유지 
+        ----------------------------------- */
+        
         .floating-bar {
-            position: fixed;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            z-index: 999;
-            overflow: hidden;
-            border: 1px solid #EBE7D9;
+            position: fixed; right: 30px; top: 50%; transform: translateY(-50%);
+            background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-radius: 12px;
+            display: flex; flex-direction: column; z-index: 999; overflow: hidden; border: 1px solid #EBE7D9;
         }
-
         .floating-item {
-            width: 80px;
-            height: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            font-size: 12px;
-            font-weight: 500;
-            color: #555;
-            border-bottom: 1px solid #f9f9f9;
-            transition: all 0.3s;
+            width: 80px; height: 80px; display: flex; flex-direction: column; align-items: center;
+            justify-content: center; gap: 6px; font-size: 12px; font-weight: 500; color: #555;
+            border-bottom: 1px solid #f9f9f9; transition: all 0.3s;
         }
+        .floating-item:last-child { border-bottom: none; }
+        .floating-item i { font-size: 18px; color: #2c2c2c; }
+        .floating-item:hover { background-color: #B59A58; color: #fff; }
+        .floating-item:hover i { color: #fff; }
 
-        .floating-item:last-child {
-            border-bottom: none;
-        }
-
-        .floating-item i {
-            font-size: 18px;
-            color: #2c2c2c;
-        }
-
-        .floating-item:hover {
-            background-color: #B59A58;
-            color: #fff;
-        }
-
-        .floating-item:hover i {
-            color: #fff;
-        }
-
-        /* Hero Section */
         .hero {
-            position: relative;
-            height: 100vh;
+            position: relative; height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            padding-left: 10%;
+            display: flex; align-items: center; padding-left: 10%;
         }
+        .hero-content { color: #fff; max-width: 700px; }
+        .hero-subtitle { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; color: #E2C77D; font-weight: 600; display: inline-block;}
+        .hero-title { font-size: 52px; font-family: 'Nanum Myeongjo', serif; font-weight: 700; line-height: 1.2; margin-bottom: 25px; letter-spacing: -1px; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .hero-desc { font-size: 18px; font-weight: 300; line-height: 1.6; color: #eee; margin-bottom: 40px; }
 
-        .hero-content {
-            color: #fff;
-            max-width: 700px;
-        }
+        section { padding: 120px 0; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 38px; font-family: 'Nanum Myeongjo', serif; font-weight: 700; color: #2c2c2c; letter-spacing: -1px; margin-bottom: 15px; }
+        .section-header p { font-size: 16px; color: #666; }
 
-        .hero-subtitle {
-            font-size: 14px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            color: #E2C77D; /* 밝은 골드 */
-            font-weight: 600;
-        }
-
-        .hero-title {
-            font-size: 52px;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 25px;
-            letter-spacing: -1px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .hero-desc {
-            font-size: 18px;
-            font-weight: 300;
-            line-height: 1.6;
-            color: #eee;
-            margin-bottom: 40px;
-        }
-
-        /* Section Common */
-        section {
-            padding: 120px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 38px;
-            font-weight: 700;
-            color: #2c2c2c;
-            letter-spacing: -1px;
-            margin-bottom: 15px;
-        }
-
-        .section-header p {
-            font-size: 16px;
-            color: #666;
-        }
-
-        /* Interactive Treatment Section */
-        .treatments {
-            background-color: #fff;
-        }
-
-        .treatment-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .treatment-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            border-bottom: 2px solid #EBE7D9;
-            margin-bottom: 50px;
-            overflow-x: auto;
-            padding-bottom: 0;
-        }
-
+        .treatments { background-color: #fff; }
+        .treatment-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .treatment-tabs { display: flex; justify-content: center; gap: 20px; border-bottom: 2px solid #EBE7D9; margin-bottom: 50px; overflow-x: auto; padding-bottom: 0; }
         .tab-btn {
-            background: none;
-            border: none;
-            font-size: 18px;
-            font-weight: 600;
-            color: #999;
-            padding: 15px 25px;
-            cursor: pointer;
-            position: relative;
-            white-space: nowrap;
-            transition: color 0.3s;
+            background: none; border: none; font-size: 18px; font-weight: 600; color: #999;
+            padding: 15px 25px; cursor: pointer; position: relative; white-space: nowrap; transition: color 0.3s;
         }
-
         .tab-btn::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: transparent;
-            transition: background-color 0.3s;
+            content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 3px;
+            background-color: transparent; transition: background-color 0.3s;
         }
+        .tab-btn:hover, .tab-btn.active { color: #2c2c2c; }
+        .tab-btn.active::after { background-color: #B59A58; }
 
-        .tab-btn:hover, .tab-btn.active {
-            color: #2c2c2c;
-        }
+        .tab-content-wrap { background: #FDFCF0; border-radius: 16px; padding: 60px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid #EBE7D9; }
+        .tab-panel { display: none; animation: fadeIn 0.5s ease forwards; }
+        .tab-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .tab-btn.active::after {
-            background-color: #B59A58;
-        }
-
-        .tab-content-wrap {
-            background: #FDFCF0; /* 아이보리 배경 */
-            border-radius: 16px;
-            padding: 60px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            border: 1px solid #EBE7D9;
-        }
-
-        .tab-panel {
-            display: none;
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        .tab-panel.active {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .panel-info h3 {
-            font-size: 30px;
-            font-weight: 700;
-            color: #2c2c2c;
-            margin-bottom: 20px;
-        }
-
-        .panel-info p {
-            font-size: 16px;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-
-        .panel-features {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 35px;
-        }
-
-        .panel-feature-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 15px;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .panel-feature-item i {
-            color: #B59A58;
-        }
-
+        .panel-info h3 { font-size: 30px; font-weight: 700; color: #2c2c2c; margin-bottom: 20px; }
+        .panel-info p { font-size: 16px; color: #555; line-height: 1.8; margin-bottom: 30px; }
+        .panel-features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 35px; }
+        .panel-feature-item { display: flex; align-items: center; gap: 10px; font-size: 15px; color: #333; font-weight: 500; }
+        .panel-feature-item i { color: #B59A58; }
         .panel-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #2c2c2c;
-            color: #fff;
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 600;
-            transition: background 0.3s;
+            display: inline-flex; align-items: center; gap: 10px; background: #2c2c2c; color: #fff;
+            padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; transition: background 0.3s;
         }
+        .panel-btn:hover { background: #B59A58; color: #fff; }
+        .panel-img { width: 100%; height: 350px; background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 
-        .panel-btn:hover {
-            background: #B59A58;
-            color: #fff;
-        }
+        .doctor-letter { background-color: #2c2c2c; color: #FDFCF0; position: relative; overflow: hidden; text-align: center; padding: 140px 20px; }
+        .doctor-content { position: relative; max-width: 800px; margin: 0 auto; }
+        .doctor-content span { font-size: 13px; letter-spacing: 3px; color: #B59A58; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 20px; }
+        .doctor-content h2 { font-size: 42px; font-family: 'Nanum Myeongjo', serif; font-weight: 700; margin-bottom: 40px; letter-spacing: -1px; }
+        .doctor-quote { font-size: 20px; font-weight: 300; line-height: 1.8; color: #ddd; margin-bottom: 40px; }
+        .doctor-sign { font-size: 18px; font-weight: 600; color: #FDFCF0; }
 
-        .panel-img {
-            width: 100%;
-            height: 350px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
+        .column-section { background-color: #FDFCF0; }
+        .column-grid { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .column-card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #EBE7D9; transition: all 0.3s; }
+        .column-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); border-color: #B59A58; }
+        .column-img { height: 200px; background-size: cover; background-position: center; }
+        .column-info { padding: 30px; }
+        .column-date { font-size: 13px; color: #999; margin-bottom: 10px; }
+        .column-title { font-size: 18px; font-weight: 700; color: #2c2c2c; margin-bottom: 15px; line-height: 1.4; }
+        .column-desc { font-size: 14px; color: #666; line-height: 1.6; }
 
-        /* Doctor's Letter */
-        .doctor-letter {
-            background-color: #2c2c2c;
-            color: #FDFCF0;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-            padding: 140px 20px;
-        }
+        footer { background-color: #1a1a1a; color: #888; padding: 80px 50px 40px; font-size: 14px; }
+        .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid #333; padding-bottom: 50px; margin-bottom: 40px; }
+        .footer-info h3 { color: #FDFCF0; font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+        .footer-info p { line-height: 1.8; margin-bottom: 5px; }
+        .footer-copyright { max-width: 1200px; margin: 0 auto; text-align: center; font-size: 13px; color: #555; }
 
-        .doctor-content {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .doctor-content span {
-            font-size: 13px;
-            letter-spacing: 3px;
-            color: #B59A58;
-            text-transform: uppercase;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 20px;
-        }
-
-        .doctor-content h2 {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 40px;
-            letter-spacing: -1px;
-        }
-
-        .doctor-quote {
-            font-size: 20px;
-            font-weight: 300;
-            line-height: 1.8;
-            color: #ddd;
-            margin-bottom: 40px;
-        }
-
-        .doctor-sign {
-            font-size: 18px;
-            font-weight: 600;
-            color: #FDFCF0;
-        }
-
-        /* Health Column Section */
-        .column-section {
-            background-color: #FDFCF0; /* 아이보리 배경 */
-        }
-
-        .column-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .column-card {
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #EBE7D9;
-            transition: all 0.3s;
-        }
-
-        .column-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-            border-color: #B59A58;
-        }
-
-        .column-img {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .column-info {
-            padding: 30px;
-        }
-
-        .column-date {
-            font-size: 13px;
-            color: #999;
-            margin-bottom: 10px;
-        }
-
-        .column-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #2c2c2c;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .column-desc {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #1a1a1a;
-            color: #888;
-            padding: 80px 50px 40px;
-            font-size: 14px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            border-bottom: 1px solid #333;
-            padding-bottom: 50px;
-            margin-bottom: 40px;
-        }
-
-        .footer-info h3 {
-            color: #FDFCF0;
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .footer-info p {
-            line-height: 1.8;
-            margin-bottom: 5px;
-        }
-
-        .footer-copyright {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 13px;
-            color: #555;
-        }
-
-        /* Responsive */
         @media(max-width: 1024px) {
-            .tab-panel.active {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            .column-grid {
-                grid-template-columns: 1fr;
-            }
-            header {
-                padding: 20px 20px;
-            }
-            .nav-menu {
-                display: none; /* 모바일 메뉴는 추후 구현 가능 */
-            }
+            .tab-panel.active { grid-template-columns: 1fr; gap: 30px; }
+            .column-grid { grid-template-columns: 1fr; }
+            header { padding: 0 20px; }
+            .nav-menu { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header with Linked Dropdown -->
+    <!-- Header (새로운 레이아웃 적용) -->
     <header>
-        <a href="index.html" class="logo">안준석한의원</a>
+        <!-- 좌측 로고 (서브페이지와 동일한 디자인 반영) -->
+        <a href="index.html" class="logo-container">
+            <div class="logo-box">
+                <div>安漢</div><div>浚醫</div><div>哲院</div>
+            </div>
+            <div class="logo-text">
+                <span class="logo-title">안준석 한의원</span>
+                <span class="logo-subtitle">Ahn Junseok Oriental Clinic</span>
+            </div>
+        </a>
+
+        <!-- 우측 4단 네비게이션 및 드롭다운 -->
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="2.html">한의원 소개 <i class="fa-solid fa-chevron-down" style="font-size: 12px; margin-top: 2px;"></i></a>
+                <a>한의원 소개 <i class="fa-solid fa-chevron-down"></i></a>
                 <div class="dropdown">
-                    <a href="2.html">인사말</a>
-                    <a href="2.html">의료진 소개</a>
-                    <a href="2.html">치료 금액</a>
+                    <a href="2.html#section-greeting">인사말</a>
+                    <a href="2.html#section-doctor">의료진 소개</a>
+                    <a href="2.html#section-price">치료 금액</a>
+                    <a href="2.html#section-location">오시는 길</a>
                 </div>
             </li>
+            
             <li class="nav-item">
-                <a href="#treatments-section">진료안내 <i class="fa-solid fa-chevron-down" style="font-size: 12px; margin-top: 2px;"></i></a>
+                <a>진료안내 <i class="fa-solid fa-chevron-down"></i></a>
                 <div class="dropdown">
-                    <a href="3.html">목·허리디스크</a>
+                    <a href="3.html">목·허리 디스크</a>
                     <a href="4.html">이명/난청</a>
-                    <a href="5.html">여성질환/다이어트</a>
+                    <a href="5.html">여성/다이어트</a>
                     <a href="6.html">교통사고후유증</a>
                     <a href="7.html">맞춤한약</a>
                 </div>
             </li>
+            
             <li class="nav-item">
                 <a href="column.html">건강칼럼</a>
             </li>
-            <li class="nav-item">
-                <!-- 네이버 예약 링크 (실제 주소로 변경해주세요) -->
+            
+            <!-- 다크 그레이 둥근 버튼 적용 -->
+            <li class="nav-item" style="height: auto;">
                 <a href="https://booking.naver.com/" target="_blank" class="nav-reserve-btn">예약하기</a>
             </li>
         </ul>
@@ -597,10 +357,6 @@
         <a href="column.html" class="floating-item">
             <i class="fa-solid fa-pen-nib"></i>
             <span>칼럼</span>
-        </a>
-        <a href="#location" class="floating-item">
-            <i class="fa-solid fa-location-dot"></i>
-            <span>오시는길</span>
         </a>
     </div>
 
@@ -621,7 +377,6 @@
         </div>
         
         <div class="treatment-container">
-            <!-- 탭 버튼 -->
             <div class="treatment-tabs">
                 <button class="tab-btn active" onclick="switchTab(event, 'tab-1')">목·허리 디스크</button>
                 <button class="tab-btn" onclick="switchTab(event, 'tab-2')">이명/난청</button>
@@ -631,7 +386,7 @@
             </div>
 
             <div class="tab-content-wrap">
-                <!-- Panel 1: 목/허리디스크 (3.html 연동) -->
+                <!-- Panel 1 -->
                 <div id="tab-1" class="tab-panel active">
                     <div class="panel-info">
                         <h3>목·허리 디스크 / 통증 클리닉</h3>
@@ -646,7 +401,7 @@
                     <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80');"></div>
                 </div>
 
-                <!-- Panel 2: 이명/난청 (4.html 연동) -->
+                <!-- Panel 2 -->
                 <div id="tab-2" class="tab-panel">
                     <div class="panel-info">
                         <h3>이명 / 난청 / 구안와사 클리닉</h3>
@@ -661,7 +416,7 @@
                     <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80');"></div>
                 </div>
 
-                <!-- Panel 3: 여성질환/다이어트 (5.html 연동) -->
+                <!-- Panel 3 -->
                 <div id="tab-3" class="tab-panel">
                     <div class="panel-info">
                         <h3>여성질환 / 한방 다이어트</h3>
@@ -676,7 +431,7 @@
                     <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80');"></div>
                 </div>
 
-                <!-- Panel 4: 교통사고후유증 (6.html 연동) -->
+                <!-- Panel 4 -->
                 <div id="tab-4" class="tab-panel">
                     <div class="panel-info">
                         <h3>교통사고 후유증 클리닉</h3>
@@ -691,7 +446,7 @@
                     <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80');"></div>
                 </div>
 
-                <!-- Panel 5: 맞춤한약 (7.html 연동) -->
+                <!-- Panel 5 -->
                 <div id="tab-5" class="tab-panel">
                     <div class="panel-info">
                         <h3>개별 맞춤 한약 / 공진단</h3>
@@ -731,7 +486,6 @@
             <p>풍부한 임상 경험을 바탕으로 알기 쉽게 전해드리는 한의학 이야기입니다.</p>
         </div>
         <div class="column-grid">
-            <!-- 칼럼 1 (column.html 연동) -->
             <a href="column.html" class="column-card">
                 <div class="column-img" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80');"></div>
                 <div class="column-info">
@@ -740,7 +494,6 @@
                     <p class="column-desc">디스크 탈출증과 협착증의 차이, 그리고 일상에서 실천할 수 있는 올바른 척추 관리법을 알아봅니다.</p>
                 </div>
             </a>
-            <!-- 칼럼 2 (column.html 연동) -->
             <a href="column.html" class="column-card">
                 <div class="column-img" style="background-image: url('https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80');"></div>
                 <div class="column-info">
@@ -749,7 +502,6 @@
                     <p class="column-desc">만성적인 이명 증상을 완화하기 위해 한의학에서는 어떤 방식으로 접근하고 치료하는지 설명해 드립니다.</p>
                 </div>
             </a>
-            <!-- 칼럼 3 (column.html 연동) -->
             <a href="column.html" class="column-card">
                 <div class="column-img" style="background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80');"></div>
                 <div class="column-info">
