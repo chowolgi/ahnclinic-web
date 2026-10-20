@@ -36,7 +36,7 @@
         }
 
         /* ----------------------------------
-           새로운 Header & Dropdown Menu 
+           Header & Dropdown Menu 
         ----------------------------------- */
         header {
             position: fixed;
@@ -47,14 +47,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 40px;
-            height: 96px; /* 넉넉한 헤더 높이 */
+            height: 96px; 
             background-color: rgba(253, 252, 240, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid #EBE7D9;
         }
 
-        /* 로고 영역 */
         .logo-container {
             display: flex;
             align-items: center;
@@ -102,11 +101,10 @@
             text-transform: uppercase;
         }
 
-        /* 4개 메인 카테고리 네비게이션 */
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 50px; /* 메뉴 간 넉넉한 간격 */
+            gap: 50px; 
         }
 
         .nav-item {
@@ -142,10 +140,9 @@
             color: #B69A7B;
         }
 
-        /* 드롭다운 메뉴 */
         .dropdown {
             position: absolute;
-            top: 85px; /* 헤더 아래로 자연스럽게 떨어지도록 위치 조정 */
+            top: 85px; 
             left: 50%;
             transform: translateX(-50%) translateY(10px);
             background: #fff;
@@ -185,7 +182,6 @@
             font-weight: 500;
         }
 
-        /* 예약하기 다크 둥근 버튼 */
         .nav-reserve-btn {
             background-color: #2c2c2c;
             color: #fff !important;
@@ -204,9 +200,8 @@
         }
 
         /* ----------------------------------
-           나머지 기존 메인 페이지 스타일 유지 
+           Floating Quick Menu
         ----------------------------------- */
-        
         .floating-bar {
             position: fixed; right: 30px; top: 50%; transform: translateY(-50%);
             background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-radius: 12px;
@@ -222,22 +217,54 @@
         .floating-item:hover { background-color: #B59A58; color: #fff; }
         .floating-item:hover i { color: #fff; }
 
+        /* ----------------------------------
+           Hero Section (고급스러운 무빙 애니메이션 적용)
+        ----------------------------------- */
         .hero {
-            position: relative; height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            display: flex; align-items: center; padding-left: 10%;
+            position: relative; 
+            height: 100vh;
+            display: flex; 
+            align-items: center; 
+            padding-left: 10%;
+            overflow: hidden; /* 이미지가 커져도 밖으로 나가지 않게 고정 */
         }
-        .hero-content { color: #fff; max-width: 700px; }
+
+        /* 움직이는 배경 이미지 레이어 */
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('main-bg.jpg') center/cover no-repeat;
+            z-index: 1;
+            /* 15초 동안 아주 부드럽게 줌인/줌아웃 반복 */
+            animation: kenBurns 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes kenBurns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); } /* 8% 정도만 커지게 하여 고급스러움 강조 */
+        }
+
+        /* 텍스트는 사진 위에 떠 있어야 하므로 z-index 높임 */
+        .hero-content { 
+            position: relative;
+            z-index: 10;
+            color: #fff; 
+            max-width: 700px; 
+        }
         .hero-subtitle { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; color: #E2C77D; font-weight: 600; display: inline-block;}
         .hero-title { font-size: 52px; font-family: 'Nanum Myeongjo', serif; font-weight: 700; line-height: 1.2; margin-bottom: 25px; letter-spacing: -1px; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
         .hero-desc { font-size: 18px; font-weight: 300; line-height: 1.6; color: #eee; margin-bottom: 40px; }
 
+        /* ----------------------------------
+           나머지 섹션 스타일
+        ----------------------------------- */
         section { padding: 120px 0; }
         .section-header { text-align: center; margin-bottom: 60px; }
         .section-header h2 { font-size: 38px; font-family: 'Nanum Myeongjo', serif; font-weight: 700; color: #2c2c2c; letter-spacing: -1px; margin-bottom: 15px; }
         .section-header p { font-size: 16px; color: #666; }
 
-        .treatments { background-color: #fff; }
+        .treatments { background-color: #fff; position: relative; z-index: 10; }
         .treatment-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         .treatment-tabs { display: flex; justify-content: center; gap: 20px; border-bottom: 2px solid #EBE7D9; margin-bottom: 50px; overflow-x: auto; padding-bottom: 0; }
         .tab-btn {
@@ -275,7 +302,7 @@
         .doctor-quote { font-size: 20px; font-weight: 300; line-height: 1.8; color: #ddd; margin-bottom: 40px; }
         .doctor-sign { font-size: 18px; font-weight: 600; color: #FDFCF0; }
 
-        .column-section { background-color: #FDFCF0; }
+        .column-section { background-color: #FDFCF0; position: relative; z-index: 10; }
         .column-grid { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .column-card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #EBE7D9; transition: all 0.3s; }
         .column-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); border-color: #B59A58; }
@@ -285,7 +312,7 @@
         .column-title { font-size: 18px; font-weight: 700; color: #2c2c2c; margin-bottom: 15px; line-height: 1.4; }
         .column-desc { font-size: 14px; color: #666; line-height: 1.6; }
 
-        footer { background-color: #1a1a1a; color: #888; padding: 80px 50px 40px; font-size: 14px; }
+        footer { background-color: #1a1a1a; color: #888; padding: 80px 50px 40px; font-size: 14px; position: relative; z-index: 10; }
         .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid #333; padding-bottom: 50px; margin-bottom: 40px; }
         .footer-info h3 { color: #FDFCF0; font-size: 20px; font-weight: 700; margin-bottom: 20px; }
         .footer-info p { line-height: 1.8; margin-bottom: 5px; }
@@ -301,9 +328,8 @@
 </head>
 <body>
 
-    <!-- Header (새로운 레이아웃 적용) -->
+    <!-- Header -->
     <header>
-        <!-- 좌측 로고 (서브페이지와 동일한 디자인 반영) -->
         <a href="index.html" class="logo-container">
             <div class="logo-box">
                 <div>安漢</div><div>浚醫</div><div>哲院</div>
@@ -314,7 +340,6 @@
             </div>
         </a>
 
-        <!-- 우측 4단 네비게이션 및 드롭다운 -->
         <ul class="nav-menu">
             <li class="nav-item">
                 <a>한의원 소개 <i class="fa-solid fa-chevron-down"></i></a>
@@ -341,7 +366,6 @@
                 <a href="column.html">건강칼럼</a>
             </li>
             
-            <!-- 다크 그레이 둥근 버튼 적용 -->
             <li class="nav-item" style="height: auto;">
                 <a href="https://booking.naver.com/" target="_blank" class="nav-reserve-btn">예약하기</a>
             </li>
@@ -360,8 +384,10 @@
         </a>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (배경과 텍스트 분리하여 무빙 효과 적용) -->
     <section class="hero">
+        <div class="hero-bg"></div> <!-- 서서히 움직이는 사진 레이어 -->
+        
         <div class="hero-content">
             <span class="hero-subtitle">Ahn Junseok Oriental Clinic</span>
             <h1 class="hero-title">눈에 보이는 증상 너머,<br>진짜 원인을 찾습니다.</h1>
@@ -528,7 +554,6 @@
         </div>
     </footer>
 
-    <!-- Tab Switching Script -->
     <script>
         function switchTab(evt, tabId) {
             const panels = document.querySelectorAll('.tab-panel');
