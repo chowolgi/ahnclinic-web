@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>여성질환/다이어트 - 안준석 한의원</title>
+    <title>여성/다이어트 - 안준석 한의원</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -44,18 +44,24 @@
         .font-serif { font-family: 'Nanum Myeongjo', serif; }
         .word-keep { word-break: keep-all; }
         
-        .mega-menu-panel {
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-            transform: translateY(-10px);
+        /* 심플한 GNB 메뉴 호버 효과 */
+        .gnb-link {
+            position: relative;
+            padding-bottom: 5px;
         }
-        .header-group:hover .mega-menu-panel {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+        .gnb-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: transparent;
+            transition: background-color 0.3s;
         }
-
-        .sub-link { transition: all 0.2s ease; }
-        .sub-link:hover { color: #B69A7B; font-weight: 500; transform: translateX(5px); }
+        .gnb-link:hover::after, .gnb-link.active::after {
+            background-color: #B69A7B;
+        }
         
         .sticky-subnav {
             position: sticky;
@@ -89,9 +95,10 @@
 </head>
 <body class="antialiased selection:bg-brand-gold selection:text-white">
 
-    <!-- HEADER & MEGA MENU (8개 칸 구조) -->
-    <div class="fixed top-0 left-0 w-full z-50 header-group bg-white/95 backdrop-blur-md border-b border-brand-lightBorder shadow-sm transition-all duration-300">
+    <!-- HEADER (5.html - 여성/다이어트 활성화) -->
+    <div class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-brand-lightBorder shadow-sm transition-all duration-300">
         <header class="relative z-20 h-24 flex items-center justify-between px-4 xl:px-12 max-w-screen-2xl mx-auto">
+            <!-- 로고 영역 -->
             <a href="index.html" class="flex items-center gap-3 shrink-0 cursor-pointer">
                 <div class="w-10 h-10 border border-brand-gold flex flex-col items-center justify-center p-1 text-brand-gold font-serif leading-none text-[10px] text-center shrink-0">
                     <div>安漢</div><div>浚醫</div><div>哲院</div>
@@ -102,67 +109,28 @@
                 </div>
             </a>
             
-            <nav class="hidden lg:block w-[900px] xl:w-[1100px] mx-auto absolute left-1/2 -translate-x-1/2 h-full">
-                <ul class="grid grid-cols-8 h-full text-center">
-                    <li class="h-full flex items-center justify-center"><a href="2.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">한의원 소개</a></li>
-                    <li class="h-full flex items-center justify-center"><a href="3.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">목·허리 디스크</a></li>
-                    <li class="h-full flex items-center justify-center"><a href="4.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">이명/난청</a></li>
-                    <li class="h-full flex items-center justify-center"><a href="5.html" class="text-brand-gold text-[13px] xl:text-[15px] font-bold transition-colors w-full h-full flex items-center justify-center border-b-2 border-brand-gold">여성/다이어트</a></li>
-                    <li class="h-full flex items-center justify-center"><a href="6.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center word-keep">교통사고후유증</a></li>
-                    <li class="h-full flex items-center justify-center"><a href="7.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">맞춤한약</a></li>
-                    <li class="h-full flex items-center justify-center"><a href="notice.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">공지사항</a></li>
-                    <li class="h-full flex items-center justify-center"><a href="column.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium transition-colors w-full h-full flex items-center justify-center">칼럼</a></li>
+            <!-- 네비게이션 메뉴 -->
+            <nav class="hidden lg:flex flex-1 justify-center h-full">
+                <ul class="flex items-center gap-12 h-full text-[15px] font-medium text-brand-dark">
+                    <li class="h-full flex items-center"><a href="3.html" class="gnb-link hover:text-brand-gold transition-colors">목·허리 디스크</a></li>
+                    <li class="h-full flex items-center"><a href="4.html" class="gnb-link hover:text-brand-gold transition-colors">이명/난청</a></li>
+                    <!-- 5.html 현재 페이지 active 적용 -->
+                    <li class="h-full flex items-center"><a href="5.html" class="gnb-link active text-brand-gold font-bold">여성/다이어트</a></li>
+                    <li class="h-full flex items-center"><a href="6.html" class="gnb-link hover:text-brand-gold transition-colors">교통사고후유증</a></li>
+                    <li class="h-full flex items-center"><a href="7.html" class="gnb-link hover:text-brand-gold transition-colors">맞춤한약</a></li>
                 </ul>
             </nav>
 
-            <div class="flex items-center gap-4 shrink-0">
+            <!-- 모바일 햄버거 버튼 -->
+            <div class="flex items-center shrink-0 lg:hidden">
                 <button class="w-10 h-10 rounded-full bg-brand-ivory text-brand-dark hover:bg-brand-gold hover:text-white flex items-center justify-center transition-colors shadow-sm">
                     <i class="fas fa-bars text-lg"></i>
                 </button>
             </div>
+            
+            <!-- PC 레이아웃 밸런스를 위한 투명 박스 -->
+            <div class="hidden lg:block w-[180px] shrink-0"></div>
         </header>
-
-        <div class="mega-menu-panel absolute top-24 left-0 w-full bg-white z-10 border-t border-brand-lightBorder shadow-xl pb-12 pt-8 opacity-0 invisible">
-            <div class="w-[900px] xl:w-[1100px] mx-auto grid grid-cols-8 text-center">
-                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
-                    <li><a href="2.html" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">인사말</a></li>
-                    <li><a href="2.html#section-doctor" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">의료진 소개</a></li>
-                    <li><a href="2.html#section-info" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">진료안내</a></li>
-                    <li><a href="2.html#section-location" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">오시는길</a></li>
-                </ul>
-                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
-                    <li><a href="3.html#section-acupo" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">침도요법</a></li>
-                    <li><a href="3.html#section-chuna" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">추나&골타</a></li>
-                    <li><a href="3.html#section-disc" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">협착증/디스크</a></li>
-                    <li><a href="3.html#section-shoulder" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">오십견</a></li>
-                </ul>
-                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
-                    <li><a href="4.html#section-tinnitus" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">이명</a></li>
-                    <li><a href="4.html#section-hearing-loss" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">돌발성 난청</a></li>
-                    <li><a href="4.html#section-facial-palsy" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">구안와사</a></li>
-                </ul>
-                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
-                    <li><a href="5.html#section-menstrual" class="sub-link text-xs xl:text-sm text-brand-gold font-medium block w-full">생리통·생리불순</a></li>
-                    <li><a href="5.html#section-infertility" class="sub-link text-xs xl:text-sm text-brand-gold font-medium block w-full">난임(불임)</a></li>
-                    <li><a href="5.html#section-postpartum" class="sub-link text-xs xl:text-sm text-brand-gold font-medium block w-full">산후관리</a></li>
-                    <li><a href="5.html#section-diet" class="sub-link text-xs xl:text-sm text-brand-gold font-medium block w-full">다이어트</a></li>
-                </ul>
-                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
-                    <li><a href="6.html#section-symptoms" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">교통사고증상</a></li>
-                    <li><a href="6.html#section-insurance" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">자동차보험</a></li>
-                </ul>
-                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
-                    <li><a href="7.html#section-custom" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">개별맞춤한약</a></li>
-                    <li><a href="7.html#section-gongjin" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">공진단</a></li>
-                </ul>
-                <ul class="space-y-4 text-left px-3 border-r border-gray-100">
-                    <li><a href="notice.html" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">공지사항 보기</a></li>
-                </ul>
-                <ul class="space-y-4 text-left px-3">
-                    <li><a href="column.html" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">건강칼럼 보기</a></li>
-                </ul>
-            </div>
-        </div>
     </div>
 
     <!-- FLOATING RIGHT MENU -->
@@ -180,96 +148,87 @@
 
     <!-- MAIN CONTENT -->
     <main class="pt-24">
+        <!-- 메인 배너 (여성/다이어트용) -->
         <section class="relative h-[400px] w-full flex items-center justify-center bg-brand-ivory overflow-hidden">
             <div class="absolute inset-0 bg-[url('https://placehold.co/1920x600/EFEFEF/999999?text=Women+Health+and+Diet')] bg-cover bg-center opacity-50 mix-blend-multiply"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent"></div>
             <div class="relative z-10 text-center text-white px-6">
-                <span class="text-brand-gold font-bold tracking-widest text-sm mb-4 block uppercase drop-shadow-md">Women's Health & Diet</span>
+                <span class="text-brand-gold font-bold tracking-widest text-sm mb-4 block uppercase drop-shadow-md">Women's Health & Diet Clinic</span>
                 <h1 class="text-4xl md:text-5xl font-serif font-bold mb-4 drop-shadow-lg">여성질환 / 다이어트</h1>
-                <p class="text-gray-200 font-light text-lg tracking-wide">여성의 생애 주기별 맞춤 치료로 건강한 아름다움을 되찾아 드립니다.</p>
+                <p class="text-gray-200 font-light text-lg tracking-wide">여성의 몸을 깊이 이해하고 체질 개선을 통한 건강한 아름다움을 찾아드립니다</p>
             </div>
         </section>
 
+        <!-- 서브페이지 내부 목차 (여성/다이어트용) -->
         <div class="sticky-subnav shadow-sm w-full">
-            <div class="max-w-5xl mx-auto px-4 flex justify-between md:justify-center md:space-x-12 overflow-x-auto whitespace-nowrap scrollbar-hide">
-                <a href="#section-menstrual" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">생리통·생리불순</a>
-                <a href="#section-infertility" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">난임(불임)</a>
-                <a href="#section-postpartum" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">산후관리</a>
+            <div class="max-w-4xl mx-auto px-4 flex justify-between md:justify-center md:space-x-16 overflow-x-auto whitespace-nowrap scrollbar-hide">
+                <a href="#section-infertility" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">불임·산후관리</a>
                 <a href="#section-menopause" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">갱년기</a>
-                <a href="#section-diet" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">한방 다이어트</a>
+                <a href="#section-diet" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">건강한 다이어트</a>
             </div>
         </div>
 
-        <section id="section-menstrual" class="py-24 bg-white relative">
+        <!-- 섹션 1: 불임/산후관리 -->
+        <section id="section-infertility" class="py-24 bg-white relative">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row gap-12 items-center">
                     <div class="md:w-1/2 reveal">
-                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Menstrual Health</span>
-                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">생리통·생리불순</h2>
-                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">진통제에 의존하지 않는<br>근본적인 자궁 환경 개선.</h3>
+                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Postpartum Care</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">불임 / 산후관리</h2>
+                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">
+                            <span class="text-brand-gold">따뜻한 보살핌으로 기력을 회복합니다.</span><br>새 생명의 기쁨과 엄마의 건강을 돕습니다.
+                        </h3>
                         <p class="text-brand-graytext leading-relaxed mb-6 word-keep font-light">
-                            매월 찾아오는 극심한 통증과 불규칙한 주기는 자궁과 난소로 가는 기혈 순환이 원활하지 않다는 몸의 신호입니다.
+                            자궁의 환경을 따뜻하게 개선하여 건강한 임신을 돕고, 출산 후 약해진 기력과 뼈마디를 회복시키는 산후조리 한약과 침구 치료를 체질에 맞추어 처방합니다.
                         </p>
                     </div>
                     <div class="md:w-1/2 reveal delay-200">
                         <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
-                            <img src="https://placehold.co/800x600/F9F7F3/B69A7B?text=Menstrual+Health" alt="생리통 치료" class="w-full h-full object-cover">
+                            <img src="https://placehold.co/800x600/F9F7F3/B69A7B?text=Postpartum+Care" alt="산후관리" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="section-infertility" class="py-24 bg-brand-ivory relative">
+        <!-- 섹션 2: 갱년기 -->
+        <section id="section-menopause" class="py-24 bg-brand-ivory relative">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row-reverse gap-12 items-center">
                     <div class="md:w-1/2 reveal">
-                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Infertility Care</span>
-                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">난임(불임)</h2>
-                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">건강한 새 생명을 맞이하기 위한<br>따뜻하고 비옥한 자궁 환경 조성.</h3>
+                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Menopause</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">갱년기 증후군</h2>
+                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">호르몬 변화로 인한<br>몸과 마음의 불균형을 다스립니다.</h3>
                         <p class="text-brand-graytext leading-relaxed mb-6 word-keep font-light">
-                            기질적인 이상이 없음에도 임신이 잘 되지 않거나 유산이 반복된다면, 자궁의 기능적 저하와 차가운 환경을 먼저 살펴보아야 합니다.
+                            갑작스러운 상열감, 수면장애, 우울감 등 갱년기에 나타나는 다양한 증상을 완화하고, 제2의 인생을 활기차게 시작할 수 있도록 음양의 밸런스를 맞추어 근본적인 체력을 증진시킵니다.
                         </p>
                     </div>
                     <div class="md:w-1/2 reveal delay-200">
                         <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
-                            <img src="https://placehold.co/800x600/FFFFFF/B69A7B?text=Infertility+Care" alt="난임 한방치료" class="w-full h-full object-cover">
+                            <img src="https://placehold.co/800x600/FFFFFF/B69A7B?text=Menopause+Care" alt="갱년기" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="section-postpartum" class="py-24 bg-white relative">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="reveal text-center">
-                    <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Postpartum Care</span>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">산후관리 (산후풍 예방)</h2>
-                </div>
-            </div>
-        </section>
-
-        <section id="section-menopause" class="py-24 bg-brand-ivory relative">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="reveal text-center">
-                    <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Menopause Syndrome</span>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">갱년기 증후군</h2>
-                </div>
-            </div>
-        </section>
-
+        <!-- 섹션 3: 다이어트 -->
         <section id="section-diet" class="py-24 bg-white relative">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="reveal text-center">
-                    <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Herbal Diet</span>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">한방 다이어트</h2>
+            <div class="max-w-6xl mx-auto px-6 text-center">
+                <div class="reveal mb-16">
+                    <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Healthy Diet</span>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-6">건강한 한방 다이어트</h2>
+                    <div class="w-12 h-0.5 bg-brand-gold mx-auto mb-6"></div>
+                    <p class="text-brand-graytext font-light max-w-2xl mx-auto word-keep">
+                        단순히 몸무게를 줄이는 것이 아니라, 신진대사를 촉진하고 체내 독소를 배출하여 요요현상을 방지합니다. 굶지 않고 내 몸에 맞게 가벼워지는 체질 개선 다이어트를 경험해 보세요.
+                    </p>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-400 pt-16 pb-8 border-t border-gray-800">
+    <footer class="bg-brand-dark text-gray-400 pt-16 pb-8 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-6 text-center text-xs text-gray-500 font-light">
             <p>&copy; 2026 Ahn Junseok Oriental Medical Clinic. All rights reserved.</p>
         </div>
