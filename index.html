@@ -22,10 +22,10 @@
                 extend: {
                     colors: {
                         brand: {
-                            gold: '#B69A7B',      /* 우아한 샴페인 골드 */
-                            dark: '#333333',      /* 다크 그레이 */
-                            graytext: '#666666',  /* 본문 서브 텍스트 */
-                            ivory: '#F9F7F3',     /* 따뜻한 아이보리 배경 */
+                            gold: '#B69A7B',
+                            dark: '#333333',
+                            graytext: '#666666',
+                            ivory: '#F9F7F3',
                             lightBorder: '#EFEFEF'
                         }
                     },
@@ -44,9 +44,7 @@
         .word-keep { word-break: keep-all; }
         
         /* Mega Menu Transition */
-        .mega-menu-panel {
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-        }
+        .mega-menu-panel { transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; }
 
         /* Submenu Link Hover */
         .sub-link { transition: all 0.2s ease; }
@@ -64,18 +62,18 @@
         .slide.active { opacity: 1; z-index: 10; }
         .slide-content { transform: translateY(20px); opacity: 0; transition: all 0.8s ease-out 0.3s; }
         .slide.active .slide-content { transform: translateY(0); opacity: 1; }
+
+        /* Line Clamp (미리보기 줄임표) */
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     </style>
 </head>
 <body class="antialiased selection:bg-brand-gold selection:text-white">
 
     <!-- ========================================== -->
-    <!-- HEADER & MEGA MENU (여백 넓힘 적용)        -->
+    <!-- HEADER & MEGA MENU                         -->
     <!-- ========================================== -->
     <div id="header-wrapper" class="fixed top-0 left-0 w-full z-50 group bg-white border-b border-brand-lightBorder shadow-sm">
-        <!-- 좌우 패딩을 넓혀서(px-6 md:px-16) 로고가 왼쪽으로 여유 있게 배치되도록 수정 -->
         <header class="relative z-20 h-24 flex items-center justify-between px-6 md:px-16 max-w-[1700px] mx-auto">
-            
-            <!-- Logo (왼쪽 여유 공간 확보) -->
             <a href="index.html" class="flex items-center gap-3 shrink-0 cursor-pointer">
                 <div class="w-10 h-10 border border-brand-gold flex flex-col items-center justify-center p-1 text-brand-gold font-serif leading-none text-[10px] text-center shrink-0">
                     <div>安漢</div><div>浚醫</div><div>哲院</div>
@@ -86,37 +84,19 @@
                 </div>
             </a>
             
-            <!-- Main Navigation (8개 메뉴 칸 간격 조정) -->
             <nav class="hidden lg:block w-[880px] xl:w-[1050px] mx-auto absolute left-1/2 -translate-x-1/2 h-full">
                 <ul class="grid grid-cols-8 h-full text-center">
-                    <li class="h-full flex items-center justify-center">
-                        <a href="2.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">한의원 소개</a>
-                    </li>
-                    <li class="h-full flex items-center justify-center">
-                        <a href="3.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">목·허리 디스크</a>
-                    </li>
-                    <li class="h-full flex items-center justify-center">
-                        <a href="4.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">이명/난청</a>
-                    </li>
-                    <li class="h-full flex items-center justify-center">
-                        <a href="5.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">여성/다이어트</a>
-                    </li>
-                    <li class="h-full flex items-center justify-center">
-                        <a href="6.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors word-keep">교통사고후유증</a>
-                    </li>
-                    <li class="h-full flex items-center justify-center">
-                        <a href="7.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">맞춤한약</a>
-                    </li>
-                    <li class="h-full flex items-center justify-center">
-                        <a href="notice.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">공지사항</a>
-                    </li>
-                    <li class="h-full flex items-center justify-center">
-                        <a href="column.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">칼럼</a>
-                    </li>
+                    <li class="h-full flex items-center justify-center"><a href="2.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">한의원 소개</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="3.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">목·허리 디스크</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="4.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">이명/난청</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="5.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">여성/다이어트</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="6.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors word-keep">교통사고후유증</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="7.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">맞춤한약</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="notice.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">공지사항</a></li>
+                    <li class="h-full flex items-center justify-center"><a href="column.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">칼럼</a></li>
                 </ul>
             </nav>
 
-            <!-- Right Utils -->
             <div class="flex items-center gap-4 shrink-0">
                 <button class="w-10 h-10 rounded-full bg-brand-ivory text-brand-dark hover:bg-brand-gold hover:text-white flex items-center justify-center transition-colors shadow-sm">
                     <i class="fas fa-bars text-lg"></i>
@@ -124,7 +104,6 @@
             </div>
         </header>
 
-        <!-- Mega Menu Dropdown -->
         <div class="mega-menu-panel absolute top-24 left-0 w-full bg-white z-10 border-t border-brand-lightBorder shadow-xl pb-12 pt-8 opacity-0 invisible -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
             <div class="w-[880px] xl:w-[1050px] mx-auto grid grid-cols-8 text-center">
                 <ul class="space-y-4 text-left px-2 border-r border-gray-100">
@@ -167,9 +146,7 @@
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- FLOATING RIGHT MENU                        -->
-    <!-- ========================================== -->
+    <!-- FLOATING RIGHT MENU -->
     <div class="fixed right-6 top-1/2 -translate-y-1/2 z-40 bg-white/90 backdrop-blur-md rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 p-2 flex flex-col gap-2">
         <a href="#" class="w-14 h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
             <div class="w-6 h-6 bg-[#03C75A] text-white rounded font-bold text-[11px] flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">N</div>
@@ -194,8 +171,6 @@
         <!-- 1. HERO SLIDER SECTION                     -->
         <!-- ========================================== -->
         <section class="relative w-full h-[calc(100vh-6rem)] overflow-hidden bg-brand-ivory" id="hero-slider">
-            
-            <!-- Slide 1 -->
             <div class="slide active">
                 <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/F9F7F3/B69A7B?text=Bright+Warm+Clinic+Interior')] bg-cover bg-center"></div>
                 <div class="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent"></div>
@@ -214,7 +189,6 @@
                 </div>
             </div>
 
-            <!-- Slide 2 -->
             <div class="slide">
                 <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/F5F5F5/888888?text=Premium+Herbal+Medicine')] bg-cover bg-center"></div>
                 <div class="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent"></div>
@@ -233,7 +207,6 @@
                 </div>
             </div>
 
-            <!-- Slider Controls -->
             <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-3">
                 <button class="w-3 h-3 rounded-full bg-brand-gold/40 hover:bg-brand-gold transition-colors" onclick="setSlide(0)"></button>
                 <button class="w-3 h-3 rounded-full bg-brand-gold/40 hover:bg-brand-gold transition-colors" onclick="setSlide(1)"></button>
@@ -248,71 +221,34 @@
         </section>
 
         <!-- ========================================== -->
-        <!-- 2. CORE SERVICES                           -->
+        <!-- 2. LATEST HEALTH COLUMNS (최신 건강 칼럼) -->
         <!-- ========================================== -->
         <section class="py-24 bg-white relative">
             <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16 reveal">
-                    <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Core Services</span>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-6">주요 진료과목</h2>
-                    <div class="w-12 h-0.5 bg-brand-gold mx-auto"></div>
+                <!-- 제목 영역 -->
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                    <div>
+                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Health Column</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">안준석 원장의 건강 칼럼</h2>
+                        <p class="text-brand-graytext">유익한 한의학 건강 정보와 치료 사례를 전해드립니다.</p>
+                    </div>
+                    <a href="column.html" class="hidden md:inline-flex items-center text-brand-dark hover:text-brand-gold transition-colors font-medium mb-2">
+                        칼럼 전체보기 <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-                    <!-- Card 1 -->
-                    <a href="3.html" class="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.04)] hover:shadow-[0_10px_40px_rgb(182,154,123,0.15)] transition-all duration-300 reveal border border-gray-50 block">
-                        <div class="overflow-hidden relative h-64 bg-brand-ivory">
-                            <img src="https://placehold.co/400x300/F9F7F3/B69A7B?text=Pain+Clinic" alt="통증클리닉" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        </div>
-                        <div class="p-8 text-center">
-                            <div class="w-12 h-12 mx-auto bg-brand-ivory rounded-full flex items-center justify-center text-brand-gold mb-4 group-hover:bg-brand-gold group-hover:text-white transition-colors">
-                                <i class="fas fa-band-aid text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3 text-brand-dark group-hover:text-brand-gold transition-colors">통증클리닉</h3>
-                            <p class="text-brand-graytext text-sm leading-relaxed word-keep">수술 없는 근본 치료, 도침을 활용하여 만성 통증을 다스립니다.</p>
-                        </div>
-                    </a>
-
-                    <!-- Card 2 -->
-                    <a href="3.html#section-chuna" class="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.04)] hover:shadow-[0_10px_40px_rgb(182,154,123,0.15)] transition-all duration-300 reveal delay-100 border border-gray-50 block">
-                        <div class="overflow-hidden relative h-64 bg-brand-ivory">
-                            <img src="https://placehold.co/400x300/F9F7F3/B69A7B?text=Chuna+Therapy" alt="추나요법" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        </div>
-                        <div class="p-8 text-center">
-                            <div class="w-12 h-12 mx-auto bg-brand-ivory rounded-full flex items-center justify-center text-brand-gold mb-4 group-hover:bg-brand-gold group-hover:text-white transition-colors">
-                                <i class="fas fa-bone text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3 text-brand-dark group-hover:text-brand-gold transition-colors">추나요법</h3>
-                            <p class="text-brand-graytext text-sm leading-relaxed word-keep">비뚤어진 척추와 관절의 불균형을 한의사가 직접 바로잡습니다.</p>
-                        </div>
-                    </a>
-
-                    <!-- Card 3 -->
-                    <a href="4.html" class="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.04)] hover:shadow-[0_10px_40px_rgb(182,154,123,0.15)] transition-all duration-300 reveal delay-200 border border-gray-50 block">
-                        <div class="overflow-hidden relative h-64 bg-brand-ivory">
-                            <img src="https://placehold.co/400x300/F9F7F3/B69A7B?text=Tinnitus" alt="이명/구안와사" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        </div>
-                        <div class="p-8 text-center">
-                            <div class="w-12 h-12 mx-auto bg-brand-ivory rounded-full flex items-center justify-center text-brand-gold mb-4 group-hover:bg-brand-gold group-hover:text-white transition-colors">
-                                <i class="fas fa-ear-listen text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3 text-brand-dark group-hover:text-brand-gold transition-colors">이명/구안와사</h3>
-                            <p class="text-brand-graytext text-sm leading-relaxed word-keep">손상된 신경계의 안정을 돕고 안면 기혈 순환을 촉진합니다.</p>
-                        </div>
-                    </a>
-
-                    <!-- Card 4 -->
-                    <a href="5.html" class="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.04)] hover:shadow-[0_10px_40px_rgb(182,154,123,0.15)] transition-all duration-300 reveal delay-300 border border-gray-50 block">
-                        <div class="overflow-hidden relative h-64 bg-brand-ivory">
-                            <img src="https://placehold.co/400x300/F9F7F3/B69A7B?text=Diet" alt="다이어트" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        </div>
-                        <div class="p-8 text-center">
-                            <div class="w-12 h-12 mx-auto bg-brand-ivory rounded-full flex items-center justify-center text-brand-gold mb-4 group-hover:bg-brand-gold group-hover:text-white transition-colors">
-                                <i class="fas fa-leaf text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3 text-brand-dark group-hover:text-brand-gold transition-colors">한방 다이어트</h3>
-                            <p class="text-brand-graytext text-sm leading-relaxed word-keep">건강을 해치지 않는 체질 맞춤 처방으로 요요 없는 감량을 돕습니다.</p>
-                        </div>
+                <!-- 데이터베이스에서 불러와서 카드를 렌더링 할 영역 -->
+                <div id="latest-columns-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                    <!-- 로딩 중 표시 -->
+                    <div class="col-span-1 md:col-span-2 lg:col-span-4 text-center text-gray-400 py-12">
+                        <i class="fa-solid fa-spinner fa-spin mr-2"></i>최신 칼럼을 불러오는 중입니다...
+                    </div>
+                </div>
+                
+                <!-- 모바일용 전체보기 버튼 -->
+                <div class="mt-10 text-center md:hidden reveal">
+                    <a href="column.html" class="inline-flex items-center justify-center bg-brand-ivory text-brand-dark px-8 py-3 rounded-full hover:bg-brand-gold hover:text-white transition-colors">
+                        칼럼 전체보기 <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
             </div>
@@ -321,7 +257,7 @@
         <!-- ========================================== -->
         <!-- 3. PHILOSOPHY / TRUST                      -->
         <!-- ========================================== -->
-        <section class="py-24 bg-brand-ivory relative overflow-hidden">
+        <section class="py-24 bg-brand-ivory relative overflow-hidden border-t border-brand-gold/10">
             <div class="absolute -right-40 -top-40 w-96 h-96 bg-white rounded-full opacity-50 blur-3xl"></div>
             
             <div class="max-w-7xl mx-auto px-6 relative z-10">
@@ -533,6 +469,7 @@
 
     <!-- Scripts -->
     <script>
+        // 슬라이더 스크립트
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.absolute.bottom-10 button');
@@ -557,48 +494,93 @@
             });
         }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateSlider();
-            resetInterval();
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateSlider();
-            resetInterval();
-        }
-
-        function setSlide(index) {
-            currentSlide = index;
-            updateSlider();
-            resetInterval();
-        }
-
-        function startInterval() {
-            slideInterval = setInterval(nextSlide, 5000);
-        }
-
-        function resetInterval() {
-            clearInterval(slideInterval);
-            startInterval();
-        }
+        function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; updateSlider(); resetInterval(); }
+        function prevSlide() { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateSlider(); resetInterval(); }
+        function setSlide(index) { currentSlide = index; updateSlider(); resetInterval(); }
+        function startInterval() { slideInterval = setInterval(nextSlide, 5000); }
+        function resetInterval() { clearInterval(slideInterval); startInterval(); }
 
         updateSlider();
         startInterval();
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+        // 메인 스크롤 애니메이션 옵저버
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
 
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ★ 메인 화면 최신 칼럼 자동 불러오기 스크립트 추가 ★
+        document.addEventListener('DOMContentLoaded', async () => {
+            const listContainer = document.getElementById('latest-columns-list');
+            if(!listContainer) return;
+
+            try {
+                const response = await fetch('/api/posts');
+                const posts = await response.json();
+                
+                // 공개된 글 중 최신 4개만 필터링
+                const publishedPosts = posts.filter(post => post.is_published === 1).slice(0, 4);
+
+                if (!publishedPosts || publishedPosts.length === 0) {
+                    listContainer.innerHTML = `<div class="col-span-1 md:col-span-2 lg:col-span-4 text-center text-gray-500 py-12 bg-brand-ivory rounded-2xl">아직 등록된 칼럼이 없습니다.</div>`;
+                    return;
+                }
+
+                listContainer.innerHTML = '';
+
+                const categoryMap = { 'spine': '척추/관절', 'tinnitus': '이명/난청', 'diet': '여성/다이어트', 'traffic': '교통사고' };
+
+                publishedPosts.forEach((post, index) => {
+                    const catName = categoryMap[post.category] || '건강칼럼';
+                    const date = new Date(post.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\.\s/g, '.').replace(/\.$/, '');
+
+                    // 본문 이미지 추출 및 텍스트 요약
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = post.content;
+                    const firstImg = tempDiv.querySelector('img');
+                    const imgSrc = firstImg ? firstImg.src : 'https://placehold.co/400x300/F9F7F3/B69A7B?text=Ahn+Clinic';
+                    
+                    const textContent = tempDiv.textContent || tempDiv.innerText || "";
+                    const preview = textContent.length > 50 ? textContent.substring(0, 50) + '...' : textContent;
+
+                    // 카드 딜레이 애니메이션 (순서대로 샥 나타나게 설정)
+                    const delayClass = index === 0 ? '' : `delay-${index * 100}`;
+
+                    const card = document.createElement('a');
+                    card.href = `column-view.html?id=${post.id}`;
+                    card.className = `group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.04)] hover:shadow-[0_10px_40px_rgb(182,154,123,0.15)] transition-all duration-300 reveal ${delayClass} border border-gray-50 flex flex-col h-full`;
+                    
+                    card.innerHTML = `
+                        <div class="overflow-hidden relative h-48 bg-brand-ivory shrink-0">
+                            <img src="${imgSrc}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="칼럼 썸네일">
+                            <span class="absolute top-4 left-4 bg-brand-gold text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm z-10">${catName}</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <h3 class="text-lg font-bold mb-3 text-brand-dark group-hover:text-brand-gold transition-colors line-clamp-2">${post.title}</h3>
+                            <p class="text-brand-graytext text-sm leading-relaxed word-keep line-clamp-2 flex-1 mb-4">${preview}</p>
+                            <div class="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
+                                <span class="text-xs text-gray-400">${date}</span>
+                                <span class="text-xs text-brand-gold font-medium group-hover:underline">읽어보기</span>
+                            </div>
+                        </div>
+                    `;
+                    listContainer.appendChild(card);
+                });
+                
+                // 동적으로 불러온 카드들에 애니메이션(reveal) 효과 적용
+                listContainer.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            } catch (error) {
+                console.error(error);
+                listContainer.innerHTML = `<div class="col-span-1 md:col-span-2 lg:col-span-4 text-center text-red-500 py-12">칼럼을 불러오는 중 오류가 발생했습니다.</div>`;
+            }
         });
     </script>
 </body>
