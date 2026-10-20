@@ -3,584 +3,517 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>안준석 한의원 - Premium Clinic</title>
+    <title>안준석 한의원 - 바른 진료의 시작</title>
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <!-- Google Fonts -->
+    <!-- 폰트 로드 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Tailwind CSS 로드 및 커스텀 설정 -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['Pretendard', 'sans-serif'],
+                        serif: ['"Noto Serif KR"', 'serif'],
+                    },
                     colors: {
                         brand: {
-                            gold: '#B69A7B',
-                            dark: '#333333',
-                            graytext: '#666666',
-                            ivory: '#F9F7F3',
-                            lightBorder: '#EFEFEF'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['"Noto Sans KR"', 'sans-serif'],
-                        serif: ['"Nanum Myeongjo"', 'serif'],
+                            bg: '#FAF9F7',       /* 따뜻한 아이보리 배경 */
+                            accent: '#A3845E',   /* 브론즈 골드 포인트 */
+                            accentHover: '#8A6D4B', /* 브론즈 골드 호버 (조금 더 어두운 톤) */
+                            text: '#2A2A2A',     /* 다크 차콜 텍스트 */
+                            light: '#E6E2D8',    /* 부드러운 경계선 베이지 */
+                            white: '#FFFFFF'
+                        },
+                        naver: '#03C75A',
+                        kakao: '#FEE500'
                     }
                 }
             }
         }
     </script>
-
     <style>
-        body { font-family: 'Noto Sans KR', sans-serif; background-color: #ffffff; overflow-x: hidden; color: #333; }
-        .font-serif { font-family: 'Nanum Myeongjo', serif; }
-        .word-keep { word-break: keep-all; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Pretendard', sans-serif; background-color: #FAF9F7; color: #2A2A2A; }
         
-        /* Mega Menu Transition */
-        .mega-menu-panel { transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; }
-
-        /* Submenu Link Hover */
-        .sub-link { transition: all 0.2s ease; }
-        .sub-link:hover { color: #B69A7B; font-weight: 500; transform: translateX(5px); }
+        /* 탭 버튼 스타일 */
+        .tab-btn {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-btn.active {
+            background-color: #A3845E;
+            color: #FFFFFF;
+            border-color: #A3845E;
+            box-shadow: 0 10px 15px -3px rgba(163, 132, 94, 0.3);
+        }
+        .tab-btn.inactive {
+            background-color: #FFFFFF;
+            color: #666;
+            border: 1px solid #E6E2D8;
+        }
+        .tab-btn.inactive:hover {
+            border-color: #A3845E;
+            color: #A3845E;
+        }
         
-        /* Scroll Reveal Animations */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .delay-100 { transition-delay: 100ms; }
-        .delay-200 { transition-delay: 200ms; }
-        .delay-300 { transition-delay: 300ms; }
+        /* 페이드 애니메이션 */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        /* Slider Animations */
-        .slide { opacity: 0; transition: opacity 1s ease-in-out; position: absolute; inset: 0; z-index: 0; }
-        .slide.active { opacity: 1; z-index: 10; }
-        .slide-content { transform: translateY(20px); opacity: 0; transition: all 0.8s ease-out 0.3s; }
-        .slide.active .slide-content { transform: translateY(0); opacity: 1; }
-
-        /* Line Clamp (미리보기 줄임표) */
-        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        /* 히어로 배경 패턴 (은은한 골드 도트) */
+        .hero-pattern {
+            background-image: radial-gradient(circle at 100% 100%, rgba(163, 132, 94, 0.08) 0, rgba(163, 132, 94, 0.08) 10px, transparent 10px, transparent 20px);
+            background-size: 20px 20px;
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-gold selection:text-white">
+<body class="antialiased relative">
 
-    <!-- ========================================== -->
-    <!-- HEADER & MEGA MENU                         -->
-    <!-- ========================================== -->
-    <div id="header-wrapper" class="fixed top-0 left-0 w-full z-50 group bg-white border-b border-brand-lightBorder shadow-sm">
-        <header class="relative z-20 h-24 flex items-center justify-between px-6 md:px-16 max-w-[1700px] mx-auto">
-            <a href="index.html" class="flex items-center gap-3 shrink-0 cursor-pointer">
-                <div class="w-10 h-10 border border-brand-gold flex flex-col items-center justify-center p-1 text-brand-gold font-serif leading-none text-[10px] text-center shrink-0">
-                    <div>安漢</div><div>浚醫</div><div>哲院</div>
+    <!-- 1. 헤더 (GNB) -->
+    <header class="sticky top-0 w-full bg-brand-bg/95 backdrop-blur-md shadow-sm z-50 border-b border-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- 로고 -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="flex flex-col">
+                        <span class="text-[10px] md:text-xs text-brand-accent font-serif tracking-widest mb-0.5">安漢 浚醫 哲院</span>
+                        <span class="text-xl md:text-2xl font-bold text-brand-text tracking-tight">안준석 한의원</span>
+                    </div>
                 </div>
-                <div class="flex flex-col justify-center">
-                    <span class="text-brand-dark text-xl xl:text-2xl font-serif font-bold tracking-widest">안준석 한의원</span>
-                    <span class="text-[9px] xl:text-[10px] text-brand-gold tracking-wide mt-0.5">Ahn Junseok Oriental Clinic</span>
+                
+                <!-- GNB 메뉴 (데스크탑) -->
+                <nav class="hidden lg:flex space-x-10">
+                    <a href="#about" class="text-brand-text hover:text-brand-accent font-medium transition-colors">한의원 소개</a>
+                    <a href="#symptoms" class="text-brand-text hover:text-brand-accent font-medium transition-colors">진료 안내</a>
+                    <a href="#guide" class="text-brand-text hover:text-brand-accent font-medium transition-colors">첫 방문 안내</a>
+                    <a href="#columns" class="text-brand-text hover:text-brand-accent font-medium transition-colors">건강 칼럼</a>
+                    <a href="#location" class="text-brand-text hover:text-brand-accent font-medium transition-colors">오시는 길</a>
+                </nav>
+                
+                <!-- 우측 버튼 -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="#" class="bg-kakao text-[#3A1D1D] px-4 py-2 rounded-md text-sm font-bold hover:bg-[#E5CE00] transition-colors shadow-sm flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c-4.97 0-9 3.185-9 7.115 0 2.558 1.707 4.79 4.254 5.967-.184.664-.668 2.455-.717 2.65-.06.24.084.237.18.176.126-.08 2.008-1.328 2.846-1.895.776.216 1.597.332 2.437.332 4.97 0 9-3.185 9-7.115C21 7.185 16.97 4 12 4z"/></svg>
+                        카톡상담
+                    </a>
+                    <a href="#" class="bg-brand-text text-brand-bg px-5 py-2 rounded-md text-sm font-bold hover:bg-brand-accent transition-colors shadow">
+                        예약하기
+                    </a>
                 </div>
-            </a>
-            
-            <nav class="hidden lg:block w-[880px] xl:w-[1050px] mx-auto absolute left-1/2 -translate-x-1/2 h-full">
-                <ul class="grid grid-cols-8 h-full text-center">
-                    <li class="h-full flex items-center justify-center"><a href="2.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">한의원 소개</a></li>
-                    <li class="h-full flex items-center justify-center"><a href="3.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">목·허리 디스크</a></li>
-                    <li class="h-full flex items-center justify-center"><a href="4.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">이명/난청</a></li>
-                    <li class="h-full flex items-center justify-center"><a href="5.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">여성/다이어트</a></li>
-                    <li class="h-full flex items-center justify-center"><a href="6.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors word-keep">교통사고후유증</a></li>
-                    <li class="h-full flex items-center justify-center"><a href="7.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">맞춤한약</a></li>
-                    <li class="h-full flex items-center justify-center"><a href="notice.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">공지사항</a></li>
-                    <li class="h-full flex items-center justify-center"><a href="column.html" class="text-brand-dark hover:text-brand-gold text-[13px] xl:text-[15px] font-medium w-full h-full flex items-center justify-center transition-colors">칼럼</a></li>
-                </ul>
-            </nav>
 
-            <div class="flex items-center gap-4 shrink-0">
-                <button class="w-10 h-10 rounded-full bg-brand-ivory text-brand-dark hover:bg-brand-gold hover:text-white flex items-center justify-center transition-colors shadow-sm">
-                    <i class="fas fa-bars text-lg"></i>
-                </button>
-            </div>
-        </header>
-
-        <div class="mega-menu-panel absolute top-24 left-0 w-full bg-white z-10 border-t border-brand-lightBorder shadow-xl pb-12 pt-8 opacity-0 invisible -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
-            <div class="w-[880px] xl:w-[1050px] mx-auto grid grid-cols-8 text-center">
-                <ul class="space-y-4 text-left px-2 border-r border-gray-100">
-                    <li><a href="2.html" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">인사말</a></li>
-                    <li><a href="2.html#section-doctor" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">의료진 소개</a></li>
-                    <li><a href="2.html#section-info" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">진료안내</a></li>
-                    <li><a href="2.html#section-location" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">오시는길</a></li>
-                </ul>
-                <ul class="space-y-4 text-left px-2 border-r border-gray-100">
-                    <li><a href="3.html#section-acupo" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">침도요법</a></li>
-                    <li><a href="3.html#section-chuna" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">추나&골타</a></li>
-                    <li><a href="3.html#section-disc" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">협착증/디스크</a></li>
-                    <li><a href="3.html#section-shoulder" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">오십견</a></li>
-                </ul>
-                <ul class="space-y-4 text-left px-2 border-r border-gray-100">
-                    <li><a href="4.html#section-tinnitus" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">이명</a></li>
-                    <li><a href="4.html#section-hearing-loss" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">돌발성 난청</a></li>
-                    <li><a href="4.html#section-facial-palsy" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">구안와사</a></li>
-                </ul>
-                <ul class="space-y-4 text-left px-2 border-r border-gray-100">
-                    <li><a href="5.html#section-infertility" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">불임/산후관리</a></li>
-                    <li><a href="5.html#section-menopause" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">갱년기</a></li>
-                    <li><a href="5.html#section-diet" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">다이어트</a></li>
-                </ul>
-                <ul class="space-y-4 text-left px-2 border-r border-gray-100">
-                    <li><a href="6.html#section-symptoms" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">교통사고증상</a></li>
-                    <li><a href="6.html#section-insurance" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">자동차보험</a></li>
-                </ul>
-                <ul class="space-y-4 text-left px-2 border-r border-gray-100">
-                    <li><a href="7.html#section-custom" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">개별맞춤한약</a></li>
-                    <li><a href="7.html#section-gongjin" class="sub-link text-xs xl:text-sm text-gray-500 block w-full">공진단</a></li>
-                </ul>
-                <ul class="space-y-4 text-left px-2 border-r border-gray-100">
-                    <li><a href="notice.html" class="sub-link text-xs xl:text-sm text-brand-gold font-bold block w-full">공지사항 보기</a></li>
-                </ul>
-                <ul class="space-y-4 text-left px-2">
-                    <li><a href="column.html" class="sub-link text-xs xl:text-sm text-brand-gold font-bold block w-full">건강칼럼 보기</a></li>
-                </ul>
+                <!-- 모바일 메뉴 버튼 -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-brand-text hover:text-brand-accent focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+    </header>
 
-    <!-- FLOATING RIGHT MENU -->
-    <div class="fixed right-6 top-1/2 -translate-y-1/2 z-40 bg-white/90 backdrop-blur-md rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 p-2 flex flex-col gap-2">
-        <a href="#" class="w-14 h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
-            <div class="w-6 h-6 bg-[#03C75A] text-white rounded font-bold text-[11px] flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">N</div>
-            <span class="text-[10px] text-gray-600 font-medium">예약</span>
-        </a>
-        <div class="w-8 h-px bg-gray-200 mx-auto my-1"></div>
-        <a href="#" class="w-14 h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
-            <i class="fas fa-comment-dots text-yellow-400 text-xl mb-1 group-hover:scale-110 transition-transform"></i>
-            <span class="text-[10px] text-gray-600 font-medium">카톡상담</span>
-        </a>
-        <div class="w-8 h-px bg-gray-200 mx-auto my-1"></div>
-        <a href="#section-location" class="w-14 h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
-            <i class="fas fa-map-marker-alt text-brand-gold text-xl mb-1 group-hover:scale-110 transition-transform"></i>
-            <span class="text-[10px] text-gray-600 font-medium">오시는길</span>
-        </a>
-    </div>
+    <!-- 2. 메인 배너 (히어로 섹션) -->
+    <section class="relative pt-24 pb-24 md:pt-40 md:pb-40 bg-brand-white overflow-hidden hero-pattern border-b border-brand-light">
+        <!-- 은은한 원형 배경 장식 (아이보리 톤) -->
+        <div class="absolute -right-20 -top-20 w-96 h-96 bg-brand-bg rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-20 bottom-0 w-80 h-80 bg-brand-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
+            <h1 class="text-4xl md:text-6xl font-serif font-bold text-brand-text leading-tight mb-8">
+                당신의 일상을 되찾는<br>
+                <span class="text-brand-accent">가장 바른 진료의 시작</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-12 leading-relaxed font-light max-w-2xl">
+                눈에 보이는 증상 너머, 진짜 원인을 찾습니다.<br>
+                안준석한의원은 당신만의 속도에 맞춘 근본적인 치료를 약속합니다.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#symptoms" class="inline-flex justify-center items-center bg-brand-accent text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-brand-accentHover transition-colors shadow-lg">
+                    내 증상 찾아보기
+                </a>
+                <a href="#about" class="inline-flex justify-center items-center bg-brand-white text-brand-text border-2 border-brand-light px-8 py-4 rounded-lg font-bold text-lg hover:border-brand-accent hover:text-brand-accent transition-colors">
+                    진료 철학 보기
+                </a>
+            </div>
+        </div>
+    </section>
 
-    <!-- MAIN CONTENT -->
-    <main class="pt-24">
-
-        <!-- ========================================== -->
-        <!-- 1. HERO SLIDER SECTION                     -->
-        <!-- ========================================== -->
-        <section class="relative w-full h-[calc(100vh-6rem)] overflow-hidden bg-brand-ivory" id="hero-slider">
-            <div class="slide active">
-                <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/F9F7F3/B69A7B?text=Bright+Warm+Clinic+Interior')] bg-cover bg-center"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent"></div>
-                <div class="relative z-10 h-full flex items-center px-8 md:px-24 max-w-7xl mx-auto">
-                    <div class="slide-content max-w-2xl">
-                        <span class="text-brand-gold font-bold tracking-widest text-sm mb-6 block uppercase">Ahn Junseok Clinic</span>
-                        <h1 class="text-5xl md:text-6xl font-serif text-brand-dark mb-6 leading-tight word-keep font-light">
-                            따뜻한 진심이 닿는 곳,<br>
-                            <strong class="font-bold text-brand-gold">바른 진료</strong>를 약속합니다.
-                        </h1>
-                        <p class="text-brand-graytext text-lg font-light mb-10 leading-relaxed">눈에 보이는 통증 너머, 보이지 않는 근본 원인을 다스립니다.<br>20년 임상 노하우로 편안한 일상을 되찾아 드립니다.</p>
-                        <a href="2.html" class="inline-flex items-center justify-center bg-brand-dark text-white px-8 py-4 text-sm tracking-widest hover:bg-brand-gold transition-colors duration-300">
-                            진료안내 보기 <i class="fas fa-arrow-right ml-3"></i>
-                        </a>
-                    </div>
-                </div>
+    <!-- 3. 진료 기준 섹션 -->
+    <section id="about" class="py-24 bg-brand-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-brand-accent font-bold tracking-widest text-sm uppercase">Director's Standard</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-text mt-3 mb-4">안준석 원장의 진료 기준</h2>
+                <div class="w-12 h-1 bg-brand-accent mx-auto mb-6"></div>
+                <p class="text-gray-600 text-lg">환자분들이 믿고 선택하실 수 있도록, 한의원의 중심 원칙을 공개합니다.</p>
             </div>
 
-            <div class="slide">
-                <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/F5F5F5/888888?text=Premium+Herbal+Medicine')] bg-cover bg-center"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent"></div>
-                <div class="relative z-10 h-full flex items-center px-8 md:px-24 max-w-7xl mx-auto">
-                    <div class="slide-content max-w-2xl">
-                        <span class="text-brand-gold font-bold tracking-widest text-sm mb-6 block uppercase">Premium Herbal Medicine</span>
-                        <h1 class="text-5xl md:text-6xl font-serif text-brand-dark mb-6 leading-tight word-keep font-light">
-                            자연을 닮은 처방,<br>
-                            <strong class="font-bold text-brand-gold">1:1 맞춤 한약</strong>
-                        </h1>
-                        <p class="text-brand-graytext text-lg font-light mb-10 leading-relaxed">엄선된 청정 한약재만을 고집합니다.<br>환자 개개인의 체질에 맞춘 근본적인 치유를 경험하세요.</p>
-                        <a href="7.html" class="inline-flex items-center justify-center bg-brand-gold text-white px-8 py-4 text-sm tracking-widest hover:bg-brand-dark transition-colors duration-300">
-                            맞춤한약 안내 <i class="fas fa-arrow-right ml-3"></i>
-                        </a>
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center lg:items-stretch">
+                <!-- 좌측: 사진/영상 영역 -->
+                <div class="w-full lg:w-5/12 relative">
+                    <div class="bg-brand-white rounded-2xl aspect-[3/4] flex items-center justify-center relative overflow-hidden shadow-xl border border-brand-light">
+                        <img src="https://placehold.co/600x800/EAE6DF/A3845E?text=Director+Portrait" alt="안준석 원장" class="w-full h-full object-cover opacity-90">
+                        <!-- 영상 플레이 버튼 장식 -->
+                        <div class="absolute bottom-8 right-8 bg-brand-white/95 backdrop-blur p-4 rounded-xl shadow-lg border border-brand-light flex items-center gap-4">
+                            <div class="w-12 h-12 bg-brand-bg rounded-full flex items-center justify-center text-brand-accent border border-brand-light">
+                                <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                            <div class="text-sm font-bold text-brand-text">환자의 이야기에<br>답이 있습니다</div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-3">
-                <button class="w-3 h-3 rounded-full bg-brand-gold/40 hover:bg-brand-gold transition-colors" onclick="setSlide(0)"></button>
-                <button class="w-3 h-3 rounded-full bg-brand-gold/40 hover:bg-brand-gold transition-colors" onclick="setSlide(1)"></button>
-            </div>
-            
-            <button class="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center text-brand-dark/50 hover:text-brand-gold transition-colors text-2xl" onclick="prevSlide()">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center text-brand-dark/50 hover:text-brand-gold transition-colors text-2xl" onclick="nextSlide()">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </section>
-
-        <!-- ========================================== -->
-        <!-- 2. LATEST HEALTH COLUMNS (최신 건강 칼럼) -->
-        <!-- ========================================== -->
-        <section class="py-24 bg-white relative">
-            <div class="max-w-7xl mx-auto px-6">
-                <!-- 제목 영역 -->
-                <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
-                    <div>
-                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Health Column</span>
-                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">안준석 원장의 건강 칼럼</h2>
-                        <p class="text-brand-graytext">유익한 한의학 건강 정보와 치료 사례를 전해드립니다.</p>
-                    </div>
-                    <a href="column.html" class="hidden md:inline-flex items-center text-brand-dark hover:text-brand-gold transition-colors font-medium mb-2">
-                        칼럼 전체보기 <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
-                </div>
-                
-                <!-- 데이터베이스에서 불러와서 카드를 렌더링 할 영역 -->
-                <div id="latest-columns-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-                    <!-- 로딩 중 표시 -->
-                    <div class="col-span-1 md:col-span-2 lg:col-span-4 text-center text-gray-400 py-12">
-                        <i class="fa-solid fa-spinner fa-spin mr-2"></i>최신 칼럼을 불러오는 중입니다...
-                    </div>
-                </div>
-                
-                <!-- 모바일용 전체보기 버튼 -->
-                <div class="mt-10 text-center md:hidden reveal">
-                    <a href="column.html" class="inline-flex items-center justify-center bg-brand-ivory text-brand-dark px-8 py-3 rounded-full hover:bg-brand-gold hover:text-white transition-colors">
-                        칼럼 전체보기 <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ========================================== -->
-        <!-- 3. PHILOSOPHY / TRUST                      -->
-        <!-- ========================================== -->
-        <section class="py-24 bg-brand-ivory relative overflow-hidden border-t border-brand-gold/10">
-            <div class="absolute -right-40 -top-40 w-96 h-96 bg-white rounded-full opacity-50 blur-3xl"></div>
-            
-            <div class="max-w-7xl mx-auto px-6 relative z-10">
-                <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-                    <div class="lg:w-1/2 reveal">
-                        <div class="text-brand-gold mb-6"><i class="fas fa-quote-left text-3xl opacity-60"></i></div>
-                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Doctor's Philosophy</span>
-                        <h2 class="text-4xl lg:text-5xl font-serif text-brand-dark leading-tight mb-8 font-light word-keep">
-                            환자의 아픔을 공감하는<br>
-                            <strong class="font-bold text-brand-gold">따뜻한 의술</strong>을 펼칩니다.
-                        </h2>
-                        <div class="space-y-6 text-brand-graytext text-lg leading-relaxed font-light mb-10">
-                            <p>
-                                "2003년부터 지금까지, 영등포에서 변함없이 진료해왔습니다. 20년의 세월 동안 쌓아온 임상 노하우와 환자를 향한 진심을 담아, 언제나 정직하고 바른 진료만을 약속드립니다."
-                            </p>
-                            <p>
-                                일시적인 통증 완화가 아닌, 스스로 자생할 수 있는 건강한 몸을 찾아드리겠습니다. 병원에 들어오시는 순간부터 나가는 순간까지 편안함을 느끼실 수 있도록 정성을 다하겠습니다.
+                <!-- 우측: 3가지 진료 원칙 -->
+                <div class="w-full lg:w-7/12 space-y-6 flex flex-col justify-center">
+                    <!-- 원칙 1 -->
+                    <div class="bg-brand-white border border-brand-light rounded-2xl p-6 md:p-8 flex gap-5 shadow-sm hover:shadow-md hover:border-brand-accent/50 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute left-0 top-0 h-full w-1 bg-brand-accent transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
+                        <div class="flex-shrink-0 z-10">
+                            <div class="w-12 h-12 rounded-full bg-brand-bg text-brand-accent border border-brand-light flex items-center justify-center font-bold text-xl">1</div>
+                        </div>
+                        <div class="z-10">
+                            <h3 class="text-xl font-bold text-brand-text mb-3 group-hover:text-brand-accent transition-colors">환자가 처음 오면 무엇부터 확인하는가</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                단순히 아픈 부위만 보지 않습니다. 언제부터 아팠는지, 어떤 자세에서 불편한지, 평소 수면이나 소화 상태는 어떤지 <strong class="text-brand-text bg-brand-accent/10 px-1 font-semibold">전반적인 일상의 밸런스를 가장 먼저 체크</strong>합니다.
                             </p>
                         </div>
-                        
-                        <div class="flex items-end gap-4">
-                            <div>
-                                <p class="text-brand-graytext text-sm mb-1">안준석 한의원 대표원장</p>
-                                <p class="text-2xl font-serif text-brand-dark"><strong class="font-bold">안 준 석</strong></p>
-                            </div>
-                            <img src="https://placehold.co/120x50/F9F7F3/B69A7B?text=Signature" alt="서명" class="h-10 opacity-80">
+                    </div>
+                    
+                    <!-- 원칙 2 -->
+                    <div class="bg-brand-white border border-brand-light rounded-2xl p-6 md:p-8 flex gap-5 shadow-sm hover:shadow-md hover:border-brand-accent/50 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute left-0 top-0 h-full w-1 bg-brand-accent transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
+                        <div class="flex-shrink-0 z-10">
+                            <div class="w-12 h-12 rounded-full bg-brand-bg text-brand-accent border border-brand-light flex items-center justify-center font-bold text-xl">2</div>
+                        </div>
+                        <div class="z-10">
+                            <h3 class="text-xl font-bold text-brand-text mb-3 group-hover:text-brand-accent transition-colors">치료 방법을 결정할 때 고려하는 것</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                환자분의 직업적 특성과 회복에 투자할 수 있는 시간을 고려합니다. 매일 내원이 어려우신 분께는 맞춤형 한약과 자가 관리법을, 빠른 통증 제어가 필요한 분께는 집중 추나·약침 치료를 설계합니다.
+                            </p>
                         </div>
                     </div>
 
-                    <div class="lg:w-1/2 reveal delay-200">
-                        <div class="relative">
-                            <div class="absolute inset-0 bg-brand-gold/10 transform translate-x-6 translate-y-6 rounded-2xl"></div>
-                            <img src="https://placehold.co/600x700/EAEAEA/888888?text=Doctor+Portrait" alt="원장님 사진" class="relative z-10 w-full h-auto rounded-2xl shadow-xl">
+                    <!-- 원칙 3 -->
+                    <div class="bg-brand-white border border-brand-light rounded-2xl p-6 md:p-8 flex gap-5 shadow-sm hover:shadow-md hover:border-brand-accent/50 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute left-0 top-0 h-full w-1 bg-brand-accent transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
+                        <div class="flex-shrink-0 z-10">
+                            <div class="w-12 h-12 rounded-full bg-brand-bg text-brand-accent border border-brand-light flex items-center justify-center font-bold text-xl">3</div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ========================================== -->
-        <!-- 4. PATIENT REVIEWS                         -->
-        <!-- ========================================== -->
-        <section class="py-24 bg-white relative">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
-                    <div>
-                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Patient Stories</span>
-                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">따뜻한 치료 후기</h2>
-                        <p class="text-brand-graytext">환자분들이 직접 남겨주신 소중한 경험담입니다.</p>
-                    </div>
-                    <a href="#" class="hidden md:inline-flex items-center text-brand-dark hover:text-brand-gold transition-colors font-medium">
-                        후기 더보기 <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                    <div class="bg-brand-ivory p-10 rounded-2xl shadow-sm hover:shadow-md transition-shadow reveal">
-                        <div class="flex text-brand-gold mb-6 space-x-1 text-sm">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-brand-dark font-medium leading-loose mb-8 word-keep min-h-[120px]">
-                            "한의원이 처음이고 심한 엄살쟁이였던 제가 원장님 덕분에 침 치료에 대한 두려움을 극복했습니다. 도침 효과가 정말 놀랍네요. 통증이 씻은 듯이 사라졌어요!"
-                        </p>
-                        <div class="flex items-center gap-4 pt-6 border-t border-brand-gold/20">
-                            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-brand-gold font-bold shadow-sm">김*현</div>
-                            <div>
-                                <div class="text-sm font-bold text-brand-dark">목·허리 디스크 치료</div>
-                                <div class="text-xs text-brand-graytext">2023.10.12</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-brand-ivory p-10 rounded-2xl shadow-sm hover:shadow-md transition-shadow reveal delay-100">
-                        <div class="flex text-brand-gold mb-6 space-x-1 text-sm">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-brand-dark font-medium leading-loose mb-8 word-keep min-h-[120px]">
-                            "진짜 여기 추천합니다. 오랫동안 고생하던 이명이 원장님 만나고 나서 눈에 띄게 호전되었습니다. 진맥도 꼼꼼하게 봐주시고 설명도 친절하셔서 너무 만족합니다."
-                        </p>
-                        <div class="flex items-center gap-4 pt-6 border-t border-brand-gold/20">
-                            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-brand-gold font-bold shadow-sm">이*영</div>
-                            <div>
-                                <div class="text-sm font-bold text-brand-dark">이명/난청 치료</div>
-                                <div class="text-xs text-brand-graytext">2023.11.05</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-brand-ivory p-10 rounded-2xl shadow-sm hover:shadow-md transition-shadow reveal delay-200">
-                        <div class="flex text-brand-gold mb-6 space-x-1 text-sm">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-brand-dark font-medium leading-loose mb-8 word-keep min-h-[120px]">
-                            "교통사고 후유증으로 방문했는데, 추나요법이랑 맞춤 한약 처방받고 몸이 많이 가벼워졌습니다. 병원 분위기도 너무 밝고 편안해서 치유받는 기분이 들어요."
-                        </p>
-                        <div class="flex items-center gap-4 pt-6 border-t border-brand-gold/20">
-                            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-brand-gold font-bold shadow-sm">박*진</div>
-                            <div>
-                                <div class="text-sm font-bold text-brand-dark">교통사고 후유증</div>
-                                <div class="text-xs text-brand-graytext">2023.12.01</div>
-                            </div>
+                        <div class="z-10">
+                            <h3 class="text-xl font-bold text-brand-text mb-3 group-hover:text-brand-accent transition-colors">환자에게 꼭 설명하는 핵심 내용</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                "왜 아픈가" 그리고 "앞으로 어떻게 변할 것인가"를 투명하게 공유합니다. <strong class="text-brand-text bg-brand-accent/10 px-1 font-semibold">치료의 예상 기간과 호전되는 과정에서의 신체 변화</strong>를 미리 알려드려 불안감을 덜어드립니다.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ========================================== -->
-        <!-- 5. LOCATION & INFO                         -->
-        <!-- ========================================== -->
-        <section id="section-location" class="py-0 flex flex-col lg:flex-row bg-white border-t border-gray-100">
-            <div class="lg:w-1/2 min-h-[400px] lg:min-h-[600px] relative reveal">
-                <img src="https://placehold.co/1000x800/EAEAEA/999999?text=Map+Integration+Area" alt="오시는길 지도" class="w-full h-full object-cover absolute inset-0">
-                <a href="#" class="absolute bottom-8 right-8 bg-white px-6 py-3 rounded-full shadow-lg text-brand-dark font-medium flex items-center gap-2 hover:bg-brand-gold hover:text-white transition-colors z-10">
-                    <i class="fas fa-location-arrow"></i> 길찾기
+    <!-- 4. 증상 선택 섹션 -->
+    <section id="symptoms" class="py-24 bg-brand-white border-y border-brand-light">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-text mb-4">어디가 불편해서 오셨나요?</h2>
+                <p class="text-gray-500 text-lg">현재의 증상을 선택하시면, 맞춤형 진료 안내를 확인하실 수 있습니다.</p>
+            </div>
+
+            <!-- 자바스크립트로 동작하는 4개의 탭 -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-10">
+                <button onclick="changeSymptom('back')" id="tab-back" class="tab-btn active w-full rounded-xl py-5 px-3 text-center flex flex-col items-center justify-center">
+                    <span class="block text-sm md:text-base mb-1 opacity-80">오래 앉아있으면</span>
+                    <span class="block text-base md:text-lg font-bold">허리가 불편해요</span>
+                </button>
+                <button onclick="changeSymptom('neck')" id="tab-neck" class="tab-btn inactive w-full rounded-xl py-5 px-3 text-center flex flex-col items-center justify-center">
+                    <span class="block text-sm md:text-base mb-1 opacity-80">목과 어깨가</span>
+                    <span class="block text-base md:text-lg font-bold">자주 뻐근해요</span>
+                </button>
+                <button onclick="changeSymptom('ear')" id="tab-ear" class="tab-btn inactive w-full rounded-xl py-5 px-3 text-center flex flex-col items-center justify-center">
+                    <span class="block text-sm md:text-base mb-1 opacity-80">귀에서 소리가 나서</span>
+                    <span class="block text-base md:text-lg font-bold">궁금해요</span>
+                </button>
+                <button onclick="changeSymptom('accident')" id="tab-accident" class="tab-btn inactive w-full rounded-xl py-5 px-3 text-center flex flex-col items-center justify-center">
+                    <span class="block text-sm md:text-base mb-1 opacity-80">교통사고 후 진료를</span>
+                    <span class="block text-base md:text-lg font-bold">알아보고 있어요</span>
+                </button>
+            </div>
+
+            <!-- 하단 진료 안내 내용 (동적 변경 영역) -->
+            <div class="bg-brand-bg rounded-3xl p-8 md:p-12 shadow-md border border-brand-light min-h-[450px]">
+                <div id="symptom-content" class="fade-in grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
+                    <!-- JS를 통해 콘텐츠가 주입됩니다 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 건강 칼럼 섹션 -->
+    <section id="columns" class="py-24 bg-brand-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12 border-b border-brand-light pb-6">
+                <div>
+                    <span class="text-brand-accent font-bold tracking-widest text-sm uppercase">Health Column</span>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-text mt-2">안준석 원장의 건강 칼럼</h2>
+                </div>
+                <a href="#" class="hidden md:flex text-brand-text font-medium hover:text-brand-accent items-center transition-colors">
+                    전체보기 
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+            </div>
+
+            <!-- 3열 그리드 카드 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 칼럼 1 -->
+                <a href="#" class="group block bg-brand-white rounded-2xl overflow-hidden border border-brand-light hover:shadow-xl hover:border-brand-accent/50 transition-all duration-300">
+                    <div class="aspect-[4/3] overflow-hidden bg-brand-bg">
+                        <img src="https://placehold.co/600x450/EAE6DF/A3845E?text=Spine+Health" alt="칼럼 썸네일" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-brand-accent font-bold mb-2">통증·체형교정</div>
+                        <h3 class="text-lg font-bold text-brand-text mb-3 line-clamp-2 group-hover:text-brand-accent transition-colors">
+                            만성 허리 통증, 수술 없이 치료하는 '도침요법'의 원리
+                        </h3>
+                        <p class="text-gray-500 text-sm line-clamp-2 mb-4 leading-relaxed">
+                            오랜 기간 지속된 허리 통증은 단순한 근육 뭉침이 아닌 조직의 유착일 가능성이 높습니다. 특수 침술인 도침을 활용하여 유착을 박리하는 과정을 알아봅니다.
+                        </p>
+                        <div class="text-xs text-gray-400 font-medium">2024. 10. 15</div>
+                    </div>
+                </a>
+
+                <!-- 칼럼 2 -->
+                <a href="#" class="group block bg-brand-white rounded-2xl overflow-hidden border border-brand-light hover:shadow-xl hover:border-brand-accent/50 transition-all duration-300">
+                    <div class="aspect-[4/3] overflow-hidden bg-brand-bg">
+                        <img src="https://placehold.co/600x450/EAE6DF/A3845E?text=Tinnitus+Care" alt="칼럼 썸네일" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-brand-accent font-bold mb-2">이명·난청</div>
+                        <h3 class="text-lg font-bold text-brand-text mb-3 line-clamp-2 group-hover:text-brand-accent transition-colors">
+                            귀에서 나는 '삐-' 소리, 방치하면 수면장애로 이어집니다
+                        </h3>
+                        <p class="text-gray-500 text-sm line-clamp-2 mb-4 leading-relaxed">
+                            이명은 귀 자체의 문제를 넘어 전신의 스트레스와 피로 누적이 보내는 신호입니다. 자율신경계 회복과 체질 개선을 통한 근본 치료가 필요한 이유를 설명합니다.
+                        </p>
+                        <div class="text-xs text-gray-400 font-medium">2024. 09. 28</div>
+                    </div>
+                </a>
+
+                <!-- 칼럼 3 -->
+                <a href="#" class="group block bg-brand-white rounded-2xl overflow-hidden border border-brand-light hover:shadow-xl hover:border-brand-accent/50 transition-all duration-300">
+                    <div class="aspect-[4/3] overflow-hidden bg-brand-bg">
+                        <img src="https://placehold.co/600x450/EAE6DF/A3845E?text=Car+Accident" alt="칼럼 썸네일" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-brand-accent font-bold mb-2">교통사고 클리닉</div>
+                        <h3 class="text-lg font-bold text-brand-text mb-3 line-clamp-2 group-hover:text-brand-accent transition-colors">
+                            눈에 보이지 않는 교통사고 어혈, 초기 치료 골든타임
+                        </h3>
+                        <p class="text-gray-500 text-sm line-clamp-2 mb-4 leading-relaxed">
+                            사고 직후 엑스레이상 문제가 없더라도 수일 내에 뻐근함과 두통이 시작될 수 있습니다. 후유증을 예방하는 한의학적 초기 대처법을 안내해 드립니다.
+                        </p>
+                        <div class="text-xs text-gray-400 font-medium">2024. 09. 10</div>
+                    </div>
                 </a>
             </div>
             
-            <div class="lg:w-1/2 bg-white flex items-center p-10 lg:p-24 reveal delay-200">
-                <div class="w-full max-w-lg">
-                    <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Location & Info</span>
-                    <h2 class="text-3xl font-serif font-bold text-brand-dark mb-10">진료안내 및 오시는길</h2>
-                    
-                    <div class="space-y-10">
-                        <div class="flex items-start gap-5">
-                            <div class="w-12 h-12 rounded-full bg-brand-ivory flex items-center justify-center text-brand-gold shrink-0">
-                                <i class="far fa-clock text-xl"></i>
-                            </div>
-                            <div class="w-full">
-                                <h4 class="font-bold text-brand-dark mb-3 text-lg border-b border-gray-100 pb-2">진료시간</h4>
-                                <ul class="text-brand-graytext space-y-2">
-                                    <li class="flex justify-between"><span>평일</span> <span class="font-medium text-brand-dark">09:30 - 19:00</span></li>
-                                    <li class="flex justify-between"><span>토요일</span> <span class="font-medium text-brand-dark">09:30 - 14:00</span></li>
-                                    <li class="flex justify-between text-sm mt-3 pt-3 border-t border-dashed border-gray-200"><span>점심시간</span> <span>13:00 - 14:00</span></li>
-                                    <li class="text-[#D32F2F] text-sm mt-1">* 일요일 및 공휴일 휴무 (토요일 점심시간 없이 진료)</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-5">
-                            <div class="w-12 h-12 rounded-full bg-brand-ivory flex items-center justify-center text-brand-gold shrink-0">
-                                <i class="fas fa-map-marker-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-brand-dark mb-2 text-lg">오시는길</h4>
-                                <p class="text-brand-graytext mb-1">서울특별시 영등포구 영등포로 200 (영등포동4가)</p>
-                                <p class="text-brand-gold text-sm font-medium">지하철 5호선 영등포시장역 3번 출구 도보 2분 거리</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-5">
-                            <div class="w-12 h-12 rounded-full bg-brand-ivory flex items-center justify-center text-brand-gold shrink-0">
-                                <i class="fas fa-phone-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-brand-dark mb-1 text-lg">전화상담 및 예약</h4>
-                                <p class="text-3xl font-serif text-brand-gold font-bold mt-2">02-123-4567</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ========================================== -->
-    <!-- FOOTER                                     -->
-    <!-- ========================================== -->
-    <footer class="bg-brand-dark text-gray-400 py-16 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-            <div class="lg:col-span-2">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-8 h-8 border border-gray-500 flex flex-col items-center justify-center p-1 text-gray-400 font-serif leading-none text-[8px] text-center">
-                        <div>安漢</div><div>浚醫</div><div>哲院</div>
-                    </div>
-                    <span class="text-white text-xl font-serif font-bold">안준석 한의원</span>
-                </div>
-                <p class="text-sm leading-relaxed mb-6 max-w-sm">
-                    눈에 보이는 증상 너머 근본을 다스립니다.<br>
-                    20년 임상 노하우로 환자분들의 건강한 일상을 책임지겠습니다.
-                </p>
-            </div>
-
-            <div>
-                <h4 class="text-white font-bold mb-6">Quick Links</h4>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="2.html" class="hover:text-brand-gold transition-colors">한의원 소개</a></li>
-                    <li><a href="3.html" class="hover:text-brand-gold transition-colors">목·허리 디스크</a></li>
-                    <li><a href="7.html" class="hover:text-brand-gold transition-colors">맞춤한약</a></li>
-                    <li><a href="notice.html" class="hover:text-brand-gold transition-colors">공지사항</a></li>
-                    <li><a href="column.html" class="hover:text-brand-gold transition-colors">건강칼럼</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-white font-bold mb-6">Contact</h4>
-                <ul class="space-y-3 text-sm">
-                    <li>상호명: 안준석 한의원</li>
-                    <li>대표자: 안준석</li>
-                    <li>주소: 서울특별시 영등포구 영등포로 200</li>
-                </ul>
+            <div class="mt-10 text-center md:hidden">
+                <a href="#" class="inline-block border border-brand-light bg-brand-white text-brand-text px-8 py-3 rounded-full text-sm font-bold hover:bg-brand-text hover:text-brand-white transition-colors shadow-sm">칼럼 전체보기</a>
             </div>
         </div>
-        
-        <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-gray-800 text-sm text-center">
-            <p>&copy; 2026 Ahn Junseok Oriental Clinic. All rights reserved.</p>
+    </section>
+
+    <!-- 6. Footer -->
+    <footer id="location" class="bg-brand-text text-brand-bg py-16 border-t-4 border-brand-accent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- 병원 정보 -->
+                <div class="col-span-1 lg:col-span-2">
+                    <h2 class="text-2xl font-serif font-bold text-brand-white mb-6">안준석 한의원</h2>
+                    <p class="mb-2 font-light text-gray-300">서울특별시 영등포구 00로 00, 안준석빌딩 3층</p>
+                    <p class="mb-6 font-light text-sm text-gray-400">사업자등록번호: 123-45-67890 | 대표원장: 안준석</p>
+                    <div class="inline-block bg-white/5 px-5 py-3 rounded-lg border border-white/10">
+                        <span class="block text-xs text-brand-accent mb-1">예약 및 상담 문의</span>
+                        <span class="text-brand-white font-bold text-xl tracking-wider">02-000-0000</span>
+                    </div>
+                </div>
+                <!-- 진료 시간 -->
+                <div>
+                    <h3 class="text-brand-accent font-bold mb-4">진료 시간</h3>
+                    <ul class="space-y-3 text-sm font-light text-gray-300">
+                        <li class="flex justify-between border-b border-white/10 pb-2"><span>평일</span> <span class="text-brand-white font-medium">09:30 - 19:00</span></li>
+                        <li class="flex justify-between border-b border-white/10 pb-2"><span>토요일</span> <span class="text-brand-white font-medium">09:30 - 14:00</span></li>
+                        <li class="flex justify-between pb-2"><span>점심시간</span> <span class="text-brand-white font-medium">13:00 - 14:00</span></li>
+                        <li class="mt-4 text-brand-accent font-bold bg-brand-accent/10 inline-block px-3 py-1 rounded">일요일·공휴일 휴진</li>
+                    </ul>
+                </div>
+                <!-- 오시는 길 간략 -->
+                <div>
+                    <h3 class="text-brand-accent font-bold mb-4">오시는 길</h3>
+                    <p class="text-sm mb-6 leading-relaxed font-light text-gray-300">지하철 00역 0번 출구 도보 3분<br>건물 지하 주차장 2시간 무료 지원</p>
+                    <a href="#" class="inline-flex items-center text-sm font-medium text-brand-white hover:text-brand-accent transition-colors">
+                        네이버 지도로 보기
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-light text-gray-500">
+                <div class="mb-4 md:mb-0">&copy; 2024 안준석 한의원. All Rights Reserved.</div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-brand-white transition-colors">이용약관</a>
+                    <a href="#" class="hover:text-brand-white transition-colors">개인정보처리방침</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script>
-        // 슬라이더 스크립트
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.absolute.bottom-10 button');
-        const totalSlides = slides.length;
-        let slideInterval;
+    <!-- 7. 플로팅 액션 버튼 (우측 하단) -->
+    <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+        <!-- 카톡 상담 -->
+        <a href="#" class="w-14 h-14 bg-kakao rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer group relative">
+            <svg class="w-7 h-7 text-[#3A1D1D]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 4c-4.97 0-9 3.185-9 7.115 0 2.558 1.707 4.79 4.254 5.967-.184.664-.668 2.455-.717 2.65-.06.24.084.237.18.176.126-.08 2.008-1.328 2.846-1.895.776.216 1.597.332 2.437.332 4.97 0 9-3.185 9-7.115C21 7.185 16.97 4 12 4z"/>
+            </svg>
+            <span class="absolute right-16 bg-brand-text text-brand-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-md">
+                카톡 상담
+            </span>
+        </a>
+        <!-- 네이버 예약 (이 버튼만 네이버 고유의 초록색 유지) -->
+        <a href="#" class="w-14 h-14 bg-naver rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer group relative border-2 border-white/20">
+            <span class="text-white font-extrabold text-xl font-sans tracking-tighter">N</span>
+            <span class="absolute right-16 bg-brand-text text-brand-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-md">
+                네이버 예약
+            </span>
+        </a>
+    </div>
 
-        function updateSlider() {
-            slides.forEach((slide, index) => {
-                if (index === currentSlide) {
-                    slide.classList.add('active');
-                    if(dots[index]) {
-                        dots[index].classList.add('bg-brand-gold');
-                        dots[index].classList.remove('bg-brand-gold/40');
-                    }
-                } else {
-                    slide.classList.remove('active');
-                    if(dots[index]) {
-                        dots[index].classList.remove('bg-brand-gold');
-                        dots[index].classList.add('bg-brand-gold/40');
-                    }
-                }
-            });
+    <!-- 기능 스크립트 -->
+    <script>
+        // 증상별 콘텐츠 데이터
+        const symptomData = {
+            back: {
+                title: "허리 통증 진료 안내",
+                desc: "오래 앉아있을 때 뻐근하거나 찌릿한 허리 통증은 골반 틀어짐이나 디스크의 초기 증상일 수 있습니다. 굳은 근육의 긴장을 푸는 침 치료와 함께 척추 정렬을 맞추는 추나요법이 효과적입니다.",
+                points: [
+                    "골반/척추 틀어짐 체형 분석",
+                    "침 및 부항으로 급성 통증 완화",
+                    "추나요법으로 근본적 구조 개선"
+                ],
+                btnText: "허리 통증 예약하기",
+                imgText: "Back Pain"
+            },
+            neck: {
+                title: "목·어깨 통증 진료 안내",
+                desc: "단순한 피로가 아닌 경추의 변형(거북목, 일자목)이 원인일 수 있습니다. 단단하게 굳어버린 승모근과 근막의 유착을 도침으로 풀어주어 뇌로 가는 혈류를 개선하고 만성 두통까지 예방합니다.",
+                points: [
+                    "경추 배열 및 자세 평가",
+                    "특수 도침으로 굳은 근막 박리",
+                    "약침을 통한 염증 및 통증 제거"
+                ],
+                btnText: "목·어깨 예약하기",
+                imgText: "Neck Pain"
+            },
+            ear: {
+                title: "이명·난청 진료 안내",
+                desc: "귀에서 나는 소리는 스트레스, 과로, 그리고 체내 자율신경의 불균형이 보내는 경고 신호입니다. 귀 주변의 미세 혈류를 촉진하고 오장육부의 기운을 보충하는 체질 맞춤 치료를 진행합니다.",
+                points: [
+                    "스트레스 지수 및 체질 검사",
+                    "귀 주변 경혈 자극 침 치료",
+                    "자율신경 안정을 위한 맞춤 한약"
+                ],
+                btnText: "이명·난청 예약하기",
+                imgText: "Tinnitus"
+            },
+            accident: {
+                title: "교통사고 후유증 진료 안내",
+                desc: "사고 직후에는 놀라서 아픈 줄 모르다가 수일 내로 통증이 겉잡을 수 없이 심해지곤 합니다. 자동차보험 적용으로 본인 부담금 없이 뭉친 어혈을 배출하고 틀어진 관절을 교정합니다.",
+                points: [
+                    "자동차보험 접수 안내 및 대행",
+                    "어혈 제거를 위한 체질 맞춤 한약",
+                    "집중 물리치료 및 추나 교정"
+                ],
+                btnText: "교통사고 예약하기",
+                imgText: "Accident Clinic"
+            }
+        };
+
+        const contentBox = document.getElementById('symptom-content');
+
+        // 콘텐츠 렌더링 함수
+        function renderSymptomContent(key) {
+            const data = symptomData[key];
+            const pointsHtml = data.points.map(point => `
+                <li class="flex items-start text-brand-text bg-brand-white p-4 rounded-xl shadow-sm border border-brand-light">
+                    <div class="mt-0.5 w-5 h-5 rounded-full bg-brand-accent/10 flex items-center justify-center mr-3 flex-shrink-0 text-brand-accent">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <span class="font-medium">${point}</span>
+                </li>
+            `).join('');
+
+            return `
+                <div class="order-2 lg:order-1 flex flex-col justify-center">
+                    <h3 class="text-2xl md:text-3xl font-bold text-brand-text mb-4">${data.title}</h3>
+                    <p class="text-gray-600 leading-relaxed mb-8 text-lg font-light">
+                        ${data.desc}
+                    </p>
+                    
+                    <div class="mb-10">
+                        <h4 class="font-bold text-xs text-brand-accent tracking-widest mb-4 uppercase">안준석한의원의 진료 포인트</h4>
+                        <ul class="space-y-3">
+                            ${pointsHtml}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <a href="#" class="inline-flex items-center justify-center bg-brand-text text-brand-bg px-8 py-4 rounded-xl font-bold hover:bg-brand-accent transition-colors w-full sm:w-auto shadow-lg text-lg group">
+                            ${data.btnText}
+                            <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="order-1 lg:order-2">
+                    <div class="bg-brand-white rounded-2xl aspect-square flex items-center justify-center p-2 relative overflow-hidden border border-brand-light shadow-sm">
+                        <img src="https://placehold.co/600x600/EAE6DF/A3845E?text=${encodeURIComponent(data.imgText)}" alt="${data.title}" class="rounded-xl w-full h-full object-cover opacity-90">
+                    </div>
+                </div>
+            `;
         }
 
-        function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; updateSlider(); resetInterval(); }
-        function prevSlide() { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateSlider(); resetInterval(); }
-        function setSlide(index) { currentSlide = index; updateSlider(); resetInterval(); }
-        function startInterval() { slideInterval = setInterval(nextSlide, 5000); }
-        function resetInterval() { clearInterval(slideInterval); startInterval(); }
-
-        updateSlider();
-        startInterval();
-
-        // 메인 스크롤 애니메이션 옵저버
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
+        // 탭 전환 핸들러
+        function changeSymptom(key) {
+            const tabs = ['back', 'neck', 'ear', 'accident'];
+            
+            tabs.forEach(tab => {
+                const btn = document.getElementById(`tab-${tab}`);
+                if (tab === key) {
+                    btn.classList.remove('inactive');
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                    btn.classList.add('inactive');
                 }
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            // 리렌더링 및 페이드 애니메이션 적용
+            contentBox.classList.remove('fade-in');
+            void contentBox.offsetWidth; // DOM Reflow
+            contentBox.innerHTML = renderSymptomContent(key);
+            contentBox.classList.add('fade-in');
+        }
 
-        // ★ 메인 화면 최신 칼럼 자동 불러오기 스크립트 추가 ★
-        document.addEventListener('DOMContentLoaded', async () => {
-            const listContainer = document.getElementById('latest-columns-list');
-            if(!listContainer) return;
-
-            try {
-                const response = await fetch('/api/posts');
-                const posts = await response.json();
-                
-                // 공개된 글 중 최신 4개만 필터링
-                const publishedPosts = posts.filter(post => post.is_published === 1).slice(0, 4);
-
-                if (!publishedPosts || publishedPosts.length === 0) {
-                    listContainer.innerHTML = `<div class="col-span-1 md:col-span-2 lg:col-span-4 text-center text-gray-500 py-12 bg-brand-ivory rounded-2xl">아직 등록된 칼럼이 없습니다.</div>`;
-                    return;
-                }
-
-                listContainer.innerHTML = '';
-
-                const categoryMap = { 'spine': '척추/관절', 'tinnitus': '이명/난청', 'diet': '여성/다이어트', 'traffic': '교통사고' };
-
-                publishedPosts.forEach((post, index) => {
-                    const catName = categoryMap[post.category] || '건강칼럼';
-                    const date = new Date(post.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\.\s/g, '.').replace(/\.$/, '');
-
-                    // 본문 이미지 추출 및 텍스트 요약
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = post.content;
-                    const firstImg = tempDiv.querySelector('img');
-                    const imgSrc = firstImg ? firstImg.src : 'https://placehold.co/400x300/F9F7F3/B69A7B?text=Ahn+Clinic';
-                    
-                    const textContent = tempDiv.textContent || tempDiv.innerText || "";
-                    const preview = textContent.length > 50 ? textContent.substring(0, 50) + '...' : textContent;
-
-                    // 카드 딜레이 애니메이션 (순서대로 샥 나타나게 설정)
-                    const delayClass = index === 0 ? '' : `delay-${index * 100}`;
-
-                    const card = document.createElement('a');
-                    card.href = `column-view.html?id=${post.id}`;
-                    card.className = `group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.04)] hover:shadow-[0_10px_40px_rgb(182,154,123,0.15)] transition-all duration-300 reveal ${delayClass} border border-gray-50 flex flex-col h-full`;
-                    
-                    card.innerHTML = `
-                        <div class="overflow-hidden relative h-48 bg-brand-ivory shrink-0">
-                            <img src="${imgSrc}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="칼럼 썸네일">
-                            <span class="absolute top-4 left-4 bg-brand-gold text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm z-10">${catName}</span>
-                        </div>
-                        <div class="p-6 flex flex-col flex-1">
-                            <h3 class="text-lg font-bold mb-3 text-brand-dark group-hover:text-brand-gold transition-colors line-clamp-2">${post.title}</h3>
-                            <p class="text-brand-graytext text-sm leading-relaxed word-keep line-clamp-2 flex-1 mb-4">${preview}</p>
-                            <div class="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
-                                <span class="text-xs text-gray-400">${date}</span>
-                                <span class="text-xs text-brand-gold font-medium group-hover:underline">읽어보기</span>
-                            </div>
-                        </div>
-                    `;
-                    listContainer.appendChild(card);
-                });
-                
-                // 동적으로 불러온 카드들에 애니메이션(reveal) 효과 적용
-                listContainer.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-            } catch (error) {
-                console.error(error);
-                listContainer.innerHTML = `<div class="col-span-1 md:col-span-2 lg:col-span-4 text-center text-red-500 py-12">칼럼을 불러오는 중 오류가 발생했습니다.</div>`;
-            }
+        // 로드 시 기본값 설정
+        window.addEventListener('DOMContentLoaded', () => {
+            changeSymptom('back');
         });
     </script>
 </body>
