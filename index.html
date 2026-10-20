@@ -35,7 +35,7 @@
             list-style: none;
         }
 
-        /* Header */
+        /* Header & Dropdown Menu */
         header {
             position: fixed;
             top: 0;
@@ -60,18 +60,84 @@
 
         .nav-menu {
             display: flex;
+            align-items: center;
             gap: 40px;
         }
 
-        .nav-menu a {
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
             font-size: 16px;
             font-weight: 500;
             color: #444;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
             transition: color 0.3s;
         }
 
-        .nav-menu a:hover {
-            color: #111;
+        .nav-item > a:hover {
+            color: #d4af37;
+        }
+
+        /* Dropdown Style */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+            border-radius: 8px;
+            width: max-content;
+            min-width: 160px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 10px 0;
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown a {
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #555;
+            font-weight: 400;
+            transition: all 0.2s;
+        }
+
+        .dropdown a:hover {
+            background-color: #fafafa;
+            color: #d4af37;
+            padding-left: 25px; /* 약간의 호버 애니메이션 */
+        }
+
+        /* Header Reservation Button */
+        .nav-reserve-btn {
+            background-color: #111;
+            color: #fff !important;
+            padding: 10px 24px !important;
+            border-radius: 30px;
+            font-size: 15px !important;
+            font-weight: 600 !important;
+            transition: background 0.3s;
+        }
+
+        .nav-reserve-btn:hover {
+            background-color: #d4af37;
+            color: #111 !important;
         }
 
         /* Floating Quick Menu */
@@ -163,37 +229,6 @@
             margin-bottom: 40px;
         }
 
-        .hero-scroll {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #fff;
-            text-align: center;
-            font-size: 12px;
-            letter-spacing: 2px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            opacity: 0.8;
-        }
-
-        .hero-scroll::after {
-            content: '';
-            width: 1px;
-            height: 30px;
-            background: #fff;
-            animation: scrollDown 2s infinite;
-        }
-
-        @keyframes scrollDown {
-            0% { transform: scaleY(0); transform-origin: top; }
-            50% { transform: scaleY(1); transform-origin: top; }
-            50.1% { transform: scaleY(1); transform-origin: bottom; }
-            100% { transform: scaleY(0); transform-origin: bottom; }
-        }
-
         /* Section Common */
         section {
             padding: 120px 0;
@@ -217,78 +252,147 @@
             color: #666;
         }
 
-        /* Core Treatments */
+        /* Interactive Treatment Section */
         .treatments {
             background-color: #f9f9f9;
         }
 
-        .treatment-grid {
-            max-width: 1200px;
+        .treatment-container {
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
         }
 
-        .treatment-card {
+        .treatment-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 50px;
+            overflow-x: auto;
+            padding-bottom: 0;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            color: #777;
+            padding: 15px 25px;
+            cursor: pointer;
+            position: relative;
+            white-space: nowrap;
+            transition: color 0.3s;
+        }
+
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: transparent;
+            transition: background-color 0.3s;
+        }
+
+        .tab-btn:hover {
+            color: #111;
+        }
+
+        .tab-btn.active {
+            color: #111;
+        }
+
+        .tab-btn.active::after {
+            background-color: #d4af37;
+        }
+
+        .tab-content-wrap {
             background: #fff;
-            padding: 50px 40px;
             border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
+            padding: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
             border: 1px solid #eee;
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .tab-panel.active {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .panel-info h3 {
+            font-size: 30px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 20px;
+        }
+
+        .panel-info p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .panel-features {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 35px;
         }
 
-        .treatment-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-            border-color: #d4af37;
-        }
-
-        .treatment-icon {
-            width: 60px;
-            height: 60px;
-            background: #f4f4f4;
-            border-radius: 50%;
+        .panel-feature-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 30px;
-        }
-
-        .treatment-card h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #111;
-        }
-
-        .treatment-card p {
+            gap: 10px;
             font-size: 15px;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            color: #333;
+            font-weight: 500;
         }
 
-        .treatment-link {
+        .panel-feature-item i {
+            color: #d4af37;
+        }
+
+        .panel-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #111;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 8px;
             font-size: 15px;
             font-weight: 600;
-            color: #111;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: gap 0.3s;
+            transition: background 0.3s;
         }
 
-        .treatment-card:hover .treatment-link {
-            gap: 15px;
-            color: #d4af37;
+        .panel-btn:hover {
+            background: #d4af37;
+            color: #111;
+        }
+
+        .panel-img {
+            width: 100%;
+            height: 350px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
 
         /* Doctor's Letter */
@@ -348,7 +452,7 @@
             color: #fff;
         }
 
-        /* Health Column Section (Replaced Reviews) */
+        /* Health Column Section */
         .column-section {
             background-color: #fff;
         }
@@ -377,7 +481,6 @@
 
         .column-img {
             height: 200px;
-            background-color: #e5e5e5;
             background-size: cover;
             background-position: center;
         }
@@ -447,7 +550,11 @@
 
         /* Responsive */
         @media(max-width: 1024px) {
-            .treatment-grid, .column-grid {
+            .tab-panel.active {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .column-grid {
                 grid-template-columns: 1fr;
             }
             .hero-title {
@@ -464,15 +571,35 @@
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header with Dropdown -->
     <header>
         <a href="index.html" class="logo">안준석한의원</a>
-        <nav class="nav-menu">
-            <a href="2.html">한의원 소개</a>
-            <a href="3.html">진료 안내</a>
-            <a href="column.html">건강 칼럼</a>
-            <a href="https://naver.me/xxxxxx" target="_blank">예약하기</a>
-        </nav>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#">한의원 소개 <i class="fa-solid fa-chevron-down" style="font-size: 12px; margin-top: 2px;"></i></a>
+                <div class="dropdown">
+                    <a href="greeting.html">인사말</a>
+                    <a href="doctors.html">의료진 소개</a>
+                    <a href="price.html">치료 금액</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#treatments-section">진료안내 <i class="fa-solid fa-chevron-down" style="font-size: 12px; margin-top: 2px;"></i></a>
+                <div class="dropdown">
+                    <a href="spine.html">목·허리디스크</a>
+                    <a href="ear.html">이명/난청</a>
+                    <a href="women.html">여성질환/다이어트</a>
+                    <a href="car.html">교통사고후유증</a>
+                    <a href="medicine.html">맞춤한약</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="column.html">건강칼럼</a>
+            </li>
+            <li class="nav-item">
+                <a href="https://naver.me/xxxxxx" target="_blank" class="nav-reserve-btn">예약하기</a>
+            </li>
+        </ul>
     </header>
 
     <!-- Floating Quick Menu -->
@@ -498,39 +625,99 @@
             <h1 class="hero-title">눈에 보이는 증상 너머,<br>진짜 원인을 찾습니다.</h1>
             <p class="hero-desc">20년 임상 노하우와 올바른 진료 기준으로<br>환자분들의 편안한 일상을 되찾아 드립니다.</p>
         </div>
-        <div class="hero-scroll">SCROLL</div>
     </section>
 
-    <!-- Core Treatments -->
-    <section class="treatments">
+    <!-- Interactive Treatment Section -->
+    <section class="treatments" id="treatments-section">
         <div class="section-header">
-            <h2>안준석한의원 주요 진료</h2>
-            <p>환자분의 몸 상태에 맞춘 정직하고 세심한 치료를 약속드립니다.</p>
+            <h2>안준석한의원 진료 안내</h2>
+            <p>원하시는 진료 과목을 선택하시면 상세한 치료 내용을 확인하실 수 있습니다.</p>
         </div>
-        <div class="treatment-grid">
-            <div class="treatment-card">
-                <div>
-                    <div class="treatment-icon"><i class="fa-solid fa-bone"></i></div>
-                    <h3>목·허리 디스크 / 통증</h3>
-                    <p>정밀한 체형 분석과 도침·추나 요법을 통해 통증의 근본적인 원인을 바로잡고 척추의 건강한 정렬을 되찾아 줍니다.</p>
-                </div>
-                <a href="3.html" class="treatment-link">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
+        
+        <div class="treatment-container">
+            <div class="treatment-tabs">
+                <button class="tab-btn active" onclick="switchTab(event, 'tab-1')">목·허리 디스크</button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-2')">이명/난청</button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-3')">여성/다이어트</button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-4')">교통사고후유증</button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-5')">맞춤한약</button>
             </div>
-            <div class="treatment-card">
-                <div>
-                    <div class="treatment-icon"><i class="fa-solid fa-ear-listen"></i></div>
-                    <h3>이명 / 난청 / 구안와사</h3>
-                    <p>귀 울림과 청력 저하, 안면 마비 증상에 대해 원인별 맞춤 한약과 침치료를 병행하여 빠른 회복을 돕습니다.</p>
+
+            <div class="tab-content-wrap">
+                <!-- Panel 1 -->
+                <div id="tab-1" class="tab-panel active">
+                    <div class="panel-info">
+                        <h3>목·허리 디스크 / 통증 클리닉</h3>
+                        <p>정밀한 체형 분석과 도침·추나 요법을 병행하여 통증의 근본적인 원인을 바로잡고 척추의 건강한 정렬을 되찾아 드립니다. 불필요한 시술 없이 신체 자생력을 높이는 안전한 치료를 지향합니다.</p>
+                        <div class="panel-features">
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 골반 및 척추 틀어짐 1:1 체형 분석</div>
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 침도 요법을 통한 급·만성 통증 완화</div>
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 추나 요법으로 근본적인 구조 개선</div>
+                        </div>
+                        <a href="spine.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80');"></div>
                 </div>
-                <a href="4.html" class="treatment-link">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-            <div class="treatment-card">
-                <div>
-                    <div class="treatment-icon"><i class="fa-solid fa-car-burst"></i></div>
-                    <h3>교통사고 후유증</h3>
-                    <p>사고 직후 나타나는 미세한 통증부터 어혈 제거 및 신체 균형 회복까지 자동차보험 적용으로 부담 없이 치료받으세요.</p>
+
+                <!-- Panel 2 -->
+                <div id="tab-2" class="tab-panel">
+                    <div class="panel-info">
+                        <h3>이명 / 난청 / 구안와사 클리닉</h3>
+                        <p>귀 울림, 청력 저하, 갑작스러운 안면 마비 증상은 초기 대응이 매우 중요합니다. 원인별 맞춤 한약 처방과 정교한 침구 치료를 통해 신경 회복과 기혈 순환을 집중적으로 돕습니다.</p>
+                        <div class="panel-features">
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 맑고 정교한 원인별 맞춤 한약 처방</div>
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 기혈 순환을 돕는 침·뜸 복합 치료</div>
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 구안와사 골든타임 집중 케어</div>
+                        </div>
+                        <a href="ear.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80');"></div>
                 </div>
-                <a href="6.html" class="treatment-link">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
+
+                <!-- Panel 3 -->
+                <div id="tab-3" class="tab-panel">
+                    <div class="panel-info">
+                        <h3>여성질환 / 한방 다이어트</h3>
+                        <p>생리통, 생리불순, 산후 회복 및 갱년기 증상부터 건강한 체중 감량까지 여성의 몸을 깊이 이해하고 따뜻하게 다스리는 맞춤형 프로그램을 제공합니다.</p>
+                        <div class="panel-features">
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 개인 체질에 맞춘 1:1 청정 한약</div>
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 호르몬 밸런스 및 산후·갱년기 조리</div>
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 무리 없는 요요 방지 다이어트</div>
+                        </div>
+                        <a href="women.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80');"></div>
+                </div>
+
+                <!-- Panel 4 -->
+                <div id="tab-4" class="tab-panel">
+                    <div class="panel-info">
+                        <h3>교통사고 후유증 클리닉</h3>
+                        <p>사고 직후의 미세한 통증부터 목·허리 충격, 어혈 제거까지 자동차보험 적용을 통해 본인 부담 없이 편안하고 집중적인 회복 치료를 받으실 수 있습니다.</p>
+                        <div class="panel-features">
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 통증을 유발하는 체내 어혈 제거</div>
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 침, 약침, 추나, 맞춤 한약 종합 치료</div>
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 자동차보험 적용으로 비용 부담 최소화</div>
+                        </div>
+                        <a href="car.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80');"></div>
+                </div>
+
+                <!-- Panel 5 -->
+                <div id="tab-5" class="tab-panel">
+                    <div class="panel-info">
+                        <h3>개별 맞춤 한약 / 공진단</h3>
+                        <p>엄선된 청정 한약재만을 고집하여 환자 개개인의 체질과 건강 상태에 맞춰 정성껏 조제합니다. 지친 체력과 면역력을 회복하는 든든한 보약이 되어드립니다.</p>
+                        <div class="panel-features">
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 식약처 인증 청정 한약재 사용</div>
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 원내 직접 탕전으로 신뢰성 확보</div>
+                            <div class="panel-feature-item"><i class="fa-solid fa-check"></i> 체력 증진을 위한 프리미엄 공진단</div>
+                        </div>
+                        <a href="medicine.html" class="panel-btn">자세히 보기 <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="panel-img" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80');"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -551,7 +738,7 @@
         </div>
     </section>
 
-    <!-- Health Column Section (Replaced Reviews) -->
+    <!-- Health Column Section -->
     <section class="column-section">
         <div class="section-header">
             <h2>안준석 원장의 건강 칼럼</h2>
@@ -559,7 +746,7 @@
         </div>
         <div class="column-grid">
             <div class="column-card">
-                <div class="column-img" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="column-img" style="height: 200px; background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80');"></div>
                 <div class="column-info">
                     <div class="column-date">2026.10.15</div>
                     <h3 class="column-title">허리 통증, 무조건 수술만이 답일까요?</h3>
@@ -567,7 +754,7 @@
                 </div>
             </div>
             <div class="column-card">
-                <div class="column-img" style="background-image: url('https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="column-img" style="height: 200px; background-image: url('https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80');"></div>
                 <div class="column-info">
                     <div class="column-date">2026.09.28</div>
                     <h3 class="column-title">자꾸만 들리는 이명, 원인과 관리법</h3>
@@ -575,7 +762,7 @@
                 </div>
             </div>
             <div class="column-card">
-                <div class="column-img" style="background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="column-img" style="height: 200px; background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80');"></div>
                 <div class="column-info">
                     <div class="column-date">2026.09.10</div>
                     <h3 class="column-title">교통사고 후유증, 방치하면 안 되는 이유</h3>
@@ -600,5 +787,18 @@
         </div>
     </footer>
 
+    <!-- Tab Switching Script -->
+    <script>
+        function switchTab(evt, tabId) {
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+    </script>
 </body>
 </html>
