@@ -20,9 +20,18 @@
         .toggle-label { width: 3rem; height: 1.5rem; background-color: #cbd5e1; transition: all 0.3s; border-radius: 9999px; }
         
         /* 에디터 툴바 버튼 */
-        .toolbar-btn { padding: 4px 8px; font-size: 13px; color: #555; border-radius: 4px; transition: background 0.2s; }
+        .toolbar-btn { padding: 4px 8px; font-size: 13px; color: #555; border-radius: 4px; transition: background 0.2s; cursor: pointer; }
         .toolbar-btn:hover { background-color: #e2e8f0; }
         .toolbar-btn.active { background-color: #FDFCF0; color: #B69A7B; font-weight: bold; border: 1px solid #EBE7D9; }
+        
+        /* 에디터 내부 기본 스타일 지정 (목록 기호 등 표시) */
+        #editor { outline: none; }
+        #editor ul { list-style-type: disc; margin-left: 20px; padding-left: 20px; margin-bottom: 10px; }
+        #editor ol { list-style-type: decimal; margin-left: 20px; padding-left: 20px; margin-bottom: 10px; }
+        #editor blockquote { border-left: 4px solid #B69A7B; padding-left: 15px; color: #555; background: #fdfcf0; padding-top: 10px; padding-bottom: 10px; margin-bottom: 10px; font-style: italic; }
+        #editor h2 { font-size: 1.5em; font-weight: bold; margin-top: 15px; margin-bottom: 10px; }
+        #editor h3 { font-size: 1.17em; font-weight: bold; margin-top: 15px; margin-bottom: 10px; }
+        #editor a { color: #3b82f6; text-decoration: underline; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -76,112 +85,4 @@
             <div>
                 <label class="block text-sm font-bold text-gray-700 mb-2">대표 이미지 <span class="text-xs font-normal text-gray-400">목록 썸네일 · 선택</span></label>
                 <div class="flex items-center border border-gray-300 rounded-md p-2 bg-white">
-                    <button type="button" class="bg-[#2c2c2c] text-white px-4 py-2 rounded text-sm hover:bg-black transition">파일 선택</button>
-                    <span class="ml-4 text-sm text-gray-500">선택된 파일 없음</span>
-                </div>
-                <p class="text-xs text-gray-500 mt-2">비워두면 본문 첫 번째 사진이 자동으로 대표 이미지가 됩니다.</p>
-            </div>
-
-            <!-- 본문 에디터 -->
-            <div>
-                <label for="content" class="block text-sm font-bold text-gray-700 mb-2">본문</label>
-                <div class="border border-gray-300 rounded-t-md bg-[#f4f4f4] p-2 flex flex-wrap items-center gap-1 border-b-0">
-                    <button type="button" class="toolbar-btn"><b>B</b></button>
-                    <button type="button" class="toolbar-btn italic">I</button>
-                    <button type="button" class="toolbar-btn underline">U</button>
-                    <div class="w-px h-4 bg-gray-300 mx-2"></div>
-                    <button type="button" class="toolbar-btn">H2</button>
-                    <button type="button" class="toolbar-btn">H3</button>
-                    <div class="w-px h-4 bg-gray-300 mx-2"></div>
-                    <button type="button" class="toolbar-btn">· 목록</button>
-                    <button type="button" class="toolbar-btn">1. 목록</button>
-                    <button type="button" class="toolbar-btn">" 인용</button>
-                    <button type="button" class="toolbar-btn"><i class="fa-solid fa-link text-xs"></i> 링크</button>
-                    <button type="button" class="toolbar-btn active flex items-center gap-1"><i class="fa-regular fa-image"></i> 사진</button>
-                </div>
-                <textarea id="content" required placeholder="내용을 입력하세요. 사진 버튼을 누르면 본문에 이미지를 넣을 수 있습니다." 
-                          class="w-full border border-gray-300 rounded-b-md p-6 min-h-[400px] focus:outline-none focus:border-[#B69A7B] text-gray-700 leading-relaxed"></textarea>
-            </div>
-
-            <!-- 버튼 영역 -->
-            <div class="flex justify-end gap-3 pt-6 border-t border-gray-200">
-                <button type="button" onclick="history.back()" class="px-8 py-3 bg-gray-200 text-gray-700 font-bold rounded-md hover:bg-gray-300 transition">
-                    취소
-                </button>
-                <button type="submit" class="px-8 py-3 bg-[#B69A7B] text-white font-bold rounded-md hover:bg-[#9A7D5E] transition shadow-md">
-                    수정 완료
-                </button>
-            </div>
-        </form>
-    </div>
-
-    <script>
-        // 1. URL에서 글 번호(id) 가져오기
-        const urlParams = new URLSearchParams(window.location.search);
-        const postId = urlParams.get('id');
-
-        if (!postId) {
-            alert('잘못된 접근입니다.');
-            history.back();
-        }
-
-        // 2. 서버에서 데이터 불러와서 폼에 채우기
-        async function loadPost() {
-            try {
-                const response = await fetch(`/api/posts?id=${postId}`);
-                const post = await response.json();
-
-                if(post) {
-                    document.getElementById('title').value = post.title || '';
-                    document.getElementById('slug').value = post.slug || '';
-                    document.getElementById('category').value = post.category || '';
-                    document.getElementById('content').value = post.content || '';
-                    document.getElementById('is_published').checked = (post.is_published === 1);
-                }
-            } catch (error) {
-                console.error(error);
-                alert('데이터를 불러오는데 실패했습니다.');
-            }
-        }
-
-        // 페이지 로드 시 기존 글 가져오기 실행
-        loadPost();
-
-        // 3. 폼 전송 시 수정 API 호출 (PUT)
-        document.getElementById('editForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const title = document.getElementById('title').value;
-            const slugValue = document.getElementById('slug').value;
-            
-            const data = {
-                id: postId,
-                title: title,
-                // 슬러그를 비워뒀으면 제목으로 자동 변환
-                slug: slugValue ? slugValue : title.replace(/\s+/g, '-'),
-                category: document.getElementById('category').value,
-                content: document.getElementById('content').value,
-                is_published: document.getElementById('is_published').checked
-            };
-
-            try {
-                const response = await fetch('/api/posts', {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-
-                const result = await response.json();
-                if (result.success) {
-                    alert("성공적으로 수정되었습니다.");
-                    window.location.href = "index.html"; // 수정 후 목록으로 이동
-                } else {
-                    alert("수정 실패: " + result.error);
-                }
-            } catch (error) {
-                alert("통신 오류가 발생했습니다: " + error.message);
-            }
-        });
-    </script>
-</body>
-</html>
+                    <button
