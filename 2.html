@@ -385,7 +385,7 @@
             </div>
         </section>
 
-       <!-- 섹션 4: 오시는 길 -->
+      <!-- 섹션 4: 오시는 길 -->
         <section id="section-location" class="py-24 bg-brand-ivory relative">
             <div class="max-w-5xl mx-auto px-6">
                 <div class="text-center mb-16">
@@ -394,14 +394,30 @@
                 </div>
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-brand-lightBorder">
                     
-                    <!-- 구글 지도 연동 영역 -->
-                    <iframe src="https://maps.google.com/maps?q=서울%20영등포구%20당산로%2083&t=&z=16&ie=UTF8&iwloc=&output=embed" class="w-full h-80 rounded-xl mb-6 shadow-sm" frameborder="0" style="border:0;" allowfullscreen></iframe>
+                    <!-- 카카오맵 연동 영역 시작 -->
+                    <div class="w-full rounded-xl mb-6 shadow-sm overflow-hidden border border-gray-100">
+                        <!-- 1. 지도 노드 -->
+                        <div id="daumRoughmapContainer1793067385069" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%;"></div>
+                    </div>
                     
-                    <!-- 변경된 주소 텍스트 -->
-                    <div class="space-y-2 text-brand-graytext text-sm">
+                    <!-- 2. 설치 스크립트 -->
+                    <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://t1.kakaocdn.net/kakaomapweb/roughmap/loader/prod/roughmapLoader.js"></script>
+                    
+                    <!-- 3. 실행 스크립트 -->
+                    <script charset="UTF-8">
+                        new daum.roughmap.Lander({
+                            "timestamp" : "1793067385069",
+                            "key" : "3ydy57iftdk",
+                            "mapWidth" : "100%", // PC/모바일 꽉 차게 100%로 수정
+                            "mapHeight" : "360"
+                        }).render();
+                    </script>
+                    <!-- 카카오맵 연동 영역 끝 -->
+                    
+                    <div class="space-y-2 text-brand-graytext text-sm mt-6">
                         <p><strong class="text-brand-dark">주소 :</strong> 서울특별시 영등포구 당산로 83, 포레나당산아파트 1층 108호</p>
-                        <p><strong class="text-brand-dark">교통 :</strong> 영등포구청역(2,5호선) 6번 출구 도보 5분</p>
-                        <p><strong class="text-brand-dark">문의 :</strong> 02-2069-2500</p>
+                        <p><strong class="text-brand-dark">교통 :</strong> 영등포구청역(2,5호선) 4번 출구 도보 5분</p>
+                        <p><strong class="text-brand-dark">문의 :</strong> 02-123-4567</p>
                     </div>
                 </div>
             </div>
