@@ -361,26 +361,81 @@
             </div>
         </section>
 
-        <!-- 섹션 3: 치료 금액 -->
+       <!-- 섹션 3: 치료 금액 -->
         <section id="section-price" class="py-24 bg-white relative">
-            <div class="max-w-4xl mx-auto px-6">
+            <div class="max-w-5xl mx-auto px-6">
                 <div class="text-center mb-16">
                     <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Price Info</span>
                     <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark">주요 치료 금액 안내</h2>
                 </div>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center p-6 bg-brand-ivory rounded-xl border border-brand-lightBorder">
+
+                <!-- 상단 요약 박스 -->
+                <div class="space-y-4 mb-12">
+                    <div class="flex justify-between items-center p-5 bg-brand-ivory rounded-xl border border-brand-lightBorder">
                         <span class="font-medium text-brand-dark">초진 및 재진 상담료</span>
                         <span class="font-bold text-brand-gold">비급여 기준 적용</span>
                     </div>
-                    <div class="flex justify-between items-center p-6 bg-brand-ivory rounded-xl border border-brand-lightBorder">
+                    <div class="flex justify-between items-center p-5 bg-brand-ivory rounded-xl border border-brand-lightBorder">
                         <span class="font-medium text-brand-dark">추나 요법 (건강보험 적용)</span>
                         <span class="font-bold text-brand-gold">약 2만 원 ~ 3만 원 내외</span>
                     </div>
-                    <div class="flex justify-between items-center p-6 bg-brand-ivory rounded-xl border border-brand-lightBorder">
-                        <span class="font-medium text-brand-dark">개별 맞춤 한약 (1첩/1달)</span>
-                        <span class="font-bold text-brand-gold">체질 및 약재에 따라 상이</span>
+                </div>
+
+                <!-- 상세 가격표 그리드 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- 한약 -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-brand-lightBorder overflow-hidden h-fit">
+                        <div class="bg-brand-ivory p-4 border-b border-brand-lightBorder text-center font-bold text-brand-dark">한약</div>
+                        <table class="w-full text-left border-collapse text-sm">
+                            <tbody class="divide-y divide-gray-100">
+                                <tr><td class="py-3.5 px-6 text-gray-600">치료약</td><td class="py-3.5 px-6 text-right font-medium">35만원</td></tr>
+                                <tr><td class="py-3.5 px-6 text-gray-600">치료보약</td><td class="py-3.5 px-6 text-right font-medium">45만원</td></tr>
+                                <tr><td class="py-3.5 px-6 text-gray-600">보약(일반)</td><td class="py-3.5 px-6 text-right font-medium">60만원</td></tr>
+                                <tr><td class="py-3.5 px-6 text-gray-600">보약(상)</td><td class="py-3.5 px-6 text-right font-medium">80만원</td></tr>
+                                <tr><td class="py-3.5 px-6 text-gray-600">보약(특상)</td><td class="py-3.5 px-6 text-right font-medium">100만원</td></tr>
+                                <tr><td class="py-3.5 px-6 text-gray-600">다이어트(15일분)</td><td class="py-3.5 px-6 text-right font-medium">28만원</td></tr>
+                                <tr><td class="py-3.5 px-6 text-gray-600">다이어트(30일분)</td><td class="py-3.5 px-6 text-right font-medium">50만원</td></tr>
+                                <tr><td class="py-3.5 px-6 text-gray-600">공진단 (원방)</td><td class="py-3.5 px-6 text-right font-medium">7만원</td></tr>
+                                <tr><td class="py-3.5 px-6 text-gray-600">공진단 (사향)</td><td class="py-3.5 px-6 text-right font-medium">4만원</td></tr>
+                                <tr><td class="py-3.5 px-6 text-gray-600">공진단 (침향)</td><td class="py-3.5 px-6 text-right font-medium">2만 5천원</td></tr>
+                                <tr><td class="py-3.5 px-6 text-gray-600">소화제(환)</td><td class="py-3.5 px-6 text-right font-medium">7천원</td></tr>
+                                <tr><td class="py-3.5 px-6 text-gray-600">감기탕약, 소화탕약</td><td class="py-3.5 px-6 text-right font-medium">2만 5천원</td></tr>
+                            </tbody>
+                        </table>
                     </div>
+
+                    <!-- 우측 영역 (침도 + 특수치료) -->
+                    <div class="space-y-8">
+                        <!-- 침도 -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-brand-lightBorder overflow-hidden">
+                            <div class="bg-brand-ivory p-4 border-b border-brand-lightBorder text-center font-bold text-brand-dark">침도</div>
+                            <table class="w-full text-left border-collapse text-sm">
+                                <tbody class="divide-y divide-gray-100">
+                                    <tr><td class="py-3.5 px-6 text-gray-600">침도 1회</td><td class="py-3.5 px-6 text-right font-medium">7만원</td></tr>
+                                    <tr><td class="py-3.5 px-6 text-gray-600">침도패키지</td><td class="py-3.5 px-6 text-right font-medium">30만원</td></tr>
+                                    <tr><td class="py-3.5 px-6 text-gray-600 align-middle">한약침도패키지</td><td class="py-3.5 px-6 text-right font-medium">60만원 (치료약)<br>70만원 (치료보약)</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- 특수치료 및 제증명 -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-brand-lightBorder overflow-hidden">
+                            <div class="bg-brand-ivory p-4 border-b border-brand-lightBorder text-center font-bold text-brand-dark">특수치료 및 서류</div>
+                            <table class="w-full text-left border-collapse text-sm">
+                                <tbody class="divide-y divide-gray-100">
+                                    <tr><td class="py-3.5 px-6 text-gray-600">약침</td><td class="py-3.5 px-6 text-right font-medium">1~7만원</td></tr>
+                                    <tr><td class="py-3.5 px-6 text-gray-600">침도+환약+약침</td><td class="py-3.5 px-6 text-right font-medium">7만원</td></tr>
+                                    <tr><td class="py-3.5 px-6 text-gray-600">골타</td><td class="py-3.5 px-6 text-right font-medium">5만원</td></tr>
+                                    <tr><td class="py-3.5 px-6 text-gray-600">매선</td><td class="py-3.5 px-6 text-right font-medium">3천원</td></tr>
+                                    <tr><td class="py-3.5 px-6 text-gray-600">진료확인서</td><td class="py-3.5 px-6 text-right font-medium">3천원</td></tr>
+                                    <tr><td class="py-3.5 px-6 text-gray-600">소견서</td><td class="py-3.5 px-6 text-right font-medium">무료</td></tr>
+                                    <tr><td class="py-3.5 px-6 text-gray-600">진단서</td><td class="py-3.5 px-6 text-right font-medium">2만원</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
