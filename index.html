@@ -489,31 +489,8 @@
             <h2>안준석 원장의 건강 칼럼</h2>
             <p>풍부한 임상 경험을 바탕으로 알기 쉽게 전해드리는 한의학 이야기입니다.</p>
         </div>
-        <div class="column-grid">
-            <a href="column.html" class="column-card">
-                <div class="column-img" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80');"></div>
-                <div class="column-info">
-                    <div class="column-date">2026.10.15</div>
-                    <h3 class="column-title">허리 통증, 무조건 수술만이 답일까요?</h3>
-                    <p class="column-desc">디스크 탈출증과 협착증의 차이, 그리고 일상에서 실천할 수 있는 올바른 척추 관리법을 알아봅니다.</p>
-                </div>
-            </a>
-            <a href="column.html" class="column-card">
-                <div class="column-img" style="background-image: url('https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80');"></div>
-                <div class="column-info">
-                    <div class="column-date">2026.09.28</div>
-                    <h3 class="column-title">자꾸만 들리는 이명, 원인과 관리법</h3>
-                    <p class="column-desc">만성적인 이명 증상을 완화하기 위해 한의학에서는 어떤 방식으로 접근하고 치료하는지 설명해 드립니다.</p>
-                </div>
-            </a>
-            <a href="column.html" class="column-card">
-                <div class="column-img" style="background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80');"></div>
-                <div class="column-info">
-                    <div class="column-date">2026.09.10</div>
-                    <h3 class="column-title">교통사고 후유증, 방치하면 안 되는 이유</h3>
-                    <p class="column-desc">사고 직후엔 괜찮아 보여도 수일 뒤 찾아오는 통증의 주원인인 어혈을 다스리는 한방 치료의 중요성.</p>
-                </div>
-            </a>
+        <div class="column-grid" id="latest-columns-grid">
+            <!-- 자바스크립트가 데이터를 불러와 이곳에 자동으로 카드를 생성합니다 -->
         </div>
     </section>
 
@@ -533,6 +510,7 @@
     </footer>
 
     <script>
+        // 기존 탭 전환 스크립트
         function switchTab(evt, tabId) {
             const panels = document.querySelectorAll('.tab-panel');
             panels.forEach(panel => panel.classList.remove('active'));
@@ -543,6 +521,59 @@
             document.getElementById(tabId).classList.add('active');
             evt.currentTarget.classList.add('active');
         }
+
+        // --- 메인 페이지 최신 칼럼 자동 연동 스크립트 ---
+        async function loadLatestColumns() {
+            try {
+                const response = await fetch('/api/posts');
+                const posts = await response.json();
+                
+                const grid = document.getElementById('latest-columns-grid');
+                grid.innerHTML = '';
+
+                // 발행됨(is_published === 1) 상태인 글만 필터링하고 최신글 3개만 자르기
+                const publishedPosts = posts.filter(post => post.is_published === 1).slice(0, 3);
+
+                if (publishedPosts.length === 0) {
+                    grid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #999; padding: 40px 0;">등록된 칼럼이 없습니다.</p>';
+                    return;
+                }
+
+                publishedPosts.forEach(post => {
+                    // 본문에서 이미지 추출 (없으면 기본 한의원 배경 이미지 사용)
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = post.content || '';
+                    const imgTag = tempDiv.querySelector('img');
+                    const imgUrl = imgTag ? imgTag.src : 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80';
+
+                    // 본문 텍스트 추출 및 50자 요약
+                    const plainText = tempDiv.textContent || tempDiv.innerText || '';
+                    const excerpt = plainText.length > 50 ? plainText.substring(0, 50) + '...' : plainText;
+                    
+                    // 날짜 변환 (예: 2026.10.27)
+                    const dateObj = post.created_at ? new Date(post.created_at) : new Date();
+                    const formattedDate = `${dateObj.getFullYear()}.${String(dateObj.getMonth() + 1).padStart(2, '0')}.${String(dateObj.getDate()).padStart(2, '0')}`;
+
+                    // 카드 생성 후 그리드에 삽입
+                    const card = `
+                        <a href="column-view.html?id=${post.id}" class="column-card">
+                            <div class="column-img" style="background-image: url('${imgUrl}');"></div>
+                            <div class="column-info">
+                                <div class="column-date">${formattedDate}</div>
+                                <h3 class="column-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${post.title}</h3>
+                                <p class="column-desc">${excerpt}</p>
+                            </div>
+                        </a>
+                    `;
+                    grid.insertAdjacentHTML('beforeend', card);
+                });
+            } catch (error) {
+                console.error('칼럼 로드 실패:', error);
+                document.getElementById('latest-columns-grid').innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #ff6b6b; padding: 40px 0;">칼럼을 불러오는 중 오류가 발생했습니다.</p>';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadLatestColumns);
     </script>
 </body>
 </html>
