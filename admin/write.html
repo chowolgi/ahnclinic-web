@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>새 칼럼 작성 - 안준석 한의원</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background-color: #f9f9f9; }
+        .form-container { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        input[type="text"], textarea { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>새 칼럼 작성</h2>
+        <form id="postForm">
+            <label for="category">카테고리 (예: 이명/난청)</label>
+            <input type="text" id="category" required>
+
+            <label for="title">제목</label>
+            <input type="text" id="title" required>
+
+            <label for="content">본문 내용 (HTML 또는 텍스트 입력 가능)</label>
+            <textarea id="content" rows="15" required></textarea>
+
+            <label>
+                <input type="checkbox" id="is_published" checked> 바로 발행하기 (체크 해제 시 임시저장)
+            </label>
+            <br><br>
+
+            <button type="submit">저장하기</button>
+            <button type="button" style="background-color: #777;" onclick="history.back()">취소</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('postForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); // 새로고침 방지
+
+            // 입력된 데이터 가져오기
+            const data = {
+                category: document.getElementById('category').value,
+                title: document.getElementById('title').value,
+                slug: document.getElementById('title').value.replace(/\s+/g, '-'), // 제목을 슬러그로 자동 변환
+                content: document.getElementById('content').value,
+                is_published: document.getElementById('is_published').checked
+            };
+
+            try {
+                // Cloudflare API(posts.js)로 POST 요청 보내기
+                const response = await fetch('/api/posts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert("칼럼이 성공적으로 저장되었습니다.");
+                    window.location.href = "column.html"; // 저장 후 목록 페이지로 이동
+                } else {
+                    alert("저장 실패: " + result.error);
+                }
+            } catch (error) {
+                alert("통신 오류가 발생했습니다: " + error.message);
+            }
+        });
+    </script>
+</body>
+</html>
