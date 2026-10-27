@@ -338,29 +338,196 @@
 
         <!-- 섹션 2: 의료진 소개 -->
         <section id="section-doctor" class="py-24 bg-brand-ivory relative">
-            <div class="max-w-5xl mx-auto px-6">
+            <div class="max-w-6xl mx-auto px-6">
                 <div class="text-center mb-16">
                     <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Medical Staff</span>
                     <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark">의료진 소개</h2>
                 </div>
-                <div class="flex flex-col md:flex-row gap-10 items-center bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-brand-lightBorder">
-                    <div class="w-48 h-56 rounded-xl overflow-hidden bg-gray-200 shrink-0">
-                        <img src="https://placehold.co/400x500/EFEFEF/B69A7B?text=Doctor" alt="안준석 원장" class="w-full h-full object-cover">
+
+                <div class="space-y-12">
+                    <!-- 1. 안준석 대표원장 -->
+                    <div class="flex flex-col lg:flex-row gap-10 items-start bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-brand-lightBorder">
+                        <div class="w-full lg:w-64 shrink-0 flex flex-col items-center">
+                            <!-- 아치형 사진 프레임 -->
+                            <div class="w-56 h-72 rounded-t-[100px] rounded-b-3xl overflow-hidden bg-gray-100 shadow-inner border border-gray-200">
+                                <img src="https://placehold.co/400x500/EFEFEF/B69A7B?text=Dr.+Ahn" alt="안준석 대표원장" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="flex-1 w-full">
+                            <div class="mb-6 border-b border-brand-lightBorder pb-4 bg-gray-50/50 rounded-xl px-6 py-4">
+                                <h3 class="text-2xl font-bold font-serif text-brand-dark mb-1">대표원장 안준석</h3>
+                            </div>
+                            <div class="space-y-8 px-2">
+                                <!-- 약력 -->
+                                <div>
+                                    <h4 class="text-brand-dark font-bold text-sm mb-4 flex items-center gap-2"><i class="fa-solid fa-circle-dot text-brand-gold text-[10px]"></i> 약력</h4>
+                                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-brand-graytext font-light word-keep">
+                                        <li>· 現) 안준석 한의원 대표원장</li>
+                                        <li>· 서울대 국제경제학과 졸업</li>
+                                        <li>· 원광대 한의대 학, 석, 박사</li>
+                                        <li>· 영등포구 한의사협회장</li>
+                                        <li>· 전) 경희대, 현) 원광대 한의대 외래교수</li>
+                                        <li>· 대한침도의학회 수석부회장, 교육위원장</li>
+                                        <li>· 대한통합방제한의학회 부회장, 교육위원장</li>
+                                        <li>· 서울대 총동창회 이사</li>
+                                        <li>· 한국한의학교육평가원 감사</li>
+                                        <li>· 대한한의학회 감사</li>
+                                        <li>· 대한한의사협회 중앙대의원</li>
+                                    </ul>
+                                </div>
+                                <!-- 주요논문 -->
+                                <div>
+                                    <h4 class="text-brand-dark font-bold text-sm mb-4 flex items-center gap-2"><i class="fa-solid fa-circle-dot text-brand-gold text-[10px]"></i> 주요논문</h4>
+                                    <ul class="space-y-2 text-sm text-brand-graytext font-light word-keep">
+                                        <li>· 혈관내피세포에서 과산화수소독성에 대한 헤백추출물의 방어효과</li>
+                                        <li>· 오가피 물 추출물이 허혈-재관류로 유발된 급성 신부전 백서에 미치는 영향</li>
+                                    </ul>
+                                </div>
+                                <!-- 방송출연 및 강의 -->
+                                <div>
+                                    <h4 class="text-brand-dark font-bold text-sm mb-4 flex items-center gap-2"><i class="fa-solid fa-circle-dot text-brand-gold text-[10px]"></i> 방송출연 및 강의</h4>
+                                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-brand-graytext font-light word-keep">
+                                        <li>· KBS, MBC, 채널A 외 방송 다수출연</li>
+                                        <li>· 서울시 변호사회 웹진 '시민과 변호사' 한방칼럼 정기연재 경력</li>
+                                        <li>· 극동방송 웹진 한방칼럼 정기연재 경력</li>
+                                        <li>· 한의신문, 아파트 신문 칼럼연재 경력</li>
+                                        <li>· 대한침도의학회 전국한의사 한의대생 침도강의</li>
+                                        <li>· 대한통합방제한의학회 전국한의사 한의대생 강의</li>
+                                        <li>· 전국 한의학 학술대회 수도권, 대전권 강의</li>
+                                        <li>· 2019 대한한의학회 학술대상 우수강연상</li>
+                                    </ul>
+                                </div>
+                                <!-- 진료시간 -->
+                                <div>
+                                    <h4 class="text-brand-dark font-bold text-sm mb-4 flex items-center gap-2"><i class="fa-solid fa-circle-dot text-brand-gold text-[10px]"></i> 진료시간</h4>
+                                    <div class="border-t-2 border-[#4A6478] text-center text-[13px] md:text-sm">
+                                        <div class="grid grid-cols-7 bg-[#F8F9FA] border-b border-gray-200 text-brand-dark py-2.5 font-medium">
+                                            <div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div><div>일</div>
+                                        </div>
+                                        <div class="grid grid-cols-7 py-3 text-brand-graytext items-center">
+                                            <div><i class="fa-solid fa-circle text-brand-gold text-[8px]"></i></div>
+                                            <div class="text-xs text-gray-400">휴진</div>
+                                            <div><i class="fa-solid fa-circle text-brand-gold text-[8px]"></i></div>
+                                            <div class="text-xs text-gray-400">휴진</div>
+                                            <div><i class="fa-solid fa-circle text-brand-gold text-[8px]"></i></div>
+                                            <div><i class="fa-solid fa-circle text-brand-gold text-[8px]"></i></div>
+                                            <div class="text-xs text-gray-400">휴진</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-2xl font-bold font-serif text-brand-dark mb-2">대표원장 안 준 석</h3>
-                        <p class="text-brand-gold font-medium mb-4 text-sm">한의학 박사 / 한방내과 전문의</p>
-                        <p class="text-brand-graytext leading-relaxed text-sm word-keep font-light">
-                            - 경희대학교 한의과대학 졸업<br>
-                            - 대한한방내과학회 정회원<br>
-                            - 전) 주요 척추·관절 한방병원 진료원장<br>
-                            - 20년 임상 경험을 바탕으로 한 정직하고 세심한 진료
-                        </p>
+
+                    <!-- 2. 박상민 진료원장 -->
+                    <div class="flex flex-col lg:flex-row gap-10 items-start bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-brand-lightBorder">
+                        <div class="w-full lg:w-64 shrink-0 flex flex-col items-center">
+                            <div class="w-56 h-72 rounded-t-[100px] rounded-b-3xl overflow-hidden bg-gray-100 shadow-inner border border-gray-200">
+                                <img src="https://placehold.co/400x500/EFEFEF/B69A7B?text=Dr.+Park" alt="박상민 진료원장" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="flex-1 w-full">
+                            <div class="mb-6 border-b border-brand-lightBorder pb-4 bg-[#F2F7FA] rounded-xl px-6 py-4">
+                                <h3 class="text-2xl font-bold font-serif text-brand-dark mb-1">진료원장 박상민</h3>
+                            </div>
+                            <div class="space-y-8 px-2">
+                                <div>
+                                    <h4 class="text-brand-dark font-bold text-sm mb-4 flex items-center gap-2"><i class="fa-solid fa-circle-dot text-[#8C7A65] text-[10px]"></i> 약력</h4>
+                                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-brand-graytext font-light word-keep">
+                                        <li>· <span class="bg-orange-50 font-medium text-brand-dark px-1">現) 안준석한의원 진료원장</span></li>
+                                        <li>· 前) 지제도솔한방병원 진료과장</li>
+                                        <li>· 대전대 한의과대학 졸업</li>
+                                        <li>· 평택 도솔한방병원 일반/전문의 수료</li>
+                                        <li>· 평택 도솔한방병원 병동주치의</li>
+                                        <li>· 한방재활의학과 전문의</li>
+                                        <li>· 한방재활의학과학회 평생회원</li>
+                                        <li>· 대한한의학회 정회원</li>
+                                        <li>· 대한한의사협회 정회원</li>
+                                        <li>· 척추신경추나의학회 정규과정 수료</li>
+                                        <li>· 미국 근골격계 초음파(APCA RMSK) 인증의</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-brand-dark font-bold text-sm mb-4 flex items-center gap-2"><i class="fa-solid fa-circle-dot text-[#8C7A65] text-[10px]"></i> 논문</h4>
+                                    <ul class="space-y-2 text-sm text-brand-graytext font-light word-keep">
+                                        <li>· Trends in Domestic and International Clinical Research on Korean Medicine Treatments for Triangular Fibrocartilage Complex Injury</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-brand-dark font-bold text-sm mb-4 flex items-center gap-2"><i class="fa-solid fa-circle-dot text-[#8C7A65] text-[10px]"></i> 진료시간</h4>
+                                    <div class="border-t-2 border-[#4A6478] text-center text-[13px] md:text-sm">
+                                        <div class="grid grid-cols-7 bg-[#F8F9FA] border-b border-gray-200 text-brand-dark py-2.5 font-medium">
+                                            <div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div><div>일</div>
+                                        </div>
+                                        <div class="grid grid-cols-7 py-3 text-brand-graytext items-center">
+                                            <div><i class="fa-solid fa-circle text-[#D4AA70] text-[8px]"></i></div>
+                                            <div><i class="fa-solid fa-circle text-[#D4AA70] text-[8px]"></i></div>
+                                            <div class="text-xs text-gray-400">휴진</div>
+                                            <div><i class="fa-solid fa-circle text-[#D4AA70] text-[8px]"></i></div>
+                                            <div><i class="fa-solid fa-circle text-[#D4AA70] text-[8px]"></i></div>
+                                            <div class="text-xs text-gray-400">휴진</div>
+                                            <div><i class="fa-solid fa-circle text-[#D4AA70] text-[8px]"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- 3. 이석환 진료원장 -->
+                    <div class="flex flex-col lg:flex-row gap-10 items-start bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-brand-lightBorder">
+                        <div class="w-full lg:w-64 shrink-0 flex flex-col items-center">
+                            <div class="w-56 h-72 rounded-t-[100px] rounded-b-3xl overflow-hidden bg-gray-100 shadow-inner border border-gray-200">
+                                <img src="https://placehold.co/400x500/EFEFEF/B69A7B?text=Dr.+Lee" alt="이석환 진료원장" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="flex-1 w-full">
+                            <div class="mb-6 border-b border-brand-lightBorder pb-4 bg-[#F2F7FA] rounded-xl px-6 py-4">
+                                <h3 class="text-2xl font-bold font-serif text-brand-dark mb-1">진료원장 이석환</h3>
+                            </div>
+                            <div class="space-y-8 px-2">
+                                <div>
+                                    <h4 class="text-brand-dark font-bold text-sm mb-4 flex items-center gap-2"><i class="fa-solid fa-circle-dot text-[#8C7A65] text-[10px]"></i> 약력</h4>
+                                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-brand-graytext font-light word-keep">
+                                        <li>· <span class="bg-orange-50 font-medium text-brand-dark px-1">現) 안준석한의원 진료원장</span></li>
+                                        <li>· 前) 아리랑한의원 진료원장</li>
+                                        <li>· 前) 완도군보건의료원 신지보건지소 한의과 진료과장</li>
+                                        <li>· 前) 완도군보건의료원 청산보건지소 한의과 진료과장</li>
+                                        <li>· 前) 군위군보건소 우보보건지소 지소장</li>
+                                        <li>· 대구한의대학교 한의학과 졸업</li>
+                                        <li>· 대한침도의학회 정규 과정 수료</li>
+                                        <li>· 척추신경추나의학회 정규 과정 수료</li>
+                                        <li>· 한국도핑방지위원회 '2024 도핑예방 보건의료 전문가 과정' 수료</li>
+                                        <li>· 미국근골격계 초음파(APCA RMSK) 인증의</li>
+                                        <li>· 대한침도의학회 정회원</li>
+                                        <li>· 척추신경추나의학회 정회원</li>
+                                        <li>· 2023 새만금 '제 25회 세계스카우트 잼버리' 한의진료센터 의료진</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-brand-dark font-bold text-sm mb-4 flex items-center gap-2"><i class="fa-solid fa-circle-dot text-[#8C7A65] text-[10px]"></i> 진료시간</h4>
+                                    <div class="border-t-2 border-[#4A6478] text-center text-[13px] md:text-sm">
+                                        <div class="grid grid-cols-7 bg-[#F8F9FA] border-b border-gray-200 text-brand-dark py-2.5 font-medium">
+                                            <div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div><div>일</div>
+                                        </div>
+                                        <div class="grid grid-cols-7 py-3 text-brand-graytext items-center">
+                                            <div class="text-xs text-gray-400">휴진</div>
+                                            <div><i class="fa-solid fa-circle text-[#D4AA70] text-[8px]"></i></div>
+                                            <div><i class="fa-solid fa-circle text-[#D4AA70] text-[8px]"></i></div>
+                                            <div><i class="fa-solid fa-circle text-[#D4AA70] text-[8px]"></i></div>
+                                            <div class="text-xs text-gray-400">휴진</div>
+                                            <div><i class="fa-solid fa-circle text-[#D4AA70] text-[8px]"></i></div>
+                                            <div><i class="fa-solid fa-circle text-[#D4AA70] text-[8px]"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
-
       <!-- 섹션 3: 치료 금액 -->
         <section id="section-price" class="py-24 bg-white relative">
             <div class="max-w-5xl mx-auto px-6">
