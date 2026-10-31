@@ -94,7 +94,6 @@
             <!-- 본문 에디터 -->
             <div>
                 <label class="block text-sm font-bold text-gray-700 mb-2">본문</label>
-                <!-- 툴바 버튼들에 onclick 이벤트 추가 -->
                 <div class="border border-gray-300 rounded-t-md bg-[#f4f4f4] p-2 flex flex-wrap items-center gap-1 border-b-0">
                     <button type="button" onclick="formatText('bold')" class="toolbar-btn font-bold">B</button>
                     <button type="button" onclick="formatText('italic')" class="toolbar-btn italic">I</button>
@@ -108,16 +107,14 @@
                     <button type="button" onclick="formatText('formatBlock', 'BLOCKQUOTE')" class="toolbar-btn">" 인용</button>
                     <button type="button" onclick="insertLink()" class="toolbar-btn"><i class="fa-solid fa-link text-xs"></i> 링크</button>
                     
-                    <!-- 수정된 사진 버튼 영역 -->
+                    <!-- 파일 탐색기 연결용 숨겨진 input과 사진 버튼 -->
                     <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="uploadImage(this)">
                     <button type="button" onclick="document.getElementById('imageInput').click()" class="toolbar-btn active flex items-center gap-1"><i class="fa-regular fa-image"></i> 사진</button>
                 </div>
                 
-                <!-- textarea 대신 contenteditable div 사용 -->
                 <div id="editor" contenteditable="true" 
                      class="w-full border border-gray-300 rounded-b-md p-6 min-h-[400px] focus:outline-none focus:border-[#B69A7B] text-gray-700 leading-relaxed bg-white overflow-y-auto">
                 </div>
-                <!-- 숨겨진 input (저장용) -->
                 <input type="hidden" id="content">
             </div>
 
@@ -147,28 +144,34 @@
             }
         }
 
-        // 외부 API 키가 필요 없는 Base64 이미지 변환 방식
+        // --- 글 작성 중 커서 위치에 사진이 바로 들어가는 Base64 방식 ---
         function uploadImage(inputElement) {
             const file = inputElement.files[0];
             if (!file) return;
 
             const reader = new FileReader();
             reader.onload = function(e) {
-                // 사진을 텍스트 데이터로 변환한 주소
                 const imageUrl = e.target.result; 
                 
-                // 에디터 본문에 사진 삽입
-                const imgTag = `<img src="${imageUrl}" style="max-width: 100%; height: auto; border-radius: 8px; margin: 15px 0;">`;
+                // 1. 에디터 본문을 클릭한 것처럼 포커스 주기
+                document.getElementById('editor').focus();
+                
+                // 2. 현재 글을 쓰고 있던 커서 위치에 정확히 사진 삽입
+                document.execCommand('insertImage', false, imageUrl);
+                
+                // 3. 사진 크기 및 여백 스타일 자동 적용
                 const editor = document.getElementById('editor');
-                editor.innerHTML += imgTag;
-                editor.focus();
+                const images = editor.getElementsByTagName('img');
+                for(let i = 0; i < images.length; i++) {
+                    images[i].style.maxWidth = '100%';
+                    images[i].style.height = 'auto';
+                    images[i].style.borderRadius = '8px';
+                    images[i].style.margin = '15px 0';
+                }
             };
             
-            // 파일 읽기 실행
             reader.readAsDataURL(file); 
-            
-            // 다음 업로드를 위해 초기화
-            inputElement.value = ''; 
+            inputElement.value = ''; // 다음 업로드를 위해 초기화
         }
 
         // --- 새 글 등록 API 호출 (POST) ---
@@ -181,14 +184,11 @@
             const data = {
                 category: document.getElementById('category').value,
                 title: title,
-                // 슬러그를 비워뒀으면 제목으로 자동 변환
                 slug: slugValue ? slugValue : title.replace(/\s+/g, '-'),
-                // 에디터 영역(div)에서 HTML 내용을 가져와서 전송
                 content: document.getElementById('editor').innerHTML,
                 is_published: document.getElementById('is_published').checked
             };
 
-            // 본문 내용이 비어있는지 체크
             if (!data.content || data.content.trim() === '') {
                 alert('본문 내용을 입력해주세요.');
                 return;
@@ -196,7 +196,7 @@
 
             try {
                 const response = await fetch('/api/posts', {
-                    method: 'POST', // 새 글 작성이므로 POST 요청
+                    method: 'POST', 
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
@@ -204,7 +204,7 @@
                 const result = await response.json();
                 if (result.success) {
                     alert("칼럼이 성공적으로 등록되었습니다.");
-                    window.location.href = "index.html"; // 등록 후 목록 페이지로 돌아가기
+                    window.location.href = "index.html"; 
                 } else {
                     alert("등록 실패: " + result.error);
                 }
