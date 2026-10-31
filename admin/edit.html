@@ -236,6 +236,17 @@
                 alert("통신 오류가 발생했습니다: " + error.message);
             }
         });
+
+        // --- 에디터 내 이미지 클릭 시 선택되도록 처리 ---
+        document.getElementById('editor').addEventListener('click', function(e) {
+            if (e.target.tagName === 'IMG') {
+                const selection = window.getSelection();
+                const range = document.createRange();
+                range.selectNode(e.target); // 클릭한 이미지 선택
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+        });
     </script>
 </body>
 </html>
