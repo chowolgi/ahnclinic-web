@@ -109,8 +109,10 @@
                 <input type="hidden" id="content">
             </div>
 
+            <!-- 변경된 버튼 영역 (임시저장 추가) -->
             <div class="flex justify-end gap-3 pt-6 border-t border-gray-200">
                 <button type="button" onclick="history.back()" class="px-8 py-3 bg-gray-200 text-gray-700 font-bold rounded-md hover:bg-gray-300 transition">취소</button>
+                <button type="button" id="saveDraftBtn" class="px-8 py-3 bg-gray-500 text-white font-bold rounded-md hover:bg-gray-600 transition shadow-md">임시저장</button>
                 <button type="submit" class="px-8 py-3 bg-[#B69A7B] text-white font-bold rounded-md hover:bg-[#9A7D5E] transition shadow-md">등록하기</button>
             </div>
         </form>
@@ -182,6 +184,44 @@
                 range.selectNode(e.target);
                 selection.removeAllRanges();
                 selection.addRange(range);
+            }
+        });
+
+        // --- 임시저장 기능 (비공개로 강제 저장) ---
+        document.getElementById('saveDraftBtn').addEventListener('click', async function() {
+            const title = document.getElementById('title').value;
+            const slugValue = document.getElementById('slug').value;
+            
+            if (!title) {
+                alert('제목을 입력해주세요.');
+                document.getElementById('title').focus();
+                return;
+            }
+
+            const data = {
+                category: document.getElementById('category').value,
+                title: title,
+                slug: slugValue ? slugValue : title.replace(/\s+/g, '-'),
+                content: document.getElementById('editor').innerHTML,
+                is_published: false // 공개 여부를 강제로 비공개(false) 처리
+            };
+
+            try {
+                const response = await fetch('/api/posts', {
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert("성공적으로 임시저장 되었습니다. (홈페이지 비공개 상태)");
+                    window.location.href = "index.html"; 
+                } else {
+                    alert("임시저장 실패: " + result.error);
+                }
+            } catch (error) {
+                alert("통신 오류가 발생했습니다: " + error.message);
             }
         });
 
