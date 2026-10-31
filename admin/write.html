@@ -13,18 +13,15 @@
     <style>
         body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8f9fa; }
         
-        /* 토글 스위치 디자인 */
         .toggle-checkbox:checked { right: 0; border-color: #B69A7B; }
         .toggle-checkbox:checked + .toggle-label { background-color: #B69A7B; }
         .toggle-checkbox { right: 0; z-index: 1; border-color: #e2e8f0; transition: all 0.3s; }
         .toggle-label { width: 3rem; height: 1.5rem; background-color: #cbd5e1; transition: all 0.3s; border-radius: 9999px; }
         
-        /* 에디터 툴바 버튼 */
         .toolbar-btn { padding: 4px 8px; font-size: 13px; color: #555; border-radius: 4px; transition: background 0.2s; cursor: pointer; }
         .toolbar-btn:hover { background-color: #e2e8f0; }
         .toolbar-btn.active { background-color: #FDFCF0; color: #B69A7B; font-weight: bold; border: 1px solid #EBE7D9; }
         
-        /* 에디터 내부 기본 스타일 지정 */
         #editor { outline: none; }
         #editor ul { list-style-type: disc; margin-left: 20px; padding-left: 20px; margin-bottom: 10px; }
         #editor ol { list-style-type: decimal; margin-left: 20px; padding-left: 20px; margin-bottom: 10px; }
@@ -37,21 +34,18 @@
 <body class="text-gray-800">
 
     <div class="max-w-5xl mx-auto py-12 px-6">
-        <!-- 헤더 -->
         <div class="mb-10 border-b border-gray-200 pb-6">
             <span class="text-xs font-bold text-[#B69A7B] tracking-widest uppercase">New Column</span>
             <h1 class="text-3xl font-bold mt-2">새 칼럼 작성</h1>
         </div>
 
         <form id="postForm" class="space-y-8">
-            <!-- 제목 -->
             <div>
                 <label for="title" class="block text-sm font-bold text-gray-700 mb-2">제목</label>
                 <input type="text" id="title" required placeholder="칼럼 제목을 입력하세요" 
                        class="w-full border border-gray-300 rounded-md p-4 text-lg focus:outline-none focus:border-[#B69A7B] focus:ring-1 focus:ring-[#B69A7B]">
             </div>
 
-            <!-- URL 주소 (슬러그) -->
             <div>
                 <label for="slug" class="block text-sm font-bold text-gray-700 mb-2">URL 주소 (슬러그)</label>
                 <input type="text" id="slug" placeholder="예: online-marketing (영문, 숫자, 하이픈만 사용 권장)" 
@@ -59,7 +53,6 @@
                 <p class="text-xs text-gray-500 mt-2">* 입력하지 않으면 제목이 자동으로 URL이 됩니다. 한글 제목은 주소가 길어질 수 있으므로 짧은 영문 입력을 권장합니다.</p>
             </div>
 
-            <!-- 카테고리 & 공개 여부 -->
             <div class="flex items-center gap-8">
                 <div>
                     <label for="category" class="block text-sm font-bold text-gray-700 mb-2">카테고리</label>
@@ -81,7 +74,6 @@
                 </div>
             </div>
 
-            <!-- 대표 이미지 -->
             <div>
                 <label class="block text-sm font-bold text-gray-700 mb-2">대표 이미지 <span class="text-xs font-normal text-gray-400">목록 썸네일 · 선택</span></label>
                 <div class="flex items-center border border-gray-300 rounded-md p-2 bg-white">
@@ -91,7 +83,6 @@
                 <p class="text-xs text-gray-500 mt-2">비워두면 본문 첫 번째 사진이 자동으로 대표 이미지가 됩니다.</p>
             </div>
 
-            <!-- 본문 에디터 -->
             <div>
                 <label class="block text-sm font-bold text-gray-700 mb-2">본문</label>
                 <div class="border border-gray-300 rounded-t-md bg-[#f4f4f4] p-2 flex flex-wrap items-center gap-1 border-b-0">
@@ -118,20 +109,14 @@
                 <input type="hidden" id="content">
             </div>
 
-            <!-- 버튼 영역 -->
             <div class="flex justify-end gap-3 pt-6 border-t border-gray-200">
-                <button type="button" onclick="history.back()" class="px-8 py-3 bg-gray-200 text-gray-700 font-bold rounded-md hover:bg-gray-300 transition">
-                    취소
-                </button>
-                <button type="submit" class="px-8 py-3 bg-[#B69A7B] text-white font-bold rounded-md hover:bg-[#9A7D5E] transition shadow-md">
-                    등록하기
-                </button>
+                <button type="button" onclick="history.back()" class="px-8 py-3 bg-gray-200 text-gray-700 font-bold rounded-md hover:bg-gray-300 transition">취소</button>
+                <button type="submit" class="px-8 py-3 bg-[#B69A7B] text-white font-bold rounded-md hover:bg-[#9A7D5E] transition shadow-md">등록하기</button>
             </div>
         </form>
     </div>
 
     <script>
-        // --- 에디터 툴바 기능 함수 ---
         function formatText(command, value = null) {
             document.execCommand(command, false, value);
             document.getElementById('editor').focus();
@@ -144,35 +129,61 @@
             }
         }
 
-        // --- 글 작성 중 커서 위치에 사진이 바로 들어가는 Base64 방식 ---
+        // --- 용량 초과 에러 방지 및 커서 위치 삽입이 적용된 자동 압축 이미지 업로드 ---
         function uploadImage(inputElement) {
             const file = inputElement.files[0];
             if (!file) return;
 
             const reader = new FileReader();
             reader.onload = function(e) {
-                const imageUrl = e.target.result; 
-                
-                // 1. 에디터 본문을 클릭한 것처럼 포커스 주기
-                document.getElementById('editor').focus();
-                
-                // 2. 현재 글을 쓰고 있던 커서 위치에 정확히 사진 삽입
-                document.execCommand('insertImage', false, imageUrl);
-                
-                // 3. 사진 크기 및 여백 스타일 자동 적용
-                const editor = document.getElementById('editor');
-                const images = editor.getElementsByTagName('img');
-                for(let i = 0; i < images.length; i++) {
-                    images[i].style.maxWidth = '100%';
-                    images[i].style.height = 'auto';
-                    images[i].style.borderRadius = '8px';
-                    images[i].style.margin = '15px 0';
-                }
+                const img = new Image();
+                img.onload = function() {
+                    const MAX_WIDTH = 800;
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > MAX_WIDTH) {
+                        height = Math.round((height * MAX_WIDTH) / width);
+                        width = MAX_WIDTH;
+                    }
+
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
+
+                    document.getElementById('editor').focus();
+                    document.execCommand('insertImage', false, compressedDataUrl);
+                    
+                    const editor = document.getElementById('editor');
+                    const images = editor.getElementsByTagName('img');
+                    for(let i = 0; i < images.length; i++) {
+                        images[i].style.maxWidth = '100%';
+                        images[i].style.height = 'auto';
+                        images[i].style.borderRadius = '8px';
+                        images[i].style.margin = '15px 0';
+                    }
+                };
+                img.src = e.target.result; 
             };
             
             reader.readAsDataURL(file); 
-            inputElement.value = ''; // 다음 업로드를 위해 초기화
+            inputElement.value = ''; 
         }
+
+        // --- 에디터 내 이미지 클릭 시 선택되도록 처리 ---
+        document.getElementById('editor').addEventListener('click', function(e) {
+            if (e.target.tagName === 'IMG') {
+                const selection = window.getSelection();
+                const range = document.createRange();
+                range.selectNode(e.target);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+        });
 
         // --- 새 글 등록 API 호출 (POST) ---
         document.getElementById('postForm').addEventListener('submit', async function(e) {
@@ -210,17 +221,6 @@
                 }
             } catch (error) {
                 alert("통신 오류가 발생했습니다: " + error.message);
-            }
-        });
-
-        // --- 에디터 내 이미지 클릭 시 선택되도록 처리 ---
-        document.getElementById('editor').addEventListener('click', function(e) {
-            if (e.target.tagName === 'IMG') {
-                const selection = window.getSelection();
-                const range = document.createRange();
-                range.selectNode(e.target); // 클릭한 이미지 선택
-                selection.removeAllRanges();
-                selection.addRange(range);
             }
         });
     </script>
