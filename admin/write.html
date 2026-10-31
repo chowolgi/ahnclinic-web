@@ -107,7 +107,10 @@
                     <button type="button" onclick="formatText('insertOrderedList')" class="toolbar-btn">1. 목록</button>
                     <button type="button" onclick="formatText('formatBlock', 'BLOCKQUOTE')" class="toolbar-btn">" 인용</button>
                     <button type="button" onclick="insertLink()" class="toolbar-btn"><i class="fa-solid fa-link text-xs"></i> 링크</button>
-                    <button type="button" onclick="insertImage()" class="toolbar-btn active flex items-center gap-1"><i class="fa-regular fa-image"></i> 사진</button>
+                    
+                    <!-- 수정된 사진 버튼 영역 -->
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="uploadImage(this)">
+                    <button type="button" onclick="document.getElementById('imageInput').click()" class="toolbar-btn active flex items-center gap-1"><i class="fa-regular fa-image"></i> 사진</button>
                 </div>
                 
                 <!-- textarea 대신 contenteditable div 사용 -->
@@ -144,21 +147,28 @@
             }
         }
 
-        function insertImage() {
-            const url = prompt('삽입할 이미지 주소(URL)를 입력하세요:\n(예: https://example.com/image.jpg)', 'https://');
-            if (url) {
-                formatText('insertImage', url);
+        // 외부 API 키가 필요 없는 Base64 이미지 변환 방식
+        function uploadImage(inputElement) {
+            const file = inputElement.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                // 사진을 텍스트 데이터로 변환한 주소
+                const imageUrl = e.target.result; 
                 
-                // 이미지 삽입 후 기본 스타일 적용
+                // 에디터 본문에 사진 삽입
+                const imgTag = `<img src="${imageUrl}" style="max-width: 100%; height: auto; border-radius: 8px; margin: 15px 0;">`;
                 const editor = document.getElementById('editor');
-                const images = editor.getElementsByTagName('img');
-                for(let i = 0; i < images.length; i++) {
-                    images[i].style.maxWidth = '100%';
-                    images[i].style.height = 'auto';
-                    images[i].style.borderRadius = '8px';
-                    images[i].style.margin = '15px 0';
-                }
-            }
+                editor.innerHTML += imgTag;
+                editor.focus();
+            };
+            
+            // 파일 읽기 실행
+            reader.readAsDataURL(file); 
+            
+            // 다음 업로드를 위해 초기화
+            inputElement.value = ''; 
         }
 
         // --- 새 글 등록 API 호출 (POST) ---
