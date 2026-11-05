@@ -22,9 +22,9 @@
                 extend: {
                     colors: {
                         brand: {
-                            gold: '#B69A7B',      /* 우아한 샴페인 골드 */
-                            dark: '#333333',      /* 텍스트용 다크 그레이 */
-                            graytext: '#666666',  /* 본문 서브 텍스트 */
+                            gold: '#B69A7B',     /* 우아한 샴페인 골드 */
+                            dark: '#333333',     /* 텍스트용 다크 그레이 */
+                            graytext: '#666666', /* 본문 서브 텍스트 */
                             ivory: '#F9F7F3',     /* 따뜻한 아이보리 배경 */
                             lightBorder: '#EFEFEF'
                         }
@@ -208,7 +208,7 @@
 
             <!-- 예약하기 다크 둥근 버튼 -->
             <div class="hidden lg:flex items-center shrink-0">
-                <a href="https://booking.naver.com/" target="_blank" class="nav-reserve-btn">예약하기</a>
+                <a href="https://m.booking.naver.com/booking/13/bizes/662272" target="_blank" class="nav-reserve-btn">예약하기</a>
             </div>
 
             <!-- 모바일 햄버거 버튼 -->
@@ -222,7 +222,7 @@
 
     <!-- FLOATING RIGHT MENU -->
     <div class="fixed right-4 md:right-6 top-1/2 -translate-y-1/2 z-40 bg-white/90 backdrop-blur-md rounded-full shadow-lg border border-gray-100 p-2 flex flex-col gap-2">
-        <a href="https://booking.naver.com/" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
+        <a href="https://m.booking.naver.com/booking/13/bizes/662272" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full hover:bg-brand-ivory flex flex-col items-center justify-center transition-colors group">
             <div class="w-5 h-5 md:w-6 md:h-6 bg-brand-gold text-white rounded-full font-bold text-[10px] md:text-[11px] flex items-center justify-center mb-1 group-hover:scale-110 transition-transform"><i class="fas fa-calendar-check"></i></div>
             <span class="text-[9px] md:text-[10px] text-gray-600 font-medium">예약</span>
         </a>
@@ -246,16 +246,15 @@
             </div>
         </section>
 
-        <!-- 서브페이지 내부 목차 (이명/난청용) -->
+        <!-- 서브페이지 내부 목차 (이명/난청용 - 맞춤한약 제외됨) -->
         <div class="sticky-subnav shadow-sm w-full">
             <div class="max-w-4xl mx-auto px-4 flex justify-between md:justify-center md:space-x-16 overflow-x-auto whitespace-nowrap scrollbar-hide">
                 <a href="#section-tinnitus" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">이명·난청 클리닉</a>
-                <a href="#section-herbal" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">맞춤 한약 처방</a>
                 <a href="#section-facial" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">구안와사 골든타임</a>
             </div>
         </div>
 
-        <!-- 섹션 1: 이명·난청 클리닉 -->
+        <!-- 섹션 1: 이명·난청 클리닉 (tinnitus.jpg 적용) -->
         <section id="section-tinnitus" class="py-24 bg-white relative">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row gap-12 items-center">
@@ -271,38 +270,17 @@
                     </div>
                     <div class="md:w-1/2 reveal delay-200">
                         <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
-                            <img src="https://placehold.co/800x600/F9F7F3/B69A7B?text=Tinnitus+Care" alt="이명 난청 클리닉" class="w-full h-full object-cover">
+                            <img src="tinnitus.jpg" alt="이명 난청 클리닉" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 섹션 2: 맞춤 한약 처방 -->
-        <section id="section-herbal" class="py-24 bg-brand-ivory relative">
+        <!-- 섹션 2: 구안와사 골든타임 (guandache.jpg 적용) -->
+        <section id="section-facial" class="py-24 bg-brand-ivory relative">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row-reverse gap-12 items-center">
-                    <div class="md:w-1/2 reveal">
-                        <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Custom Herbal Medicine</span>
-                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">원인별 맞춤 한약 처방</h2>
-                        <h3 class="text-xl text-brand-dark font-medium mb-6 word-keep leading-relaxed">체질과 원인에 맞춘 정교한 처방으로<br>신경 회복과 체력 보강을 동시에 돕습니다.</h3>
-                        <p class="text-brand-graytext leading-relaxed mb-6 word-keep font-light">
-                            개인의 체질과 건강 상태를 세밀하게 진단하여 맞춤형 청정 한약을 조제합니다. 저하된 기력을 북돋우고 청각 주변 조직의 원활한 혈액순환을 유도하여 근본적인 회복을 이끌어냅니다.
-                        </p>
-                    </div>
-                    <div class="md:w-1/2 reveal delay-200">
-                        <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
-                            <img src="https://placehold.co/800x600/FFFFFF/B69A7B?text=Herbal+Prescription" alt="맞춤 한약" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 섹션 3: 구안와사 골든타임 -->
-        <section id="section-facial" class="py-24 bg-white relative">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="flex flex-col md:flex-row gap-12 items-center">
                     <div class="md:w-1/2 reveal">
                         <span class="text-brand-gold font-bold text-sm tracking-widest mb-3 block uppercase">Facial Paralysis Care</span>
                         <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">구안와사 골든타임 집중 케어</h2>
@@ -315,7 +293,7 @@
                     </div>
                     <div class="md:w-1/2 reveal delay-200">
                         <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
-                            <img src="https://placehold.co/800x600/F9F7F3/B69A7B?text=Facial+Care" alt="구안와사 집중 케어" class="w-full h-full object-cover">
+                            <img src="guandache.jpg" alt="구안와사 집중 케어" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
