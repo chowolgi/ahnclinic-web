@@ -22,9 +22,9 @@
                 extend: {
                     colors: {
                         brand: {
-                            gold: '#B69A7B',      /* 우아한 샴페인 골드 */
-                            dark: '#333333',      /* 텍스트용 다크 그레이 */
-                            graytext: '#666666',  /* 본문 서브 텍스트 */
+                            gold: '#B69A7B',     /* 우아한 샴페인 골드 */
+                            dark: '#333333',     /* 텍스트용 다크 그레이 */
+                            graytext: '#666666', /* 본문 서브 텍스트 */
                             ivory: '#F9F7F3',     /* 따뜻한 아이보리 배경 */
                             lightBorder: '#EFEFEF'
                         }
@@ -155,7 +155,7 @@
 </head>
 <body class="antialiased selection:bg-brand-gold selection:text-white">
 
-    <!-- HEADER (메인과 동일한 드롭다운 GNB 적용) -->
+    <!-- HEADER -->
     <div class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-brand-lightBorder shadow-sm transition-all duration-300">
         <header class="relative z-20 h-24 flex items-center justify-between px-4 xl:px-12 max-w-screen-2xl mx-auto">
             <!-- 로고 영역 -->
@@ -172,7 +172,6 @@
             <!-- 네비게이션 메뉴 -->
             <nav class="hidden lg:flex flex-1 justify-center h-full">
                 <ul class="flex items-center gap-12 h-full text-[15px] font-medium text-brand-dark">
-                    <!-- 1. 한의원 소개 (드롭다운) -->
                     <li class="nav-item h-full flex items-center relative">
                         <a href="2.html" class="gnb-link hover:text-brand-gold transition-colors flex items-center gap-1.5">
                             한의원 소개 <i class="fa-solid fa-chevron-down text-[10px]"></i>
@@ -185,7 +184,6 @@
                         </div>
                     </li>
                     
-                    <!-- 2. 진료안내 (드롭다운) -->
                     <li class="nav-item h-full flex items-center relative">
                         <a href="3.html" class="gnb-link active text-brand-gold font-bold flex items-center gap-1.5">
                             진료안내 <i class="fa-solid fa-chevron-down text-[10px]"></i>
@@ -199,19 +197,16 @@
                         </div>
                     </li>
                     
-                    <!-- 3. 건강칼럼 -->
                     <li class="h-full flex items-center">
                         <a href="column.html" class="gnb-link hover:text-brand-gold transition-colors">건강칼럼</a>
                     </li>
                 </ul>
             </nav>
 
-            <!-- 예약하기 다크 둥근 버튼 -->
             <div class="hidden lg:flex items-center shrink-0">
                 <a href="https://booking.naver.com/" target="_blank" class="nav-reserve-btn">예약하기</a>
             </div>
 
-            <!-- 모바일 햄버거 버튼 -->
             <div class="flex items-center shrink-0 lg:hidden">
                 <button class="w-10 h-10 rounded-full bg-brand-ivory text-brand-dark hover:bg-brand-gold hover:text-white flex items-center justify-center transition-colors shadow-sm">
                     <i class="fas fa-bars text-lg"></i>
@@ -235,7 +230,7 @@
 
     <!-- MAIN CONTENT -->
     <main class="pt-24">
-        <!-- 메인 배너 (목·허리 디스크용) -->
+        <!-- 메인 배너 -->
         <section class="relative h-[400px] w-full flex items-center justify-center bg-brand-ivory overflow-hidden">
             <div class="absolute inset-0 bg-[url('https://placehold.co/1920x600/EFEFEF/999999?text=Spine+and+Disc+Clinic')] bg-cover bg-center opacity-50 mix-blend-multiply"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent"></div>
@@ -246,7 +241,7 @@
             </div>
         </section>
 
-        <!-- 서브페이지 내부 목차 (목·허리 디스크용) -->
+        <!-- 서브페이지 내부 목차 -->
         <div class="sticky-subnav shadow-sm w-full">
             <div class="max-w-4xl mx-auto px-4 flex justify-between md:justify-center md:space-x-16 overflow-x-auto whitespace-nowrap scrollbar-hide">
                 <a href="#section-disc" class="py-5 px-2 text-sm md:text-base font-medium text-gray-600">목·허리 디스크</a>
@@ -255,7 +250,7 @@
             </div>
         </div>
 
-        <!-- 섹션 1: 목·허리 디스크 -->
+        <!-- 섹션 1: 목·허리 디스크 (waist.jpg 적용) -->
         <section id="section-disc" class="py-24 bg-white relative">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row gap-12 items-center">
@@ -271,14 +266,14 @@
                     </div>
                     <div class="md:w-1/2 reveal delay-200">
                         <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
-                            <img src="https://placehold.co/800x600/F9F7F3/B69A7B?text=Disc+Treatment" alt="목허리 디스크" class="w-full h-full object-cover">
+                            <img src="waist.jpg" alt="목허리 디스크 허리 치료" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 섹션 2: 추나 요법 -->
+        <!-- 섹션 2: 추나 요법 (chuna.jpg 적용) -->
         <section id="section-chuna" class="py-24 bg-brand-ivory relative">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row-reverse gap-12 items-center">
@@ -292,14 +287,14 @@
                     </div>
                     <div class="md:w-1/2 reveal delay-200">
                         <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
-                            <img src="https://placehold.co/800x600/FFFFFF/B69A7B?text=Chuna+Therapy" alt="추나 요법" class="w-full h-full object-cover">
+                            <img src="chuna.jpg" alt="추나 요법" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 섹션 3: 도침 요법 -->
+        <!-- 섹션 3: 도침 요법 (dochim.jpg 적용) -->
         <section id="section-dochim" class="py-24 bg-white relative">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row gap-12 items-center">
@@ -315,7 +310,7 @@
                     </div>
                     <div class="md:w-1/2 reveal delay-200">
                         <div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-brand-lightBorder">
-                            <img src="https://placehold.co/800x600/F9F7F3/B69A7B?text=Dochim+Therapy" alt="도침 요법" class="w-full h-full object-cover">
+                            <img src="dochim.jpg" alt="도침 요법" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
