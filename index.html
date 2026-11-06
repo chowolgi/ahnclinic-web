@@ -522,7 +522,7 @@
             evt.currentTarget.classList.add('active');
         }
 
-        // --- 메인 페이지 최신 칼럼 자동 연동 스크립트 ---
+        // --- 메인 페이지 최신 칼럼 자동 연동 스크립트 (6개로 수정) ---
         async function loadLatestColumns() {
             try {
                 const response = await fetch('/api/posts');
@@ -531,8 +531,8 @@
                 const grid = document.getElementById('latest-columns-grid');
                 grid.innerHTML = '';
 
-                // 발행됨(is_published === 1) 상태인 글만 필터링하고 최신글 3개만 자르기
-                const publishedPosts = posts.filter(post => post.is_published === 1).slice(0, 3);
+                // 발행됨(is_published === 1) 상태인 글만 필터링하고 최신글 6개 가져오기
+                const publishedPosts = posts.filter(post => post.is_published === 1).slice(0, 6);
 
                 if (publishedPosts.length === 0) {
                     grid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #999; padding: 40px 0;">등록된 칼럼이 없습니다.</p>';
