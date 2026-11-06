@@ -360,12 +360,25 @@
                     const postCategory = post.category || '건강칼럼';
                     const postTitle = post.title || '제목 없음';
                     
+                    // HTML 데이터를 DOM으로 변환하여 텍스트 및 첫 번째 이미지 추출
                     const tempDiv = document.createElement('div');
                     tempDiv.innerHTML = post.content || '';
+                    
+                    // 요약 텍스트 추출
                     const plainText = tempDiv.textContent || tempDiv.innerText || '';
-                    const postExcerpt = plainText.substring(0, 80) + '...';
+                    const postExcerpt = plainText.length > 80 ? plainText.substring(0, 80) + '...' : plainText;
 
-                    const postImage = post.image_url || 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80';
+                    // 첫 번째 이미지 추출
+                    const firstImg = tempDiv.querySelector('img');
+                    
+                    // 이미지가 있으면 첫 번째 이미지를, 없으면 기본 이미지를 사용
+                    let postImage = 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80';
+                    if (firstImg && firstImg.src) {
+                        postImage = firstImg.src;
+                    } else if (post.image_url) {
+                        postImage = post.image_url;
+                    }
+
                     const postLink = `column-view.html?id=${post.id}`;
 
                     const cardHtml = `
