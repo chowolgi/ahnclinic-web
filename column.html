@@ -44,7 +44,6 @@
         .font-serif { font-family: 'Nanum Myeongjo', serif; }
         .word-keep { word-break: keep-all; }
         
-        /* GNB 헤더 및 완벽한 정중앙 배치 스타일 */
         header {
             position: fixed;
             top: 0;
@@ -228,7 +227,17 @@
         
         .column-card { transition: all 0.3s ease; }
         .column-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); border-color: #B69A7B; }
-        .column-card img { transition: transform 0.5s ease; }
+        
+        /* 칼럼 목록 페이지 이미지 높이 고정 및 비율 왜곡 방지 스타일 */
+        .column-card .w-full.h-56 {
+            height: 220px !important;
+        }
+        .column-card img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            transition: transform 0.5s ease;
+        }
         .column-card:hover img { transform: scale(1.05); }
     </style>
 </head>
@@ -360,18 +369,14 @@
                     const postCategory = post.category || '건강칼럼';
                     const postTitle = post.title || '제목 없음';
                     
-                    // HTML 데이터를 DOM으로 변환하여 텍스트 및 첫 번째 이미지 추출
                     const tempDiv = document.createElement('div');
                     tempDiv.innerHTML = post.content || '';
                     
-                    // 요약 텍스트 추출
                     const plainText = tempDiv.textContent || tempDiv.innerText || '';
                     const postExcerpt = plainText.length > 80 ? plainText.substring(0, 80) + '...' : plainText;
 
-                    // 첫 번째 이미지 추출
                     const firstImg = tempDiv.querySelector('img');
                     
-                    // 이미지가 있으면 첫 번째 이미지를, 없으면 기본 이미지를 사용
                     let postImage = 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80';
                     if (firstImg && firstImg.src) {
                         postImage = firstImg.src;
