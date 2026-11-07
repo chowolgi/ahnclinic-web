@@ -35,9 +35,7 @@
             list-style: none;
         }
 
-        /* ----------------------------------
-           Header & Dropdown Menu 
-        ----------------------------------- */
+        /* Header & Dropdown Menu */
         header {
             position: fixed;
             top: 0;
@@ -199,9 +197,7 @@
             box-shadow: 0 4px 12px rgba(182, 154, 123, 0.3);
         }
 
-        /* ----------------------------------
-           Floating Quick Menu
-        ----------------------------------- */
+        /* Floating Quick Menu */
         .floating-bar {
             position: fixed; right: 30px; top: 50%; transform: translateY(-50%);
             background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-radius: 12px;
@@ -217,9 +213,7 @@
         .floating-item:hover { background-color: #B59A58; color: #fff; }
         .floating-item:hover i { color: #fff; }
 
-        /* ----------------------------------
-           Hero Section (원장님 사진 켄 번스 무빙 효과)
-        ----------------------------------- */
+        /* Hero Section */
         .hero {
             position: relative; 
             height: 100vh;
@@ -253,9 +247,7 @@
         .hero-title { font-size: 52px; font-family: 'Nanum Myeongjo', serif; font-weight: 700; line-height: 1.2; margin-bottom: 25px; letter-spacing: -1px; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
         .hero-desc { font-size: 18px; font-weight: 300; line-height: 1.6; color: #eee; margin-bottom: 40px; }
 
-        /* ----------------------------------
-           Section Common
-        ----------------------------------- */
+        /* Section Common */
         section { padding: 120px 0; }
         .section-header { text-align: center; margin-bottom: 60px; }
         .section-header h2 { font-size: 38px; font-family: 'Nanum Myeongjo', serif; font-weight: 700; color: #2c2c2c; letter-spacing: -1px; margin-bottom: 15px; }
@@ -292,14 +284,20 @@
         .panel-btn:hover { background: #B59A58; color: #fff; }
         .panel-img { width: 100%; height: 350px; background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 
-        /* ----------------------------------
-           Health Column Section (진료안내 바로 아래 연결)
-        ----------------------------------- */
+        /* Health Column Section (이미지 크기 고정 스타일 적용) */
         .column-section { background-color: #FDFCF0; position: relative; z-index: 10; border-top: 1px solid #EBE7D9; }
         .column-grid { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .column-card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #EBE7D9; transition: all 0.3s; }
         .column-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); border-color: #B59A58; }
-        .column-img { height: 200px; background-size: cover; background-position: center; }
+        
+        /* 썸네일 높이 고정 및 비율 왜곡 방지 */
+        .column-img { 
+            height: 220px !important; 
+            background-size: cover !important; 
+            background-position: center !important; 
+            background-repeat: no-repeat !important;
+        }
+        
         .column-info { padding: 30px; }
         .column-date { font-size: 13px; color: #999; margin-bottom: 10px; }
         .column-title { font-size: 18px; font-weight: 700; color: #2c2c2c; margin-bottom: 15px; line-height: 1.4; }
@@ -483,7 +481,7 @@
         </div>
     </section>
 
-    <!-- Health Column Section (진료안내 바로 아래에 연결) -->
+    <!-- Health Column Section -->
     <section class="column-section">
         <div class="section-header">
             <h2>안준석 원장의 건강 칼럼</h2>
@@ -510,7 +508,6 @@
     </footer>
 
     <script>
-        // 기존 탭 전환 스크립트
         function switchTab(evt, tabId) {
             const panels = document.querySelectorAll('.tab-panel');
             panels.forEach(panel => panel.classList.remove('active'));
@@ -522,7 +519,6 @@
             evt.currentTarget.classList.add('active');
         }
 
-        // --- 메인 페이지 최신 칼럼 자동 연동 스크립트 (6개로 수정) ---
         async function loadLatestColumns() {
             try {
                 const response = await fetch('/api/posts');
@@ -531,7 +527,6 @@
                 const grid = document.getElementById('latest-columns-grid');
                 grid.innerHTML = '';
 
-                // 발행됨(is_published === 1) 상태인 글만 필터링하고 최신글 6개 가져오기
                 const publishedPosts = posts.filter(post => post.is_published === 1).slice(0, 6);
 
                 if (publishedPosts.length === 0) {
@@ -540,21 +535,17 @@
                 }
 
                 publishedPosts.forEach(post => {
-                    // 본문에서 이미지 추출 (없으면 기본 한의원 배경 이미지 사용)
                     const tempDiv = document.createElement('div');
                     tempDiv.innerHTML = post.content || '';
                     const imgTag = tempDiv.querySelector('img');
                     const imgUrl = imgTag ? imgTag.src : 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80';
 
-                    // 본문 텍스트 추출 및 50자 요약
                     const plainText = tempDiv.textContent || tempDiv.innerText || '';
                     const excerpt = plainText.length > 50 ? plainText.substring(0, 50) + '...' : plainText;
                     
-                    // 날짜 변환 (예: 2026.10.27)
                     const dateObj = post.created_at ? new Date(post.created_at) : new Date();
                     const formattedDate = `${dateObj.getFullYear()}.${String(dateObj.getMonth() + 1).padStart(2, '0')}.${String(dateObj.getDate()).padStart(2, '0')}`;
 
-                    // 카드 생성 후 그리드에 삽입
                     const card = `
                         <a href="column-view.html?id=${post.id}" class="column-card">
                             <div class="column-img" style="background-image: url('${imgUrl}');"></div>
