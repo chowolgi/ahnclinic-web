@@ -325,6 +325,298 @@
 </head>
 <body>
 
+    <style>
+    /* 안준석한의원 위키형 본문 — 다른 사이트 요소에 영향 없는 한정 선택자 */
+    details.ahn-wiki,details.ahn-wiki *{box-sizing:border-box}
+    details.ahn-wiki{display:block!important;width:100%!important;height:0!important;max-height:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden!important}
+    details.ahn-wiki[open]{height:auto!important;max-height:none!important;overflow:visible!important}
+    details.ahn-wiki>summary{display:block!important;list-style:none!important;width:100%!important;height:0!important;min-height:0!important;max-height:0!important;margin:0!important;padding:0!important;border:0!important;line-height:0!important;font-size:0!important}
+    details.ahn-wiki>summary::-webkit-details-marker,details.ahn-wiki>summary::marker{display:none!important;content:""!important}
+    details.ahn-wiki>summary:before,details.ahn-wiki>summary:after{content:none!important;display:none!important}
+    .ahn-wiki .aw-content{max-width:1100px;margin:0 auto;padding:30px 24px;background:#fff;color:#2c2c2c;font:400 15px/1.95 'Pretendard','Noto Sans KR',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;letter-spacing:-.024em;word-break:keep-all;overflow-wrap:anywhere}
+    .ahn-wiki .aw-content h2,.ahn-wiki .aw-content h3,.ahn-wiki .aw-content h4{color:#1a1a1a;letter-spacing:-.037em;line-height:1.5}
+    .ahn-wiki .aw-content h2{font-size:27px;margin:0 0 22px;font-weight:800}
+    .ahn-wiki .aw-content h3{font-size:23px;font-weight:800;margin:24px 0 16px}
+    .ahn-wiki .aw-content h4{font-size:18px;font-weight:750;margin:24px 0 12px}
+    .ahn-wiki .aw-content p{margin:0 0 17px}
+    .ahn-wiki .aw-content a{color:#B69A7B;text-underline-offset:3px;text-decoration:underline}
+    .ahn-wiki .aw-lead{font-size:16px;color:#555;line-height:2}
+    .ahn-wiki .aw-box{background:#FDFCF0;border-left:3px solid #B69A7B;padding:20px 22px;margin:22px 0;border-radius:0 12px 12px 0}
+    .ahn-wiki .aw-box p:last-child{margin-bottom:0}
+    .ahn-wiki .aw-toc{padding:24px 25px;margin:28px 0 45px;border:1px solid #EBE7D9;background:#FAFAFA;border-radius:14px}
+    .ahn-wiki .aw-toc strong{display:block;font-size:19px;color:#2c2c2c;margin-bottom:14px}
+    .ahn-wiki .aw-toc ol{margin:0;padding:0;list-style:none}
+    .ahn-wiki .aw-toc li{padding:3px 0;line-height:1.65}
+    .ahn-wiki .aw-toc .aw-sub{border-left:1px solid #EBE7D9;padding-left:15px;margin:6px 0 12px 14px}
+    .ahn-wiki .aw-toc a{color:#444;text-decoration:none;font-size:14px}
+    .ahn-wiki .aw-section{border-top:1px solid #eee;padding-top:14px;margin-top:42px;scroll-margin-top:90px}
+    .ahn-wiki .aw-subsection{margin:25px 0 32px;scroll-margin-top:90px}
+    .ahn-wiki .aw-figure{margin:23px 0 29px;text-align:center}
+    .ahn-wiki .aw-figure img{display:block;margin:0 auto;width:100%;max-width:820px;height:auto;object-fit:contain;border-radius:11px;background:#f9f9f9}
+    .ahn-wiki .aw-figure figcaption{font-size:13px;line-height:1.7;color:#888;margin:10px auto 0;max-width:820px}
+    .ahn-wiki .aw-carousel-head{margin:28px 0 14px!important}
+    .ahn-wiki .aw-carousel{display:flex;gap:14px;list-style:none!important;padding:3px 2px 14px!important;margin:0!important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+    .ahn-wiki .aw-carousel>li{flex:0 0 214px;min-width:0;scroll-snap-align:start;margin:0!important;padding:0!important;list-style:none!important}
+    .ahn-wiki .aw-tile{display:flex;flex-direction:column;min-height:252px;height:100%;overflow:hidden;border-radius:13px;border:1px solid #EBE7D9;background:white;text-decoration:none!important;color:#2c2c2c!important;box-shadow:0 3px 15px rgba(0,0,0,.035);transition:transform 0.2s}
+    .ahn-wiki .aw-tile:hover{transform:translateY(-3px)}
+    .ahn-wiki .aw-tile-media{height:135px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;overflow:hidden}
+    .ahn-wiki .aw-tile-media img{width:100%;height:100%;object-fit:cover;display:block}
+    .ahn-wiki .aw-tile-placeholder{display:flex;align-items:center;justify-content:center;height:135px;background:#FDFCF0;color:#B69A7B;font-size:14px;font-weight:700;text-align:center;padding:12px;border-bottom:1px solid #EBE7D9}
+    .ahn-wiki .aw-tile-body{padding:15px;display:flex;flex-direction:column;gap:5px}
+    .ahn-wiki .aw-tile-body strong{font-size:15px;line-height:1.5;color:#2c2c2c}
+    .ahn-wiki .aw-tile-body span{font-size:12px;line-height:1.65;color:#777}
+    .ahn-wiki .aw-table-wrap{overflow-x:auto;margin:22px 0}
+    .ahn-wiki .aw-table{width:100%;min-width:620px;border-collapse:collapse;font-size:14px;line-height:1.7}
+    .ahn-wiki .aw-table th,.ahn-wiki .aw-table td{border:1px solid #EBE7D9;padding:13px 14px;text-align:left;vertical-align:top}
+    .ahn-wiki .aw-table th{background:#FDFCF0;color:#2c2c2c;font-weight:600}
+    .ahn-wiki .aw-foot{font-size:13px;line-height:1.9;color:#777}
+    .ahn-wiki .aw-return{display:inline-block;font-size:13px;margin:10px 0 15px;color:#666;background:#f5f5f5;padding:6px 12px;border-radius:20px;text-decoration:none}
+    .ahn-wiki .aw-links{background:#FAFAFA;border:1px solid #EBE7D9;padding:20px 24px;border-radius:12px;margin:20px 0}
+    .ahn-wiki .aw-links ul{padding-left:20px;margin:0}
+    .ahn-wiki .aw-links li{margin:7px 0}
+    @media(max-width:767px){.ahn-wiki .aw-content{padding:22px 15px;font-size:14px}.ahn-wiki .aw-content h2{font-size:23px}.ahn-wiki .aw-content h3{font-size:20px}.ahn-wiki .aw-content h4{font-size:17px}.ahn-wiki .aw-toc{padding:18px 15px}.ahn-wiki .aw-carousel>li{flex-basis:185px}.ahn-wiki .aw-tile{min-height:235px}.ahn-wiki .aw-tile-media,.ahn-wiki .aw-tile-placeholder{height:119px}.ahn-wiki .aw-box{padding:16px}}
+    </style>
+    
+    <details class="ahn-wiki" id="ahn-wiki-main"><summary></summary><article class="aw-content" aria-label="안준석한의원 진료 및 의학 정보 안내">
+    <header><h2>영등포 안준석한의원 진료 안내</h2>
+    <p>안준석한의원은 영등포 일대에서 척추·관절 통증, 이명·난청, 여성질환, 교통사고 후유증 등의 질환을 진료할 때 확인하는 의료기관 검색어다. 환자들은 일시적인 진통 효과를 원하는 경우와 만성적인 체질 개선 및 구조적 교정을 원하는 경우 등 방문 목적이 다양하다. 따라서 현재 겪고 있는 증상의 원인을 먼저 감별하고, 의료진의 치료 방식, 예상되는 호전 과정, 비용 등을 종합적으로 검토해야 한다.</p>
+    <p>이 문서는 안준석한의원 공식 홈페이지에 안내된 주요 진료 분야를 바탕으로, 한방 진료의 원리, 추나 및 침구 치료, 맞춤 한약 처방의 과정 등을 일반적인 의학·한의학 정보로 설명한다. 개인별 치료 가능 여부와 구체적인 치료 기간, 비용 등은 실제 진맥과 상담을 통해 결정되어야 한다.</p>
+    <div class="aw-box"><p><strong>먼저 확인하실 사항</strong></p><p>단순한 근육통인지 신경을 압박하는 디스크 질환인지, 혹은 구조적 문제가 아닌 내부 장부의 기혈 순환 저하인지 감별하는 것이 우선이다. 통증을 억제하는 시술보다 자신의 체형과 체질 상태를 정확히 파악하고, 장기적인 회복과 재발 방지를 목표로 치료 계획을 세우는 것이 중요하다.</p></div></header>
+    
+    <nav class="aw-toc" id="aw-wiki-toc" aria-label="안준석한의원 전체 목차"><strong>목차</strong><ol>
+    <li><a href="#aw-wiki-s1">1. 안준석한의원 진료 철학과 한방 치료의 기초</a><ol class="aw-sub">
+    <li><a href="#aw-wiki-s1-1">1.1. 눈에 보이는 증상과 근본 원인의 감별</a></li>
+    <li><a href="#aw-wiki-s1-2">1.2. 한방 진료와 일반 체형 관리의 차이</a></li>
+    <li><a href="#aw-wiki-s1-3">1.3. 치료 목적과 방법에 따른 의료진 선택</a></li>
+    <li><a href="#aw-wiki-s1-4">1.4. 첫 진료 전 준비할 병력과 정보</a></li>
+    </ol></li>
+    <li><a href="#aw-wiki-s2">2. 목·허리 디스크 및 척추 관절 통증</a><ol class="aw-sub">
+    <li><a href="#aw-wiki-s2-1">2.1. 디스크(추간판탈출증)와 협착증의 발생 과정</a></li>
+    <li><a href="#aw-wiki-s2-2">2.2. 추나요법을 통한 척추 구조의 교정</a></li>
+    <li><a href="#aw-wiki-s2-3">2.3. 도침과 약침 요법의 적용과 주의사항</a></li>
+    <li><a href="#aw-wiki-s2-4">2.4. 만성 통증 환자의 생활 관리와 운동</a></li>
+    </ol></li>
+    <li><a href="#aw-wiki-s3">3. 이명·난청 및 안면신경(구안와사) 클리닉</a><ol class="aw-sub">
+    <li><a href="#aw-wiki-s3-1">3.1. 이명과 난청의 한의학적 접근 (기혈 순환)</a></li>
+    <li><a href="#aw-wiki-s3-2">3.2. 체질별 원인 분석과 침·뜸 치료</a></li>
+    <li><a href="#aw-wiki-s3-3">3.3. 구안와사(안면마비) 골든타임의 중요성</a></li>
+    <li><a href="#aw-wiki-s3-4">3.4. 신경 회복을 위한 복합 한방 치료</a></li>
+    </ol></li>
+    <li><a href="#aw-wiki-s4">4. 여성 질환 및 한방 다이어트</a><ol class="aw-sub">
+    <li><a href="#aw-wiki-s4-1">4.1. 생리통, 다낭성난소증후군과 자궁 환경</a></li>
+    <li><a href="#aw-wiki-s4-2">4.2. 산후조리와 갱년기 호르몬 변화 관리</a></li>
+    <li><a href="#aw-wiki-s4-3">4.3. 비만의 체질적 원인 파악</a></li>
+    <li><a href="#aw-wiki-s4-4">4.4. 요요 방지를 위한 건강한 한방 다이어트</a></li>
+    </ol></li>
+    <li><a href="#aw-wiki-s5">5. 교통사고 후유증 및 어혈 치료</a><ol class="aw-sub">
+    <li><a href="#aw-wiki-s5-1">5.1. 영상 검사에 나타나지 않는 미세 손상</a></li>
+    <li><a href="#aw-wiki-s5-2">5.2. 어혈(瘀血)의 개념과 통증 유발 원리</a></li>
+    <li><a href="#aw-wiki-s5-3">5.3. 자동차보험 적용 및 진료 절차</a></li>
+    <li><a href="#aw-wiki-s5-4">5.4. 집중 회복을 위한 단계별 치료 계획</a></li>
+    </ol></li>
+    <li><a href="#aw-wiki-s6">6. 체질 맞춤 한약과 보약 (공진단)</a><ol class="aw-sub">
+    <li><a href="#aw-wiki-s6-1">6.1. 맞춤 한약 처방을 위한 진맥과 문진</a></li>
+    <li><a href="#aw-wiki-s6-2">6.2. 식약처 인증 청정 한약재의 중요성</a></li>
+    <li><a href="#aw-wiki-s6-3">6.3. 공진단 등 프리미엄 보약의 적응증</a></li>
+    <li><a href="#aw-wiki-s6-4">6.4. 한약 복용 중 명현현상과 주의 반응</a></li>
+    </ol></li>
+    <li><a href="#aw-wiki-s7">7. 진료 예약·비용·안전 및 치료 과정</a><ol class="aw-sub">
+    <li><a href="#aw-wiki-s7-1">7.1. 안준석한의원 초진 및 상담 흐름</a></li>
+    <li><a href="#aw-wiki-s7-2">7.2. 급여(건강보험) 진료와 비급여 항목의 구별</a></li>
+    <li><a href="#aw-wiki-s7-3">7.3. 침, 추나 시술 후 예상 가능한 신체 반응</a></li>
+    <li><a href="#aw-wiki-s7-4">7.4. 진료시간·위치 및 주차 안내</a></li>
+    </ol></li>
+    <li><a href="#aw-wiki-s8">8. 자주 묻는 질문(FAQ) 및 내부 링크</a><ol class="aw-sub">
+    <li><a href="#aw-wiki-s8-1">8.1. 추나요법은 얼마나 자주 받아야 하나요?</a></li>
+    <li><a href="#aw-wiki-s8-2">8.2. 한약을 복용할 때 피해야 할 음식이 있나요?</a></li>
+    <li><a href="#aw-wiki-s8-3">8.3. 임산부나 어린이도 한방 치료가 가능한가요?</a></li>
+    <li><a href="#aw-wiki-s8-4">8.4. 안준석한의원 내부 페이지로 더 알아보기</a></li>
+    </ol></li>
+    </ol></nav>
+    
+    <section class="aw-section" id="aw-wiki-carousel"><h3 class="aw-carousel-head">안준석한의원 진료 과목 및 안내 페이지</h3>
+    <p>아래 카드는 안준석한의원 공식 웹사이트의 개별 진료 페이지로 연결된다. 환자 개개인의 증상에 따른 상세한 안내를 확인할 수 있으며, 표시된 일러스트나 이미지는 이해를 돕기 위한 참고용으로 개별 치료 결과를 보장하지 않는다.</p>
+    <ol class="aw-carousel" itemscope itemtype="https://schema.org/ItemList" aria-label="안준석한의원 내부 페이지 캐러셀">
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a class="aw-tile" itemprop="item" itemscope itemtype="https://schema.org/WebPage" href="2.html#section-doctor" title="의료진 및 소개">
+    <span class="aw-tile-placeholder" aria-hidden="true">안준석한의원 소개</span>
+    <span class="aw-tile-body"><strong itemprop="name">의료진 및 소개</strong><span>진료 철학과 원장 약력</span></span></a>
+    <meta itemprop="position" content="1"></li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a class="aw-tile" itemprop="item" itemscope itemtype="https://schema.org/WebPage" href="3.html" title="목·허리 디스크">
+    <span class="aw-tile-placeholder" aria-hidden="true">척추·관절 클리닉</span>
+    <span class="aw-tile-body"><strong itemprop="name">목·허리 디스크</strong><span>추나요법 및 통증 치료</span></span></a>
+    <meta itemprop="position" content="2"></li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a class="aw-tile" itemprop="item" itemscope itemtype="https://schema.org/WebPage" href="4.html" title="이명·난청">
+    <span class="aw-tile-placeholder" aria-hidden="true">이명·난청 클리닉</span>
+    <span class="aw-tile-body"><strong itemprop="name">이명·난청</strong><span>귀울림 및 기혈 순환 회복</span></span></a>
+    <meta itemprop="position" content="3"></li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a class="aw-tile" itemprop="item" itemscope itemtype="https://schema.org/WebPage" href="5.html" title="여성질환·다이어트">
+    <span class="aw-tile-placeholder" aria-hidden="true">여성·다이어트</span>
+    <span class="aw-tile-body"><strong itemprop="name">여성질환·다이어트</strong><span>산후조리 및 요요 방지</span></span></a>
+    <meta itemprop="position" content="4"></li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a class="aw-tile" itemprop="item" itemscope itemtype="https://schema.org/WebPage" href="6.html" title="교통사고 후유증">
+    <span class="aw-tile-placeholder" aria-hidden="true">교통사고 클리닉</span>
+    <span class="aw-tile-body"><strong itemprop="name">교통사고 후유증</strong><span>어혈 제거 및 자동차보험</span></span></a>
+    <meta itemprop="position" content="5"></li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a class="aw-tile" itemprop="item" itemscope itemtype="https://schema.org/WebPage" href="7.html" title="맞춤한약">
+    <span class="aw-tile-placeholder" aria-hidden="true">맞춤한약·보약</span>
+    <span class="aw-tile-body"><strong itemprop="name">체질 맞춤한약</strong><span>안전한 탕전 및 공진단</span></span></a>
+    <meta itemprop="position" content="6"></li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a class="aw-tile" itemprop="item" itemscope itemtype="https://schema.org/WebPage" href="column.html" title="건강 칼럼">
+    <span class="aw-tile-placeholder" aria-hidden="true">원장 건강 칼럼</span>
+    <span class="aw-tile-body"><strong itemprop="name">건강 칼럼</strong><span>한의학 건강 상식과 정보</span></span></a>
+    <meta itemprop="position" content="7"></li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a class="aw-tile" itemprop="item" itemscope itemtype="https://schema.org/WebPage" href="2.html#section-location" title="오시는 길">
+    <span class="aw-tile-placeholder" aria-hidden="true">오시는 길</span>
+    <span class="aw-tile-body"><strong itemprop="name">오시는 길</strong><span>위치, 주차 및 진료시간</span></span></a>
+    <meta itemprop="position" content="8"></li>
+    </ol></section>
+    
+    <section class="aw-section" id="aw-wiki-s1"><h3>1. 안준석한의원 진료 철학과 한방 치료의 기초</h3>
+    <div class="aw-subsection" id="aw-wiki-s1-1"><h4>1.1. 눈에 보이는 증상과 근본 원인의 감별</h4>
+    <p>환자가 호소하는 허리 통증, 소화 불량, 이명 등의 증상은 우리 몸이 보내는 결과적인 신호다. 진통제로 일시적인 통증을 가라앉히는 것도 필요할 때가 있지만, 자세 불균형, 스트레스, 장부의 허실 등 병을 유발한 근본 원인을 교정하지 않으면 증상은 반복될 수밖에 없다. 한의학은 국소 부위의 염증뿐만 아니라 몸 전체의 균형과 자생력을 살피는 데 중점을 둔다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s1-2"><h4>1.2. 한방 진료와 일반 체형 관리의 차이</h4>
+    <p>일반 마사지나 비의료적인 체형 관리는 근육을 일시적으로 이완시켜 시원함을 줄 수 있으나, 척추 신경 압박이나 인대 손상을 진단하고 치료할 수는 없다. 추나요법, 침, 약침 등은 해부학적 지식과 경락학을 바탕으로 한의사가 직접 시행하는 '의료 행위'다. 따라서 진단을 통한 적응증 판단과 부작용에 대한 사전 평가가 반드시 수반되어야 한다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s1-3"><h4>1.3. 치료 목적과 방법에 따른 의료진 선택</h4>
+    <p>한의원을 선택할 때는 자신의 증상(예: 교통사고 후유증, 여성 질환 등)에 대한 임상 경험이 풍부한지 확인하는 것이 좋다. 환자의 생활 습관까지 교정해 주며, 꼭 필요한 한약이나 시술만 권장하는 정직한 진료가 장기적인 건강 회복에 유리하다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s1-4"><h4>1.4. 첫 진료 전 준비할 병력과 정보</h4>
+    <p>정확한 진맥과 처방을 위해 방문 전 복용 중인 양약(혈압약, 당뇨약, 아스피린 등), 알레르기 반응 여부, 과거 수술 이력, 여성의 경우 임신 가능성 등을 미리 정리해 두면 좋다. 침습적 치료(침, 도침) 전 출혈성 질환이나 복용 약물 확인은 필수적이다.</p>
+    </div>
+    <a class="aw-return" href="#aw-wiki-toc">목차로 돌아가기</a></section>
+    
+    <section class="aw-section" id="aw-wiki-s2"><h3>2. 목·허리 디스크 및 척추 관절 통증</h3>
+    <div class="aw-subsection" id="aw-wiki-s2-1"><h4>2.1. 디스크(추간판탈출증)와 협착증의 발생 과정</h4>
+    <p>디스크 질환은 척추뼈 사이의 디스크가 압박을 받아 밀려나와 신경을 자극하는 상태를 말하며, 협착증은 신경이 지나가는 통로가 좁아져 발생한다. 단순한 요통과 달리 다리나 팔이 저리고 당기는 방사통이 동반되는 경우가 많다. 뼈 자체의 문제라기보다 주변 근육과 인대가 약해져 척추를 제대로 지탱하지 못하는 것이 주된 원인이다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s2-2"><h4>2.2. 추나요법을 통한 척추 구조의 교정</h4>
+    <p>추나요법은 한의사가 손이나 신체 일부를 이용해 환자의 척추와 관절, 근육을 밀고 당겨(추나) 틀어진 체형을 바로잡는 수기 치료다. 뼈의 정렬을 맞추고 경직된 근막을 이완시켜 디스크에 가해지는 압력을 줄여준다. 골다공증이 심하거나 급성 골절이 있는 경우 금기시되므로 시술 전 꼼꼼한 진찰이 요구된다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s2-3"><h4>2.3. 도침과 약침 요법의 적용과 주의사항</h4>
+    <p>도침은 끝이 납작한 칼날 모양의 특수 침으로, 만성적으로 유착되고 굳어진 연부조직(근육, 인대)을 미세하게 절개하여 풀어주는 강한 치료법이다. 약침은 한약재의 유효 성분을 정제하여 통증 부위의 경혈에 직접 주입하는 방식으로, 항염증 작용이 뛰어나다. 두 시술 모두 시술 후 뻐근함이나 멍이 생길 수 있으며, 시술 당일 무리한 운동은 피해야 한다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s2-4"><h4>2.4. 만성 통증 환자의 생활 관리와 운동</h4>
+    <p>통증이 가라앉았다고 치료를 바로 중단하면 약해진 인대로 인해 재발하기 쉽다. 한의원의 안내에 따라 코어 근육을 강화하는 스트레칭과 바른 자세를 생활화해야 한다. 급성기 통증일 때 무리한 운동은 오히려 독이 될 수 있으므로 시기별 지침을 따르는 것이 중요하다.</p>
+    </div>
+    <a class="aw-return" href="#aw-wiki-toc">목차로 돌아가기</a></section>
+    
+    <section class="aw-section" id="aw-wiki-s3"><h3>3. 이명·난청 및 안면신경(구안와사) 클리닉</h3>
+    <div class="aw-subsection" id="aw-wiki-s3-1"><h4>3.1. 이명과 난청의 한의학적 접근 (기혈 순환)</h4>
+    <p>귀에서 소리가 나는 이명이나 소리가 잘 들리지 않는 난청은 단순한 귀 부위의 문제일 수도 있지만, 한의학에서는 신장 기능의 저하(신허), 과도한 스트레스로 인한 열(간화), 위장 기능 저하로 인한 기혈 부족 등을 주요 원인으로 본다. 원인에 따라 전신 기능을 끌어올리는 치료가 동반되어야 한다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s3-2"><h4>3.2. 체질별 원인 분석과 침·뜸 치료</h4>
+    <p>귀 주변의 기혈 순환을 촉진하기 위해 귀 주변 및 목, 어깨의 경혈에 침과 약침 치료를 시행한다. 또한, 차가운 기운을 몰아내고 면역력을 높이는 뜸 치료와 환자의 허실에 맞춘 한약 처방을 병행하여 청각 신경의 스트레스를 줄이고 안정을 유도한다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s3-3"><h4>3.3. 구안와사(안면마비) 골든타임의 중요성</h4>
+    <p>구안와사는 제7뇌신경의 문제로 얼굴 근육이 마비되는 질환이다. 발병 직후 1~2주 이내의 초기 치료(골든타임)가 후유증을 최소화하는 핵심이다. 초기에는 신경의 염증을 가라앉히는 데 집중하고, 이후 신경 회복과 근력 강화를 목표로 치료 단계를 전환한다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s3-4"><h4>3.4. 신경 회복을 위한 복합 한방 치료</h4>
+    <p>마비된 안면 근육에 직접적인 침 자극과 온열 요법을 가하며, 비뚤어진 경추를 추나요법으로 교정해 뇌신경으로 가는 기혈 순환을 돕는다. 후유증이 남지 않도록 의료진의 지도에 따라 자가 안면 근육 운동을 꾸준히 병행해야 한다.</p>
+    </div>
+    <a class="aw-return" href="#aw-wiki-toc">목차로 돌아가기</a></section>
+    
+    <section class="aw-section" id="aw-wiki-s4"><h3>4. 여성 질환 및 한방 다이어트</h3>
+    <div class="aw-subsection" id="aw-wiki-s4-1"><h4>4.1. 생리통, 다낭성난소증후군과 자궁 환경</h4>
+    <p>극심한 생리통이나 불규칙한 생리 주기는 자궁 내 어혈이나 하복부의 냉증(차가운 기운)이 원인인 경우가 많다. 진통제로 통증만 덮기보다, 자궁과 난소로 가는 혈류를 개선하고 골반강 내 환경을 따뜻하게 만들어 스스로 호르몬 균형을 찾도록 돕는 것이 한방 치료의 목표다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s4-2"><h4>4.2. 산후조리와 갱년기 호르몬 변화 관리</h4>
+    <p>출산 후에는 관절이 이완되고 기혈이 크게 소모된 상태(산후풍 위험)이므로, 오로 배출과 관절 회복을 돕는 산후 보약이 권장된다. 갱년기 역시 진액이 마르고 상체로 열이 오르는 증상을 완화하기 위해 인위적인 호르몬 투여 대신 부족한 신수(腎水)를 채우는 처방을 적용한다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s4-3"><h4>4.3. 비만의 체질적 원인 파악</h4>
+    <p>단순히 식사량만 줄이는 다이어트는 요요현상을 부르기 쉽다. 한의학에서는 비만의 원인을 습담(노폐물 정체), 기허(대사기능 저하), 식적(소화 불량) 등으로 분류한다. 체성분 검사와 진맥을 통해 살이 찌는 진짜 원인을 파악하는 것이 선행된다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s4-4"><h4>4.4. 요요 방지를 위한 건강한 한방 다이어트</h4>
+    <p>맞춤 다이어트 한약은 식욕을 자연스럽게 억제하는 동시에 신진대사를 항진시켜 체지방 분해를 돕는다. 체력 저하나 어지러움, 탈모 등의 부작용을 막기 위해 기혈을 보충하는 약재가 함께 배합된다. 무리한 감량보다는 기초대사량을 지키는 건강한 감량 속도를 설정해야 한다.</p>
+    </div>
+    <a class="aw-return" href="#aw-wiki-toc">목차로 돌아가기</a></section>
+    
+    <section class="aw-section" id="aw-wiki-s5"><h3>5. 교통사고 후유증 및 어혈 치료</h3>
+    <div class="aw-subsection" id="aw-wiki-s5-1"><h4>5.1. 영상 검사에 나타나지 않는 미세 손상</h4>
+    <p>교통사고 후 X-ray나 MRI 검사에서는 뼈에 이상이 없다는 진단을 받았음에도 목, 허리의 통증이나 두통, 어지럼증, 가슴 두근거림을 호소하는 경우가 많다. 이는 편타성 손상(채찍질 손상)으로 인한 미세한 근육, 인대의 파열과 자율신경계의 충격 때문일 수 있다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s5-2"><h4>5.2. 어혈(瘀血)의 개념과 통증 유발 원리</h4>
+    <p>사고 시 받은 타격으로 미세혈관이 파열되어 발생한 나쁜 피의 덩어리를 '어혈'이라고 한다. 이 어혈이 체내를 돌아다니며 기혈 순환을 막고 찌르는 듯한 야간 통증을 유발한다. 교통사고 한방 치료의 핵심은 초기 3주 내에 이 어혈을 빠르게 배출시키는 데 있다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s5-3"><h4>5.3. 자동차보험 적용 및 진료 절차</h4>
+    <p>한의원에서도 대인사고 접수번호와 상대방 보험사 담당자 연락처만 있으면, 복잡한 서류 없이 자동차보험 혜택을 받아 본인 부담금 없이 진료를 시작할 수 있다. 침, 뜸, 부항, 물리치료, 추나요법, 맞춤 한약(보통 21일 분까지)이 모두 보험 적용 대상이 된다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s5-4"><h4>5.4. 집중 회복을 위한 단계별 치료 계획</h4>
+    <p>급성기에는 어혈을 푸는 한약과 염증을 줄이는 약침을 위주로 치료하고, 통증이 어느 정도 가라앉은 회복기에는 충격으로 틀어진 척추를 바로잡는 추나요법과 근육 인대를 강화하는 치료를 진행하여 만성 후유증으로 남지 않도록 관리한다.</p>
+    </div>
+    <a class="aw-return" href="#aw-wiki-toc">목차로 돌아가기</a></section>
+    
+    <section class="aw-section" id="aw-wiki-s6"><h3>6. 체질 맞춤 한약과 보약 (공진단)</h3>
+    <div class="aw-subsection" id="aw-wiki-s6-1"><h4>6.1. 맞춤 한약 처방을 위한 진맥과 문진</h4>
+    <p>같은 위장 장애라도 체질이 차가운 사람과 열이 많은 사람의 처방 약재는 완전히 다르다. 기성품처럼 만들어진 약을 처방하는 것이 아니라, 한의사의 세밀한 진맥, 복진(배를 눌러보는 진찰), 문진을 통해 환자 고유의 오장육부 상태를 파악한 뒤 1:1로 약재를 가감하여 처방한다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s6-2"><h4>6.2. 식약처 인증 청정 한약재의 중요성</h4>
+    <p>의료기관인 한의원에서 사용하는 한약재는 마트나 시장에서 파는 농산물과 다르다. 식약처의 엄격한 중금속, 잔류 농약 검사 기준을 통과한 '의약품용 한약재(hGMP)'만을 사용하므로 간이나 신장에 무리가 갈 것이라는 일반적인 오해와 달리 안전하게 복용할 수 있다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s6-3"><h4>6.3. 공진단 등 프리미엄 보약의 적응증</h4>
+    <p>황제에게 진상되던 명약으로 알려진 공진단(사향, 녹용, 당귀, 산수유 등 배합)은 만성 피로, 수술 후 기력 저하, 수험생의 체력 및 집중력 회복에 탁월한 효과를 보인다. 단, 가짜 사향이나 함량 미달 제품을 피하기 위해 반드시 정식 한의원의 진단 후 조제된 것을 복용해야 한다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s6-4"><h4>6.4. 한약 복용 중 명현현상과 주의 반응</h4>
+    <p>한약 복용 초기에는 체내 노폐물이 배출되면서 일시적으로 피로감이나 가벼운 설사 등 이른바 '명현현상(호전반응)'이 나타날 수 있다. 하지만 예상치 못한 심한 두통이나 알레르기 발진 등이 발생한다면 임의로 판단하지 말고 한의원에 즉시 문의해야 한다.</p>
+    </div>
+    <a class="aw-return" href="#aw-wiki-toc">목차로 돌아가기</a></section>
+    
+    <section class="aw-section" id="aw-wiki-s7"><h3>7. 진료 예약·비용·안전 및 치료 과정</h3>
+    <div class="aw-subsection" id="aw-wiki-s7-1"><h4>7.1. 안준석한의원 초진 및 상담 흐름</h4>
+    <p>초진 방문 시 예진표를 작성하고, 필요한 경우 체형 분석 검사 등을 진행한 후 원장과 1:1 상담이 이루어진다. 현재 가장 불편한 증상의 원인을 설명듣고, 침·약침·추나·한약 등 필요한 치료 계획과 예상되는 회복 기간을 논의한 뒤 치료실로 이동한다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s7-2"><h4>7.2. 급여(건강보험) 진료와 비급여 항목의 구별</h4>
+    <p>기본적인 침, 뜸, 부항과 일부 가루약(보험약), 연간 20회까지의 추나요법은 건강보험이 적용되어 비용 부담이 적다. 반면, 약침, 도침, 다이어트 한약, 첩약(탕약) 등은 비급여 항목으로 별도의 비용이 발생한다. 치료 전 급여/비급여 여부에 대한 안내를 받는 것이 좋다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s7-3"><h4>7.3. 침, 추나 시술 후 예상 가능한 신체 반응</h4>
+    <p>침을 맞은 부위가 묵직하거나(득기 반응) 드물게 미세한 멍이 들 수 있으며 며칠 내로 자연스럽게 사라진다. 추나요법을 받은 당일이나 다음 날은 평소 쓰지 않던 근육이 교정되면서 일시적인 몸살 기운이나 뻐근함이 있을 수 있다. 시술 당일 무거운 물건을 들거나 과격한 운동은 피해야 한다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s7-4"><h4>7.4. 진료시간·위치 및 주차 안내</h4>
+    <p>안준석한의원은 영등포(영등포로 200)에 위치해 있으며, 직장인들의 편의를 위해 야간 진료나 주말 진료를 병행할 수 있다. 방문 전 네이버 예약이나 전화를 통해 변동될 수 있는 최신 진료 시간과 주차 가능 여부를 확인하고 내원하는 것을 권장한다.</p>
+    </div>
+    <a class="aw-return" href="#aw-wiki-toc">목차로 돌아가기</a></section>
+    
+    <section class="aw-section" id="aw-wiki-s8"><h3>8. 자주 묻는 질문(FAQ) 및 내부 링크</h3>
+    <div class="aw-subsection" id="aw-wiki-s8-1"><h4>8.1. 추나요법은 얼마나 자주 받아야 하나요?</h4>
+    <p>증상의 심각도에 따라 다르지만, 급성 통증이나 체형 교정 초기에는 주 2~3회 집중 치료를 권장하며, 호전됨에 따라 주 1회 등으로 간격을 늘려간다. 건강보험 적용은 환자 1인당 연간 20회까지 가능하므로, 의료진과 상의하여 계획적으로 시술받는 것이 좋다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s8-2"><h4>8.2. 한약을 복용할 때 피해야 할 음식이 있나요?</h4>
+    <p>한약의 소화 흡수를 방해하고 약효를 떨어뜨릴 수 있는 지나치게 맵고 짠 자극적인 음식, 기름진 음식, 밀가루, 음주 등은 피하는 것이 기본이다. 처방된 약재의 성질(찬약, 더운약)에 따라 무씨(숙지황 복용 시)나 녹두 등 피해야 할 특정 음식이 있을 수 있으니 개별 안내문을 잘 지켜야 한다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s8-3"><h4>8.3. 임산부나 어린이도 한방 치료가 가능한가요?</h4>
+    <p>가능하다. 어린이의 성장을 돕고 면역력을 키우는 소아 한약, 임산부의 입덧 완화 및 순산을 돕는 안태약, 산후풍 예방약 등은 매우 안전한 식재료에 가까운 약재 위주로 처방된다. 다만 반드시 한의사에게 현재 주수와 상태를 정확히 고지해야 한다.</p>
+    </div>
+    <div class="aw-subsection" id="aw-wiki-s8-4"><h4>8.4. 안준석한의원 내부 페이지로 더 알아보기</h4>
+    <p>아래 링크를 통해 원하시는 진료 과목별 상세 안내와 건강 칼럼을 확인할 수 있다. 온라인 정보만으로 자가 진단하기보다, 증상이 지속될 경우 직접 내원하여 한의사의 세밀한 진맥과 상담을 받는 것이 가장 확실한 방법이다.</p>
+    </div>
+    <div class="aw-links"><strong>안준석한의원 주요 안내 페이지</strong><ul>
+    <li><a href="index.html" title="안준석한의원 메인홈페이지">안준석한의원 메인홈페이지</a></li>
+    <li><a href="2.html#section-doctor" title="의료진 및 철학 소개">의료진 및 철학 소개</a></li>
+    <li><a href="2.html#section-price" title="비급여 진료비 안내">비급여 진료비 안내</a></li>
+    <li><a href="3.html" title="목·허리 디스크 및 척추 관절">목·허리 디스크 및 척추 관절</a></li>
+    <li><a href="4.html" title="이명·난청·구안와사">이명·난청·구안와사</a></li>
+    <li><a href="5.html" title="여성질환 및 다이어트">여성질환 및 다이어트</a></li>
+    <li><a href="6.html" title="교통사고 후유증">교통사고 후유증</a></li>
+    <li><a href="7.html" title="맞춤한약 및 공진단">맞춤한약 및 공진단</a></li>
+    <li><a href="column.html" title="원장 건강 칼럼">원장 건강 칼럼</a></li>
+    <li><a href="2.html#section-location" title="진료시간 및 오시는 길">진료시간 및 오시는 길</a></li>
+    </ul></div>
+    <div class="aw-links"><strong>관련 건강 정보 참고 사이트</strong><ul>
+    <li><a href="https://www.akom.org/" target="_blank" rel="noopener noreferrer">대한한의사협회 공식 홈페이지</a></li>
+    <li><a href="https://www.hira.or.kr/ra/hosp/getHealthMap.do?pgmid=HIRAA030002010000" target="_blank" rel="noopener noreferrer">건강보험심사평가원 — 병원찾기</a></li>
+    </ul></div>
+    <a class="aw-return" href="#aw-wiki-toc">목차로 돌아가기</a></section>
+    
+    <footer class="aw-foot"><p>이 문서는 환자들의 이해를 돕기 위해 안준석한의원의 진료 과목과 일반적인 한의학 건강 정보를 정리한 것입니다. 제시된 정보가 개별 질환에 대한 절대적인 진단이나 완치를 보장하지 않으며, 체질과 증상에 따라 치료 결과나 비용은 달라질 수 있습니다. 정확한 진단과 치료 방향은 예약 후 내원하시어 원장님의 진료를 통해 확인하시기 바랍니다. (예약 및 문의: 02-123-4567)</p></footer></article></details>
+
     <!-- Header -->
     <header>
         <a href="index.html" class="logo-container">
